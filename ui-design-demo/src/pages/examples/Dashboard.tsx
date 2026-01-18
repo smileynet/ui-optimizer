@@ -2,6 +2,7 @@ import { Stack } from '../../components/ui/Stack';
 import { Card } from '../../components/ui/Card';
 import { Button } from '../../components/ui/Button';
 import { Badge } from '../../components/ui/Badge';
+import { CalloutProvider, CalloutToggle, DesignCallout } from '../../components/ui';
 import { ThemeToggle } from '../../components/ThemeToggle';
 import { cn } from '../../lib/utils';
 
@@ -180,9 +181,20 @@ function SidebarItem({ icon, label, active = false }: { icon: React.ReactNode, l
 
 export function Dashboard() {
   return (
+    <CalloutProvider>
     <div className="min-h-screen bg-[var(--color-bg-page)] text-[var(--color-text-primary)] font-[family-name:var(--font-sans)] flex">
       {/* Sidebar */}
       <aside className="w-64 border-r border-[var(--color-border)] bg-[var(--color-bg-surface)] hidden md:flex flex-col h-screen sticky top-0">
+        <DesignCallout 
+          variant="agent" 
+          title="Sidebar Navigation Pattern"
+          className="m-2"
+        >
+          Fixed 256px (w-64) sidebar with sticky positioning keeps navigation always accessible. 
+          Grouped nav items with section headers guide agents to organize by feature area. 
+          Active states use <code className="bg-[var(--color-bg-muted)] px-1 rounded">--color-primary-subtle</code> for 
+          clear selection indication without overwhelming.
+        </DesignCallout>
         <div className="p-6 border-b border-[var(--color-border)]">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-accent)] flex items-center justify-center text-white font-bold">
@@ -239,6 +251,7 @@ export function Dashboard() {
             </div>
 
             <div className="flex items-center gap-3">
+              <CalloutToggle />
               <ThemeToggle />
               <button className="p-2 text-[var(--color-text-secondary)] hover:bg-[var(--color-bg-subtle)] rounded-full transition-colors relative">
                 <IconBell className="w-5 h-5" />
@@ -277,7 +290,17 @@ export function Dashboard() {
             </div>
           </div>
 
-          {/* Metrics Grid */}
+          <DesignCallout 
+            variant="pattern" 
+            title="Metrics Grid: Information Hierarchy"
+            className="mb-4"
+          >
+            The 4-column grid places key metrics at the top where users look first (F-pattern). 
+            Each card uses consistent sizing and spacing (gap-6 = 24px) to create visual rhythm. 
+            Agents are guided to use <code className="bg-[var(--color-bg-muted)] px-1 rounded">grid-cols-4</code> for 
+            dashboard KPIs and always include trend indicators for context.
+          </DesignCallout>
+          
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <MetricCard 
               title="Total Revenue" 
@@ -306,7 +329,18 @@ export function Dashboard() {
             />
           </div>
 
-          {/* Charts Section */}
+          <DesignCallout 
+            variant="token" 
+            title="Semantic Color Usage"
+            className="mb-4"
+          >
+            Charts use <code className="bg-[var(--color-bg-muted)] px-1 rounded">--color-primary</code> for main data, 
+            with <code className="bg-[var(--color-bg-muted)] px-1 rounded">--color-accent</code>, 
+            <code className="bg-[var(--color-bg-muted)] px-1 rounded">--color-warning</code>, and 
+            <code className="bg-[var(--color-bg-muted)] px-1 rounded">--color-success</code> for categorical data.
+            Agents should never use raw hex values—semantic tokens automatically adapt to dark mode.
+          </DesignCallout>
+          
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <Card className="lg:col-span-2">
               <Card.Header className="flex items-center justify-between">
@@ -496,5 +530,6 @@ export function Dashboard() {
         </div>
       </main>
     </div>
+    </CalloutProvider>
   );
 }

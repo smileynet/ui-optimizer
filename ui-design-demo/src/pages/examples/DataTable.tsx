@@ -5,6 +5,7 @@ import { Card } from '../../components/ui/Card';
 import { Button } from '../../components/ui/Button';
 import { Badge } from '../../components/ui/Badge';
 import { Input } from '../../components/ui/Input';
+import { CalloutProvider, CalloutToggle, DesignCallout } from '../../components/ui';
 import { cn } from '../../lib/utils';
 
 function SearchIcon({ className }: { className?: string }) {
@@ -140,6 +141,7 @@ export function DataTable() {
   const isIndeterminate = selectedItems.size > 0 && selectedItems.size < data.length;
 
   return (
+    <CalloutProvider>
     <div className="min-h-screen bg-[var(--color-bg-page)] py-12 font-sans text-[var(--color-text-primary)]">
       <Container size="xl">
         <Stack gap={8}>
@@ -153,6 +155,7 @@ export function DataTable() {
               </p>
             </Stack>
             <div className="flex gap-3">
+               <CalloutToggle />
                <Button variant="secondary" leftIcon={<svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>}>
                 Export
               </Button>
@@ -161,6 +164,17 @@ export function DataTable() {
               </Button>
             </div>
           </div>
+
+          <DesignCallout 
+            variant="accessibility" 
+            title="Data Table Accessibility"
+          >
+            Tables use semantic HTML (<code className="bg-[var(--color-bg-muted)] px-1 rounded">&lt;table&gt;</code>, 
+            <code className="bg-[var(--color-bg-muted)] px-1 rounded">&lt;thead&gt;</code>, 
+            <code className="bg-[var(--color-bg-muted)] px-1 rounded">&lt;tbody&gt;</code>) for screen reader support.
+            Zebra striping aids row tracking. Selection state is visually indicated AND 
+            communicated programmatically. Agents should always use proper table semantics, not divs.
+          </DesignCallout>
 
           <Card className="overflow-hidden border border-[var(--color-border)] shadow-[var(--shadow-sm)]">
             <div className="p-4 border-b border-[var(--color-border)] bg-[var(--color-bg-surface)]">
@@ -377,5 +391,6 @@ export function DataTable() {
         </Stack>
       </Container>
     </div>
+    </CalloutProvider>
   );
 }

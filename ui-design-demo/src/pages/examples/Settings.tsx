@@ -5,6 +5,7 @@ import { Card } from '../../components/ui/Card';
 import { Button } from '../../components/ui/Button';
 import { Input } from '../../components/ui/Input';
 import { Badge } from '../../components/ui/Badge';
+import { CalloutProvider, CalloutToggle, DesignCallout } from '../../components/ui';
 import { cn } from '../../lib/utils';
 
 // --- Icons ---
@@ -109,14 +110,28 @@ export function Settings() {
   ] as const;
 
   return (
+    <CalloutProvider>
     <div className="min-h-screen bg-[var(--color-bg-page)] py-8">
       <Container size="lg">
-        <div className="mb-8">
-          <h1 className="text-[var(--text-3xl)] font-bold text-[var(--color-text-primary)] tracking-tight">Settings</h1>
-          <p className="mt-2 text-[var(--text-base)] text-[var(--color-text-secondary)]">
-            Manage your account settings and preferences.
-          </p>
+        <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h1 className="text-[var(--text-3xl)] font-bold text-[var(--color-text-primary)] tracking-tight">Settings</h1>
+            <p className="mt-2 text-[var(--text-base)] text-[var(--color-text-secondary)]">
+              Manage your account settings and preferences.
+            </p>
+          </div>
+          <CalloutToggle />
         </div>
+        
+        <DesignCallout 
+          variant="principle" 
+          title="Progressive Disclosure"
+          className="mb-6"
+        >
+          Settings are organized into logical sections (Profile, Preferences, Notifications) using tab navigation.
+          This prevents overwhelming users with all options at once. Agents should group related settings
+          and use clear section headers.
+        </DesignCallout>
 
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Sidebar Navigation */}
@@ -334,5 +349,6 @@ export function Settings() {
         </div>
       </Container>
     </div>
+    </CalloutProvider>
   );
 }
