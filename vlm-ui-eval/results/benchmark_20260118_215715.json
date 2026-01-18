@@ -1,0 +1,54 @@
+{
+  "timestamp": "20260118_215715",
+  "description": "A vibrant minimal design system featuring:\n- Blue primary color with rose accent on neutral stone background\n- Clean typography with 1.25 modular scale\n- 8px grid spacing system with generous whitespace\n- Consistent, accessible UI components\n- Modern, energetic yet sophisticated aesthetic\n- Proper dark mode with maintained contrast",
+  "results": [
+    {
+      "model_name": "SmolVLM2-256M",
+      "parameters": "256M",
+      "vram_gb": 1.0,
+      "total_images": 5,
+      "avg_score": 0.0,
+      "avg_inference_time_ms": 900.4470437881537,
+      "peak_vram_mb": 499.11962890625,
+      "scores_by_image": {
+        "colors.png": 0.0,
+        "components-dark.png": 0.0,
+        "components.png": 0.0,
+        "spacing.png": 0.0,
+        "typography.png": 0.0
+      },
+      "errors": [],
+      "raw_outputs": {
+        "colors.png": " 1-10, 1-10",
+        "components-dark.png": " 1. Colors: Is the color palette good?\n2. Layout: Is there enough white space?\n3. Typography: Are fonts readable?\n4. Overall: What's the overall quality?",
+        "components.png": " - Colors: Is the color palette good?\n- Layout: Is there enough white space?\n- Typography: Are fonts readable?\n- Overall: What's the overall quality?",
+        "spacing.png": " 1-10",
+        "typography.png": " 1-10"
+      }
+    },
+    {
+      "model_name": "LLaVA-OneVision-0.5B",
+      "parameters": "0.5B",
+      "vram_gb": 2.0,
+      "total_images": 5,
+      "avg_score": 6.0,
+      "avg_inference_time_ms": 4597.774882614613,
+      "peak_vram_mb": 1714.02294921875,
+      "scores_by_image": {
+        "colors.png": 1.0,
+        "components-dark.png": 10.0,
+        "components.png": 8.0,
+        "spacing.png": 10.0,
+        "typography.png": 1.0
+      },
+      "errors": [],
+      "raw_outputs": {
+        "colors.png": "IS_RENDERED_UI: 1\nCOLOR_STRATEGY: 1\nWHITE_SPACE: 1\nTYPOGRAPHY: 1\nVISUAL_NOISE: 1\nACCESSIBILITY: 1\nEMOTIONAL_IMPACT: 1\nOVERALL: 1\n\nCOLOR_STRATEGY: The color strategy is clear and bold, but the text is plain and does not have any breathing room. The typography is clean and readable, but the visual noise is minimal. The accessibility is good, and the emotional impact is modern and professional. Overall, the UI is visually appealing and easy to read, but the text is plain and does not have any breathing room.",
+        "components-dark.png": "IS_RENDERED_UI: 10/10\nCOLOR_STRATEGY: 10/10\nWHITE_SPACE: 10/10\nTYPOGRAPHY: 10/10\nVISUAL_NOISE: 10/10\nACCESSIBILITY: 10/10\nEMOTIONAL_IMPACT: 10/10\nOVERALL: 10/10\n\nExplanation:\n- IS_RENDERED_UI: The UI is styled and has a clean layout with breathing room, making it visually appealing and easy to navigate.\n- COLOR_STRATEGY: The color strategy is strategic, with bold accents that make the UI stand out.\n- WHITE_SPACE: The white space is clean and well-spaced, which helps to keep the UI organized and easy to read.\n- TYPOGRAPHY: The typography is clear and readable, with a good contrast and readability.\n- VISUAL_NOISE: There is minimal clutter in the UI, which makes it easy to focus on the content.\n- ACCESSIBILITY: The accessibility features are good, making it easy for users with disabilities to navigate the UI.\n- EMOTIONAL_impACT: The overall design of the UI is modern and professional, which can make it more engaging and effective.\n- OVERALL: The UI is visually appealing, easy to navigate, and accessible, making it a great design for a professional setting.",
+        "components.png": "IS_RENDERED_UI: 10/10\nCOLOR_STRATEGY: 10/10\nWHITE_SPACE: 8/10\nTYPOGRAPHY: 8/10\nVISUAL_NOISE: 8/10\nACCESSIBILITY: 8/10\nEMOTIONAL_IMPACT: 8/10\nOVERALL: 8/10\n\nExplanation:\nThe UI is styled with a clean and modern design, using bold accents and clear type hierarchy. The color strategy is strategic, with a bold color for the main text and a lighter color for the secondary text. The white space is clean and well-organized. The typography is clear and readable, with a good contrast between the text and background. The accessibility is good, with a clear type hierarchy and good contrast. The emotional impact is moderate, with a modern and professional feel. Overall, the UI is well-designed and visually appealing.",
+        "spacing.png": "IS_RENDERED_UI: 10/10\nCOLOR_STRATEGY: 10/10\nWHITE_SPACE: 10/10\nTYPOGRAPHY: 10/10\nVISUAL_NOISE: 10/10\nACCESSIBILITY: 10/10\nEMOTIONAL_IMPACT: 10/10\nOVERALL: 10/10\n\nExplanation:\nThe UI is styled with a clean layout, and the use of bold accents in the color scheme is effective. The white space is well-organized, and the typography is clear and readable. The accessibility features are also considered good. The overall design is modern and professional, with minimal clutter.",
+        "typography.png": "IS_RENDERED_UI: Yes\nCOLOR_STRATEGY: Yes\nWHITE_SPACE: Yes\nTYPOGRAPHY: Yes\nVISUAL_NOISE: Yes\nACCESSIBILITY: Yes\nEMOTIONAL_IMPACT: Yes\nOVERALL: Overall quality\n\nExplanation:\n1. IS_RENDERED_UI: The UI is styled with a clean and organized layout, making it visually appealing and easy to navigate.\n2. COLOR_STRATEGY: The use of bold colors and contrasting text helps to draw attention and create a clear hierarchy of information.\n3. WHITE_SPACE: The white space is well-spaced and clean, which helps to improve readability and reduce clutter.\n4. TYPOGRAPHY: The typography is clear and legible, with a good balance of bold and regular fonts.\n5. VISUAL_NOISE: There is minimal visual noise in the UI, which makes it easy to read and understand.\n6. ACCESSIBILITY: The UI is accessible with good contrast and readability, making it usable for all users.\n7. EMOTIONAL_IMPACT: The UI has a modern and professional feel, which can help to convey a sense of professionalism and credibility.\n8. OVERALL: The UI is well-designed and visually appealing, making it easy to use and navigate."
+      }
+    }
+  ]
+}

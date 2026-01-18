@@ -1,0 +1,23 @@
+{
+  "timestamp": "20260118_211641",
+  "description": "A vibrant minimal design system featuring:\n- Blue primary color with rose accent on neutral stone background\n- Clean typography with 1.25 modular scale\n- 8px grid spacing system with generous whitespace\n- Consistent, accessible UI components\n- Modern, energetic yet sophisticated aesthetic\n- Proper dark mode with maintained contrast",
+  "results": [
+    {
+      "model_name": "UIClip",
+      "parameters": "400M",
+      "vram_gb": 2.0,
+      "total_images": 5,
+      "avg_score": 3.793128430726938,
+      "avg_inference_time_ms": 94.81733440188691,
+      "peak_vram_mb": 585.2041015625,
+      "scores_by_image": {
+        "colors.png": 3.582604641560465,
+        "components-dark.png": 4.400513246655464,
+        "components.png": 4.013762790709734,
+        "spacing.png": 3.3895719109568745,
+        "typography.png": 3.579189563752152
+      },
+      "errors": []
+    }
+  ]
+}
