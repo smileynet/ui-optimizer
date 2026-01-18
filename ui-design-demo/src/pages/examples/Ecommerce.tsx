@@ -5,6 +5,7 @@ import { Card } from '../../components/ui/Card';
 import { Button } from '../../components/ui/Button';
 import { Badge } from '../../components/ui/Badge';
 import { Input } from '../../components/ui/Input';
+import { CalloutProvider, CalloutToggle, DesignCallout } from '../../components/ui';
 import { cn } from '../../lib/utils';
 
 // Types for our fake data
@@ -136,6 +137,7 @@ export function Ecommerce() {
   void _setCartCount;
 
   return (
+    <CalloutProvider>
     <div className="min-h-screen bg-[var(--color-bg-page)] pb-20 font-sans">
       {/* Navigation Header */}
       <div className="sticky top-0 z-[var(--z-sticky)] bg-[var(--color-bg-surface)]/80 backdrop-blur-md border-b border-[var(--color-border)]">
@@ -169,12 +171,23 @@ export function Ecommerce() {
                   </span>
                 )}
               </Button>
+              <CalloutToggle />
             </div>
           </div>
         </Container>
       </div>
 
       <Container size="xl" className="mt-8">
+        <DesignCallout 
+          variant="pattern" 
+          title="Product Grid: Responsive Card Layout"
+          className="mb-6"
+        >
+          Product cards use a responsive grid (4 → 3 → 2 → 1 columns) with consistent card dimensions.
+          Each card follows the same structure: image, title, price, rating, action. Agents should 
+          use <code className="bg-[var(--color-bg-muted)] px-1 rounded">grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4</code> for 
+          commerce grids with gap-6 spacing.
+        </DesignCallout>
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Sidebar Filters */}
           <aside className="w-full lg:w-64 flex-shrink-0 space-y-8">
@@ -340,5 +353,6 @@ export function Ecommerce() {
         </div>
       </Container>
     </div>
+    </CalloutProvider>
   );
 }

@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { Landing } from './pages/Landing';
 import { Sandbox } from './pages/Sandbox';
+import { DesignStory } from './pages/DesignStory';
 import { Examples } from './pages/examples';
 import { Dashboard } from './pages/examples/Dashboard';
 import { Settings } from './pages/examples/Settings';
@@ -11,6 +12,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Landing />} />
+      <Route path="/story" element={<DesignStory />} />
       <Route path="/sandbox" element={<Sandbox />} />
       <Route path="/examples" element={<Examples />} />
       <Route path="/examples/dashboard" element={<Dashboard />} />

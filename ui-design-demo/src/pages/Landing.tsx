@@ -42,13 +42,20 @@ export function Landing() {
       <div className="border-b border-[var(--color-border)] bg-[var(--color-bg-surface)]/80 backdrop-blur-md sticky top-0 z-50">
         <Container size="xl">
           <div className="flex h-16 items-center justify-between">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-[var(--radius-lg)] bg-[var(--color-primary)] flex items-center justify-center text-white font-bold text-lg shadow-[var(--shadow-lg)]">
-                Ui
+            <div className="flex items-center gap-6">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-[var(--radius-lg)] bg-[var(--color-primary)] flex items-center justify-center text-white font-bold text-lg shadow-[var(--shadow-lg)]">
+                  Ui
+                </div>
+                <span className="font-bold text-[var(--text-lg)] tracking-tight">
+                  Optimizer
+                </span>
               </div>
-              <span className="font-bold text-[var(--text-lg)] tracking-tight">
-                Optimizer
-              </span>
+              <nav className="hidden md:flex items-center gap-4">
+                <a href="/story" className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors">Design Story</a>
+                <a href="/examples" className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors">Examples</a>
+                <a href="/sandbox" className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors">Sandbox</a>
+              </nav>
             </div>
             <ThemeToggle />
           </div>
