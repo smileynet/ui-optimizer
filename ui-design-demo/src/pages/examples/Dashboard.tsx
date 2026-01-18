@@ -187,13 +187,12 @@ export function Dashboard() {
       <aside className="w-64 border-r border-[var(--color-border)] bg-[var(--color-bg-surface)] hidden md:flex flex-col h-screen sticky top-0">
         <DesignCallout 
           variant="agent" 
-          title="Sidebar Navigation Pattern"
+          title="Sidebar: Persistent Navigation"
           className="m-2"
         >
-          Fixed 256px (w-64) sidebar with sticky positioning keeps navigation always accessible. 
-          Grouped nav items with section headers guide agents to organize by feature area. 
-          Active states use <code className="bg-[var(--color-bg-muted)] px-1 rounded">--color-primary-subtle</code> for 
-          clear selection indication without overwhelming.
+          <strong>User Need:</strong> Sarah checks dashboard quickly between tasks (Context Scenario).<br/>
+          <strong>Solution:</strong> Fixed 256px sidebar with sticky positioning keeps navigation always accessible without scrolling.<br/>
+          <strong>Tokens:</strong> <code className="bg-[var(--color-bg-muted)] px-1 rounded">w-64</code>, <code className="bg-[var(--color-bg-muted)] px-1 rounded">sticky top-0</code>, <code className="bg-[var(--color-bg-muted)] px-1 rounded">--color-primary-subtle</code> for active state.
         </DesignCallout>
         <div className="p-6 border-b border-[var(--color-border)]">
           <div className="flex items-center gap-2">
@@ -292,13 +291,13 @@ export function Dashboard() {
 
           <DesignCallout 
             variant="pattern" 
-            title="Metrics Grid: Information Hierarchy"
+            title="Metrics Grid: Primary Information"
             className="mb-4"
           >
-            The 4-column grid places key metrics at the top where users look first (F-pattern). 
-            Each card uses consistent sizing and spacing (gap-6 = 24px) to create visual rhythm. 
-            Agents are guided to use <code className="bg-[var(--color-bg-muted)] px-1 rounded">grid-cols-4</code> for 
-            dashboard KPIs and always include trend indicators for context.
+            <strong>JTBD:</strong> "When I start my workday, I want to see what needs my attention."<br/>
+            <strong>Design Decision:</strong> Stats at top, full width—F-pattern reading puts metrics in prime viewing position. Each card includes trend badges addressing persona frustration: "Unclear what matters."<br/>
+            <strong>Tokens:</strong> <code className="bg-[var(--color-bg-muted)] px-1 rounded">grid-cols-4</code>, <code className="bg-[var(--color-bg-muted)] px-1 rounded">gap-6 (--space-6)</code>.<br/>
+            <strong>Validation:</strong> Time-to-insight target &lt;30s achieved via glanceable layout.
           </DesignCallout>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -331,14 +330,12 @@ export function Dashboard() {
 
           <DesignCallout 
             variant="token" 
-            title="Semantic Color Usage"
+            title="Semantic Color for Data Visualization"
             className="mb-4"
           >
-            Charts use <code className="bg-[var(--color-bg-muted)] px-1 rounded">--color-primary</code> for main data, 
-            with <code className="bg-[var(--color-bg-muted)] px-1 rounded">--color-accent</code>, 
-            <code className="bg-[var(--color-bg-muted)] px-1 rounded">--color-warning</code>, and 
-            <code className="bg-[var(--color-bg-muted)] px-1 rounded">--color-success</code> for categorical data.
-            Agents should never use raw hex values—semantic tokens automatically adapt to dark mode.
+            <strong>Constraint:</strong> WCAG 2.2 AA compliance required—all colors must meet contrast ratios.<br/>
+            <strong>Token Strategy:</strong> Semantic tokens (<code className="bg-[var(--color-bg-muted)] px-1 rounded">--color-primary</code>, <code className="bg-[var(--color-bg-muted)] px-1 rounded">--color-accent</code>, <code className="bg-[var(--color-bg-muted)] px-1 rounded">--color-success/warning</code>) auto-adapt to dark mode.<br/>
+            <strong>Agent Guidance:</strong> Never use raw hex values. Trust the token system for consistent, accessible color.
           </DesignCallout>
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -427,7 +424,16 @@ export function Dashboard() {
             </Card>
           </div>
 
-          {/* Bottom Section */}
+          <DesignCallout 
+            variant="accessibility" 
+            title="Information Architecture: Secondary Content"
+            className="mb-4"
+          >
+            <strong>User Flow:</strong> After scanning metrics, user may want to drill down (JTBD #3: "When something feels off").<br/>
+            <strong>Design:</strong> Activity feed and project status are secondary—visible but not competing with stats.<br/>
+            <strong>Accessibility:</strong> Cards use proper heading hierarchy (h3), sufficient contrast, keyboard navigable "View All" buttons.
+          </DesignCallout>
+          
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
              <Card>
                <Card.Header className="flex items-center justify-between">
