@@ -1,0 +1,78 @@
+{
+  "timestamp": "20260118_215537",
+  "description": "A vibrant minimal design system featuring:\n- Blue primary color with rose accent on neutral stone background\n- Clean typography with 1.25 modular scale\n- 8px grid spacing system with generous whitespace\n- Consistent, accessible UI components\n- Modern, energetic yet sophisticated aesthetic\n- Proper dark mode with maintained contrast",
+  "results": [
+    {
+      "model_name": "SmolVLM2-256M",
+      "parameters": "256M",
+      "vram_gb": 1.0,
+      "total_images": 5,
+      "avg_score": 0.0,
+      "avg_inference_time_ms": 0.0,
+      "peak_vram_mb": 0.0,
+      "scores_by_image": {},
+      "errors": [
+        "Incorrect image source. Must be a valid URL starting with `http://` or `https://`, a valid path to an image file, or a base64 encoded string. Got file:///home/sam/code/vlm-ui-eval/screenshots/colors.png. Failed with cannot identify image file <_io.BytesIO object at 0x73df19f380e0>",
+        "Incorrect image source. Must be a valid URL starting with `http://` or `https://`, a valid path to an image file, or a base64 encoded string. Got file:///home/sam/code/vlm-ui-eval/screenshots/components-dark.png. Failed with cannot identify image file <_io.BytesIO object at 0x73df2610f510>",
+        "Incorrect image source. Must be a valid URL starting with `http://` or `https://`, a valid path to an image file, or a base64 encoded string. Got file:///home/sam/code/vlm-ui-eval/screenshots/components.png. Failed with cannot identify image file <_io.BytesIO object at 0x73df19f38180>",
+        "Incorrect image source. Must be a valid URL starting with `http://` or `https://`, a valid path to an image file, or a base64 encoded string. Got file:///home/sam/code/vlm-ui-eval/screenshots/spacing.png. Failed with Invalid base64-encoded string: number of data characters (53) cannot be 1 more than a multiple of 4",
+        "Incorrect image source. Must be a valid URL starting with `http://` or `https://`, a valid path to an image file, or a base64 encoded string. Got file:///home/sam/code/vlm-ui-eval/screenshots/typography.png. Failed with cannot identify image file <_io.BytesIO object at 0x73df19f38180>"
+      ],
+      "raw_outputs": {
+        "colors.png": "",
+        "components-dark.png": "",
+        "components.png": "",
+        "spacing.png": "",
+        "typography.png": ""
+      }
+    },
+    {
+      "model_name": "LLaVA-OneVision-0.5B",
+      "parameters": "0.5B",
+      "vram_gb": 2.0,
+      "total_images": 5,
+      "avg_score": 10.0,
+      "avg_inference_time_ms": 3913.243470201269,
+      "peak_vram_mb": 1712.77294921875,
+      "scores_by_image": {
+        "colors.png": 10.0,
+        "components-dark.png": 10.0,
+        "components.png": 10.0,
+        "spacing.png": 10.0,
+        "typography.png": 10.0
+      },
+      "errors": [],
+      "raw_outputs": {
+        "colors.png": "IS_RENDERED_UI: Yes - [1-10]/10 - [scores on each criterion]\nCOLOR_STRATEGY: 10 - [1-10]/10 - [scores on each criterion]\nWHITE_SPACE: 10 - [1-10]/10 - [scores on each criterion]\nTYPOGRAPHY: 10 - [1-10]/10 - [scores on each criterion]\nVISUAL_NOISE: 10 - [1-10]/10 - [scores on each criterion]\nACCESSIBILITY: 10 - [1-10]/10 - [scores on each criterion]\nEMOTIONAL_IMPACT: 10 - [1-10]/10 - [scores on each criterion]\nOVERALL: 10 - [1-10]/10 - [scores on each criterion]",
+        "components-dark.png": "IS_RENDERED_UI: Yes - [1-10]/10 - [yes, the UI is properly rendered with styled components]\nCOLOR_STRATEGY: 10 - [describes the use of colors]\nWHITE_SPACE: 10 - [describes the clean, uncluttered layout]\nTYPOGRAPHY: 10 - [describes the clear typography]\nVISUAL_NOISE: 10 - [describes the minimal decorative clutter]\nACCESSIBILITY: 10 - [describes the good text contrast]\nEMOTIONAL_IMPACT: 10 - [describes the modern and sophisticated feel]\nOVERALL: 10 - [describes the UI is properly rendered with styled components, clean, uncluttered layout, clear typography, minimal decorative clutter, good text contrast, modern and sophisticated feel, and good accessibility]",
+        "components.png": "IS_RENDERED_UI: Yes - [1-10]/10 - [yes, the UI is properly rendered with styled components]\nCOLOR_STRATEGY: 10 - [describes the use of colors]\nWHITE_SPACE: 10 - [describes the clean, uncluttered layout]\nTYPOGRAPHY: 10 - [describes the clear, readable fonts]\nVISUAL_NOISE: 10 - [describes the minimal decorative clutter]\nACCESSIBILITY: 10 - [describes the good text contrast]\nEMOTIONAL_IMPACT: 10 - [describes the modern and sophisticated feel]\nOVERALL: 10 - [describes the UI is properly rendered with styled components, clean, uncluttered layout, clear, readable fonts, minimal decorative clutter, good text contrast, modern and sophisticated feel, and good accessibility]",
+        "spacing.png": "IS_RENDERED_UI: Yes - [1-10]/10 - [scores on each criterion]\nCOLOR_STRATEGY: 10 - [1-10]/10 - [scores on each criterion]\nWHITE_SPACE: 10 - [1-10]/10 - [scores on each criterion]\nTYPOGRAPHY: 10 - [1-10]/10 - [scores on each criterion]\nVISUAL_NOISE: 10 - [1-10]/10 - [scores on each criterion]\nACCESSIBILITY: 10 - [1-10]/10 - [scores on each criterion]\nEMOTIONAL_IMPACT: 10 - [1-10]/10 - [scores on each criterion]\nOVERALL: 10 - [1-10]/10 - [scores on each criterion]",
+        "typography.png": "IS_RENDERED_UI: Yes - [1-10]/10 - [score 10]\nCOLOR_STRATEGY: 10 - [score 10]\nWHITE_SPACE: 10 - [score 10]\nTYPOGRAPHY: 10 - [score 10]\nVISUAL_NOISE: 10 - [score 10]\nACCESSIBILITY: 10 - [score 10]\nEMOTIONAL_IMPACT: 10 - [score 10]\nOVERALL: 10 - [score 10]"
+      }
+    },
+    {
+      "model_name": "Qwen2-VL-2B",
+      "parameters": "2B",
+      "vram_gb": 5.0,
+      "total_images": 5,
+      "avg_score": 8.2,
+      "avg_inference_time_ms": 16200.484823982697,
+      "peak_vram_mb": 1462.87939453125,
+      "scores_by_image": {
+        "colors.png": 8.0,
+        "components-dark.png": 8.0,
+        "components.png": 9.0,
+        "spacing.png": 8.0,
+        "typography.png": 8.0
+      },
+      "errors": [],
+      "raw_outputs": {
+        "colors.png": "IS_RENDERED_UI: yes\nCOLOR_STRATEGY: 8/10 - The color palette is limited and bold, with a strong emphasis on blue and rose colors. The contrast between the primary colors and the background colors is good, creating a visually appealing design.\nWHITE_SPACE: 8/10 - The layout is clean and there is ample negative space between elements. The spacing between elements is well-balanced, creating a sense of depth and hierarchy.\nTYPOGRAPHY: 8/10 - The typography is clear and consistent, with a modern font used for the primary and secondary text. The contrast between the text and background colors is good, making the text easy to read.\nVISUAL_NOISE: 7/10 - The design is minimalistic with few decorative elements. The layout is clean and there is no clutter. The use of color and typography is effective in creating a professional and energetic feel.\nACCESSIBILITY: 8/10 - The text is readable with sufficient contrast ratios. The layout is accessible and there is no visual clutter.\nEMOTIONAL_IMPACT: 8/10 - The design is modern and professional, with a bold and energetic feel. The use of color and typography creates a visually appealing and engaging design.\nOVERALL: 8/10 - The UI is well-designed with a limited color palette, clean layout, clear typography, minimal visual noise, good accessibility, and a modern, professional, and energetic feel.",
+        "components-dark.png": "IS_RENDERED_UI: yes\nCOLOR_STRATEGY: 8/10 - The color palette is limited and bold, with a focus on white and black. The use of white space is clean and generous, with minimal decorative clutter. The typography is clear and consistent, with a modern, professional, and energetic feel.\nWHITE_SPACE: 8/10 - The layout is clean and organized, with generous negative space. The visual noise is minimal, with a focus on the essential elements of the UI.\nTYPOGRAPHY: 8/10 - The typography is clear and consistent, with a modern font style. The contrast ratios are sufficient, with a focus on readability and readability.\nACCESSIBILITY: 8/10 - The text is readable, with sufficient contrast ratios. The layout is accessible, with a focus on readability and readability.\nEMOTIONAL_IMPACT: 8/10 - The UI has a modern, professional, and energetic feel. The design is clean and organized, with a focus on functionality and usability.\nOVERALL: 8/10 - The UI is well-designed and visually appealing, with a focus on functionality and usability. The color palette is limited and bold, with a focus on white and black. The layout is clean and organized, with minimal decorative clutter. The typography is clear and consistent, with a modern font style. The contrast ratios are sufficient, with a focus on readability and readability. The text is readable, with sufficient contrast ratios. The layout is accessible, with a focus on readability and readability. The design is clean and organized, with a focus on functionality and usability.",
+        "components.png": "IS_RENDERED_UI: yes\nCOLOR_STRATEGY: 8/10 - The color palette is limited and bold, with a focus on black and white. The use of a single color for the magnifying glass icon and the email icon adds a modern and professional feel to the UI.\nWHITE_SPACE: 9/10 - The layout is clean with generous negative space around the elements. The spacing between the text and the icons is well-balanced, making the UI easy to read.\nTYPOGRAPHY: 9/10 - The type hierarchy is clear, with a mix of fonts and sizes used for different elements. The font choices are consistent and the contrast ratios are sufficient.\nVISUAL_NOISE: 8/10 - The UI has a minimalistic design with no excessive decorative elements. The icons are well-placed and do not distract from the text.\nACCESSIBILITY: 9/10 - The text is readable with sufficient contrast ratios, and the icons are clearly visible. The layout is easy to navigate.\nEMOTIONAL_IMPACT: 9/10 - The UI has a modern and professional feel, with a clean layout and clear type hierarchy. The icons are well-placed and do not distract from the text.\nOVERALL: 9/10 - The UI is well-designed with a limited color palette, clean layout, clear typography, minimalistic design, sufficient contrast ratios, and clear accessibility features. The overall feel is modern and professional.",
+        "spacing.png": "IS_RENDERED_UI: yes\nCOLOR_STRATEGY: 8/10 - The color palette is limited and bold, with a focus on black, white, and gray. The use of these colors creates a professional and clean look.\nWHITE_SPACE: 8/10 - The layout is clean with generous negative space between elements. The spacing is consistent and well thought out.\nTYPOGRAPHY: 8/10 - The typography is clear and consistent, with a balanced use of type sizes and styles. The font choices are appropriate for the design.\nVISUAL_NOISE: 7/10 - The design is minimalistic with a focus on functionality. There is no excessive decorative clutter.\nACCESSIBILITY: 7/10 - The text is readable with sufficient contrast ratios. The layout is accessible for all users.\nEMOTIONAL_IMPACT: 8/10 - The design is modern and professional, with a energetic feel.\nOVERALL: 8/10 - The UI is well designed with strategic use of color, spacing, typography, and visual elements. The layout is clean and accessible, with a professional feel.",
+        "typography.png": "IS_RENDERED_UI: yes\nCOLOR_STRATEGY: 8/10 - The color palette is limited and uses bold accents to create a strong visual hierarchy. The text is clear and readable, with sufficient contrast ratios.\nWHITE_SPACE: 8/10 - The layout is clean with generous negative space, making the UI easy to read and navigate.\nTYPOGRAPHY: 8/10 - The typography is clear and consistent, with a balanced use of fonts and weights. The text hierarchy is effective, guiding the reader through the content.\nVISUAL_NOISE: 7/10 - The UI has a modern, professional, and energetic feel with minimal decorative clutter. The purposeful elements are well-integrated.\nACCESSIBILITY: 7/10 - The text is readable, with sufficient contrast ratios. However, the UI could benefit from more emphasis on accessibility features like keyboard navigation.\nEMOTIONAL_IMPACT: 7/10 - The UI has a professional and energetic feel, but the text could be more dynamic and engaging.\nOVERALL: 8/10 - The UI is well-designed with a clear color palette, effective typography, clean layout, and sufficient white space. The text is readable and has a modern, professional feel."
+      }
+    }
+  ]
+}
