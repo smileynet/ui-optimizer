@@ -12,17 +12,20 @@ interface CardProps {
   variant?: 'elevated' | 'outlined' | 'filled';
   className?: string;
   children: ReactNode;
+  onClick?: () => void;
 }
 
-function CardRoot({ variant = 'elevated', className, children }: CardProps) {
+function CardRoot({ variant = 'elevated', className, children, onClick }: CardProps) {
   return (
     <CardContext.Provider value={{ variant }}>
       <div
+        onClick={onClick}
         className={cn(
           'rounded-[var(--radius-xl)] overflow-hidden',
           variant === 'elevated' && 'bg-[var(--color-bg-surface)] shadow-[var(--shadow-md)]',
           variant === 'outlined' && 'bg-[var(--color-bg-surface)] border border-[var(--color-border)]',
           variant === 'filled' && 'bg-[var(--color-bg-subtle)]',
+          onClick && 'cursor-pointer',
           className
         )}
       >
