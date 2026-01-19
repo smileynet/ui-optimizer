@@ -38,12 +38,30 @@ direction: right
 
 orchestrator: ORCHESTRATOR
 
-p1: Phase 1\nResearch
-p2: Phase 2\nStrategy
-p3: Phase 3\nSolution
-p4: Phase 4\nUI Design
-p5: Phase 5\nCritique
-p6: Phase 6\nPolish
+p1: |md
+  **Phase 1**
+  Research
+|
+p2: |md
+  **Phase 2**
+  Strategy
+|
+p3: |md
+  **Phase 3**
+  Solution
+|
+p4: |md
+  **Phase 4**
+  UI Design
+|
+p5: |md
+  **Phase 5**
+  Critique
+|
+p6: |md
+  **Phase 6**
+  Polish
+|
 
 orchestrator -> p1
 p1 -> p2 -> p3 -> p4 -> p5 -> p6
@@ -71,7 +89,10 @@ direction: down
 
 ideas: Ideas
 build: Build
-product: Product\n(prototype)
+product: |md
+  **Product**
+  (prototype)
+|
 measure: Measure
 data: Data
 
@@ -192,53 +213,50 @@ app.api -> app.db: Queries
 
 ---
 
-## Mermaid Theming Options
+## Mermaid Styling Patterns
 
-### Default Theme
-```mermaid
-%%{init: {'theme': 'default'}}%%
-flowchart LR
-    A[Start] --> B[Process] --> C[End]
-```
+### Using classDef (Recommended)
 
-### Dark Theme
-```mermaid
-%%{init: {'theme': 'dark'}}%%
-flowchart LR
-    A[Start] --> B[Process] --> C[End]
-```
-
-### Forest Theme
-```mermaid
-%%{init: {'theme': 'forest'}}%%
-flowchart LR
-    A[Start] --> B[Process] --> C[End]
-```
-
-### Neutral Theme
-```mermaid
-%%{init: {'theme': 'neutral'}}%%
-flowchart LR
-    A[Start] --> B[Process] --> C[End]
-```
-
-### Custom Theme Variables
+Define reusable style classes for semantic meaning:
 
 ```mermaid
-%%{init: {
-  'theme': 'base',
-  'themeVariables': {
-    'primaryColor': '#4f46e5',
-    'primaryTextColor': '#fff',
-    'primaryBorderColor': '#3730a3',
-    'lineColor': '#6366f1',
-    'secondaryColor': '#e0e7ff',
-    'tertiaryColor': '#f0f0ff'
-  }
-}}%%
 flowchart LR
-    A[Start] --> B[Process] --> C[End]
+    classDef primary fill:#E3F2FD,stroke:#1E88E5,color:#0D47A1
+    classDef success fill:#E8F5E9,stroke:#4CAF50,color:#1B5E20
+    classDef warning fill:#FFF3E0,stroke:#FF9800,color:#E65100
+    classDef error fill:#FFEBEE,stroke:#F44336,color:#B71C1C
+    
+    A[Start]:::primary --> B{Check}
+    B -->|Pass| C[Success]:::success
+    B -->|Warn| D[Review]:::warning
+    B -->|Fail| E[Error]:::error
 ```
+
+### Workflow Phases Example
+
+```mermaid
+flowchart LR
+    classDef research fill:#DBEAFE,stroke:#3B82F6,color:#1E40AF
+    classDef design fill:#FEF3C7,stroke:#F59E0B,color:#92400E
+    classDef validate fill:#FEE2E2,stroke:#EF4444,color:#991B1B
+    classDef complete fill:#D1FAE5,stroke:#10B981,color:#065F46
+    
+    R[Research]:::research --> D[Design]:::design
+    D --> V[Validate]:::validate
+    V --> C[Complete]:::complete
+```
+
+### Built-in Themes
+
+MkDocs Material automatically handles light/dark mode. For reference, Mermaid's built-in themes:
+
+| Theme | Best For |
+|-------|----------|
+| `default` | Standard light documentation |
+| `dark` | Dark mode interfaces |
+| `neutral` | Print/black-white |
+| `forest` | Green-themed |
+| `base` | Custom styling only |
 
 ---
 

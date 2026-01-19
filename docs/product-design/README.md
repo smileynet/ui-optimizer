@@ -31,6 +31,9 @@ Product design methodologies help teams understand user needs, define problems, 
 
 ```mermaid
 flowchart TB
+    classDef discovery fill:#DBEAFE,stroke:#3B82F6,color:#1E40AF
+    classDef delivery fill:#D1FAE5,stroke:#10B981,color:#065F46
+    
     subgraph Discovery["PRODUCT DISCOVERY"]
         direction LR
         JTBD[JTBD Research] --> Personas[Personas & Journey Maps] --> DT[Design Thinking]
@@ -41,6 +44,8 @@ flowchart TB
         Lean[Lean UX & MVPs] --> Stories[User Stories] --> Kano[Kano Model]
     end
     
+    Discovery:::discovery
+    Delivery:::delivery
     DT --> Lean
 ```
 

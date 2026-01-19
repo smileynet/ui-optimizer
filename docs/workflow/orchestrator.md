@@ -10,18 +10,24 @@ The Orchestrator manages the end-to-end workflow, delegating to specialized agen
 
 ```mermaid
 flowchart TB
-    subgraph Orchestrator["ORCHESTRATOR (Coordinator/Supervisor)"]
+    classDef orchestrator fill:#E0E7FF,stroke:#4F46E5,color:#3730A3
+    classDef research fill:#DBEAFE,stroke:#3B82F6,color:#1E40AF
+    classDef design fill:#FEF3C7,stroke:#F59E0B,color:#92400E
+    classDef validate fill:#FEE2E2,stroke:#EF4444,color:#991B1B
+    classDef complete fill:#D1FAE5,stroke:#10B981,color:#065F46
+    
+    subgraph Orchestrator["ORCHESTRATOR"]
         direction LR
     end
     
-    Orchestrator --> P1 & P2 & P3
+    Orchestrator:::orchestrator --> P1 & P2 & P3
     
-    P1[Research Agent]
-    P2[Strategy Agent]
-    P3[Solution Agent]
-    P4[UI Agent]
-    P5[Critique Agent]
-    P6[Polish Agent]
+    P1[Research Agent]:::research
+    P2[Strategy Agent]:::research
+    P3[Solution Agent]:::research
+    P4[UI Agent]:::design
+    P5[Critique Agent]:::validate
+    P6[Polish Agent]:::complete
     
     P1 --> P2 --> P3 --> P4 --> P5 --> P6
 ```

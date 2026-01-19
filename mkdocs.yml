@@ -179,6 +179,7 @@ nav:
           - 6. Refine: workflow/phases/06-refine.md
   - Reference:
       - Diagram Comparison: reference/diagram-comparison.md
+      - Diagram Style Guide: reference/diagram-style-guide.md
       - Kroki Setup: reference/kroki-setup.md
 
 extra:

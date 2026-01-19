@@ -22,10 +22,14 @@ Lean UX applies lean startup principles to user experience design. Instead of ex
 
 ```mermaid
 flowchart TB
-    IDEAS[Ideas] --> BUILD[Build]
-    BUILD --> PRODUCT[Product / Prototype]
-    PRODUCT --> MEASURE[Measure]
-    MEASURE --> DATA[Data]
+    classDef ideate fill:#FEF3C7,stroke:#F59E0B,color:#92400E
+    classDef build fill:#DBEAFE,stroke:#3B82F6,color:#1E40AF
+    classDef measure fill:#D1FAE5,stroke:#10B981,color:#065F46
+    
+    IDEAS[Ideas]:::ideate --> BUILD[Build]:::build
+    BUILD --> PRODUCT[Product / Prototype]:::build
+    PRODUCT --> MEASURE[Measure]:::measure
+    MEASURE --> DATA[Data]:::measure
     DATA -.->|Learn| IDEAS
 ```
 
