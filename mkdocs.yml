@@ -75,7 +75,8 @@ plugins:
       theme: 0
       dark_theme: 200
       sketch: false
-      pad: 20
+      pad: 100
+      scale: 0.8
   - minify:
       minify_html: true
       minify_js: true
