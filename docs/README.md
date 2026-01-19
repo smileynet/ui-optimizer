@@ -31,16 +31,22 @@ docs/
 ## Quick Navigation
 
 ### Product Design
-- [Tutorials](./product-design/tutorials/) - Learn product design methodologies
-- [How-to Guides](./product-design/how-to/) - Apply methodologies to real work
-- [Explanation](./product-design/explanation/) - Understand the theory
-- [Reference](./product-design/reference/) - Quick lookup for frameworks
+- [Overview](./product-design/README.md) - Product design methodologies
+- [How-to Guides](./product-design/how-to/conduct-jtbd-interview.md) - Apply methodologies to real work
+- [Explanation](./product-design/explanation/jobs-to-be-done.md) - Understand the theory
+- [Reference](./product-design/reference/templates.md) - Quick lookup for frameworks
 
 ### UI Design  
-- [Tutorials](./ui-design/tutorials/) - Learn UI design principles
-- [How-to Guides](./ui-design/how-to/) - Implement design patterns
-- [Explanation](./ui-design/explanation/) - Understand design theory
-- [Reference](./ui-design/reference/) - Design tokens, components, specs
+- [Overview](./ui-design/README.md) - UI design principles
+- [How-to Guides](./ui-design/how-to/create-design-tokens.md) - Implement design patterns
+- [Explanation](./ui-design/explanation/design-systems.md) - Understand design theory
+- [Reference](./ui-design/reference/design-tokens.md) - Design tokens, components, specs
+
+### Agent Workflow
+- [Overview](./workflow/README.md) - 6-phase UI creation workflow
+- [Orchestrator](./workflow/orchestrator.md) - How to coordinate agents
+- [Quality Gates](./workflow/quality-gates.md) - Pass/fail criteria
+- [Agent Prompts](./workflow/agent-prompts.md) - Detailed prompts for each agent
 
 ## Progressive Disclosure
 

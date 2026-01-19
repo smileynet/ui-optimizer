@@ -919,4 +919,4 @@ def compress_context(state: WorkflowState, current_phase: int) -> str:
 **Related:**
 - [Orchestrator Instructions](./orchestrator.md)
 - [Quality Gates Reference](./quality-gates.md)
-- [Phase Documentation](./phases/)
+- [Phase 1: Understand](./phases/01-understand.md)

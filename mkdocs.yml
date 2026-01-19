@@ -1,0 +1,181 @@
+site_name: UI Optimizer
+site_description: Design system and methodology for AI agents to generate user-centered interfaces
+site_url: https://smileynet.github.io/ui-optimizer
+repo_url: https://github.com/smileynet/ui-optimizer
+repo_name: smileynet/ui-optimizer
+edit_uri: edit/main/docs/
+
+docs_dir: docs
+strict: true
+
+theme:
+  name: material
+  
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  
+  font:
+    text: Inter
+    code: JetBrains Mono
+  
+  language: en
+  
+  icon:
+    logo: material/palette-outline
+    repo: fontawesome/brands/github
+  
+  features:
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.instant.progress
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.path
+    - navigation.top
+    - navigation.indexes
+    - navigation.tracking
+    - navigation.prune
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.tabs.link
+    - content.code.copy
+    - content.code.annotate
+    - content.action.edit
+    - content.tooltips
+    - announce.dismiss
+
+plugins:
+  - search:
+      lang: en
+      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])'
+  - minify:
+      minify_html: true
+      minify_js: true
+      minify_css: true
+      htmlmin_opts:
+        remove_comments: true
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: timeago
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.smartsymbols
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+nav:
+  - Home: README.md
+  - Product Design:
+      - product-design/README.md
+      - Explanation:
+          - Jobs to Be Done: product-design/explanation/jobs-to-be-done.md
+          - Personas: product-design/explanation/personas.md
+          - User Stories: product-design/explanation/user-stories.md
+          - User Journeys: product-design/explanation/user-journeys.md
+          - Design Thinking: product-design/explanation/design-thinking.md
+          - Lean UX: product-design/explanation/lean-ux.md
+      - How-to:
+          - Conduct JTBD Interview: product-design/how-to/conduct-jtbd-interview.md
+          - Write User Stories: product-design/how-to/write-user-stories.md
+          - Create Journey Map: product-design/how-to/create-journey-map.md
+      - Reference:
+          - Templates: product-design/reference/templates.md
+  - UI Design:
+      - ui-design/README.md
+      - Explanation:
+          - Design Systems: ui-design/explanation/design-systems.md
+          - Design Tokens: ui-design/explanation/design-tokens.md
+          - Atomic Design: ui-design/explanation/atomic-design.md
+          - Visual Principles: ui-design/explanation/visual-principles.md
+          - Interaction Design: ui-design/explanation/interaction-design.md
+          - Accessibility: ui-design/explanation/accessibility.md
+          - Responsive Design: ui-design/explanation/responsive-design.md
+      - How-to:
+          - Create Design Tokens: ui-design/how-to/create-design-tokens.md
+          - Implement 8pt Grid: ui-design/how-to/implement-8pt-grid.md
+          - Add Accessibility: ui-design/how-to/add-accessibility.md
+      - Reference:
+          - Design Tokens: ui-design/reference/design-tokens.md
+          - WCAG Checklist: ui-design/reference/wcag-checklist.md
+  - Agent Workflow:
+      - workflow/README.md
+      - Orchestrator: workflow/orchestrator.md
+      - Quality Gates: workflow/quality-gates.md
+      - Agent Prompts: workflow/agent-prompts.md
+      - Phases:
+          - 1. Understand: workflow/phases/01-understand.md
+          - 2. Define: workflow/phases/02-define.md
+          - 3. Explore: workflow/phases/03-explore.md
+          - 4. Design: workflow/phases/04-design.md
+          - 5. Validate: workflow/phases/05-validate.md
+          - 6. Refine: workflow/phases/06-refine.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/smileynet/ui-optimizer
+
+extra_javascript:
+  - https://unpkg.com/mermaid@11.4.1/dist/mermaid.min.js
+
+watch:
+  - docs
