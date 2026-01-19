@@ -17,17 +17,19 @@ This guide documents conventions for creating diagrams in this documentation. Fo
 
 ### Label Formatting
 
-**Do:** Use simple, single-line labels
+**Do:** Use simple, single-line labels with classes applied
 
 ```mermaid
 flowchart LR
-    A[Phase 1: Research] --> B[Phase 2: Strategy]
-    B --> C[Phase 3: Solution]
+    classDef phase fill:#DBEAFE,stroke:#3B82F6,color:#1E40AF
+    
+    A[Phase 1: Research]:::phase --> B[Phase 2: Strategy]:::phase
+    B --> C[Phase 3: Solution]:::phase
 ```
 
 **Don't:** Use `<br/>`, `\n`, or HTML tags (they get escaped in MkDocs)
 
-```mermaid
+```text
 # AVOID - HTML gets escaped
 A["Phase 1<br/>Research"] --> B["Phase 2<br/>Strategy"]
 ```
@@ -39,12 +41,13 @@ Define reusable style classes instead of inline styles:
 ```mermaid
 flowchart LR
     classDef primary fill:#E3F2FD,stroke:#1E88E5,color:#0D47A1
+    classDef secondary fill:#F5F5F5,stroke:#9E9E9E,color:#212121
     classDef success fill:#E8F5E9,stroke:#4CAF50,color:#1B5E20
     classDef warning fill:#FFF3E0,stroke:#FF9800,color:#9A3412
     classDef error fill:#FFEBEE,stroke:#F44336,color:#B71C1C
     
-    A[Start]:::primary --> B[Process]
-    B --> C{Decision}
+    A[Start]:::primary --> B[Process]:::secondary
+    B --> C{Decision}:::secondary
     C -->|Yes| D[Success]:::success
     C -->|No| E[Retry]:::warning
 ```
@@ -53,13 +56,18 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    %% Semantic color classes
     classDef primary fill:#E3F2FD,stroke:#1E88E5,color:#0D47A1
     classDef secondary fill:#F5F5F5,stroke:#9E9E9E,color:#212121
     classDef success fill:#E8F5E9,stroke:#4CAF50,color:#1B5E20
     classDef warning fill:#FFF3E0,stroke:#FF9800,color:#9A3412
     classDef error fill:#FFEBEE,stroke:#F44336,color:#B71C1C
     classDef info fill:#E1F5FE,stroke:#03A9F4,color:#01579B
+    
+    P[Primary]:::primary --> SEC[Secondary]:::secondary
+    SEC --> SUC[Success]:::success
+    SUC --> W[Warning]:::warning
+    W --> E[Error]:::error
+    E --> I[Info]:::info
 ```
 
 ### Theme Configuration

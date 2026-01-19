@@ -43,16 +43,14 @@ flowchart LR
     
     subgraph Problem["PROBLEM SPACE"]
         direction LR
-        DIS[Discover] --> DEF[Define]
+        DIS[Discover]:::problem --> DEF[Define]:::problem
     end
     
     subgraph Solution["SOLUTION SPACE"]
         direction LR
-        DEV[Develop] --> DEL[Deliver]
+        DEV[Develop]:::solution --> DEL[Deliver]:::solution
     end
     
-    Problem:::problem
-    Solution:::solution
     DEF --> DEV
 ```
 
