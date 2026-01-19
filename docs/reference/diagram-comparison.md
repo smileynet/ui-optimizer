@@ -44,40 +44,14 @@ flowchart LR
 ```d2
 direction: right
 
-orchestrator: ORCHESTRATOR {
-  style.fill: "#e0e7ff"
-  style.stroke: "#4f46e5"
-}
+orchestrator: ORCHESTRATOR
 
-p1: Phase 1\nResearch {
-  style.fill: "#dbeafe"
-  style.stroke: "#3b82f6"
-}
-
-p2: Phase 2\nStrategy {
-  style.fill: "#dbeafe"
-  style.stroke: "#3b82f6"
-}
-
-p3: Phase 3\nSolution {
-  style.fill: "#dbeafe"
-  style.stroke: "#3b82f6"
-}
-
-p4: Phase 4\nUI Design {
-  style.fill: "#fef3c7"
-  style.stroke: "#f59e0b"
-}
-
-p5: Phase 5\nCritique {
-  style.fill: "#fee2e2"
-  style.stroke: "#ef4444"
-}
-
-p6: Phase 6\nPolish {
-  style.fill: "#d1fae5"
-  style.stroke: "#10b981"
-}
+p1: Phase 1\nResearch
+p2: Phase 2\nStrategy
+p3: Phase 3\nSolution
+p4: Phase 4\nUI Design
+p5: Phase 5\nCritique
+p6: Phase 6\nPolish
 
 orchestrator -> p1
 p1 -> p2 -> p3 -> p4 -> p5 -> p6
@@ -109,30 +83,11 @@ flowchart TB
 ```d2
 direction: down
 
-ideas: Ideas {
-  style.fill: "#fef3c7"
-  style.stroke: "#f59e0b"
-}
-
-build: Build {
-  style.fill: "#dbeafe"
-  style.stroke: "#3b82f6"
-}
-
-product: Product\n(prototype) {
-  style.fill: "#dbeafe"
-  style.stroke: "#3b82f6"
-}
-
-measure: Measure {
-  style.fill: "#d1fae5"
-  style.stroke: "#10b981"
-}
-
-data: Data {
-  style.fill: "#d1fae5"
-  style.stroke: "#10b981"
-}
+ideas: Ideas
+build: Build
+product: Product\n(prototype)
+measure: Measure
+data: Data
 
 ideas -> build -> product -> measure -> data
 data -> ideas: Learn {
