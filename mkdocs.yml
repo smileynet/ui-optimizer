@@ -177,10 +177,10 @@ nav:
           - 4. Design: workflow/phases/04-design.md
           - 5. Validate: workflow/phases/05-validate.md
           - 6. Refine: workflow/phases/06-refine.md
-  - Reference:
-      - Diagram Comparison: reference/diagram-comparison.md
-      - Diagram Style Guide: reference/diagram-style-guide.md
-      - Kroki Setup: reference/kroki-setup.md
+  - Contributing:
+      - Diagram Comparison: contributing/diagram-comparison.md
+      - Diagram Style Guide: contributing/diagram-style-guide.md
+      - Kroki Setup: contributing/kroki-setup.md
 
 extra:
   social:

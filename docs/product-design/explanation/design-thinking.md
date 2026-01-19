@@ -14,13 +14,17 @@ The most widely used design thinking framework comes from Stanford d.school and 
 
 ```mermaid
 flowchart LR
-    classDef understand fill:#DBEAFE,stroke:#3B82F6,color:#1E40AF
-    classDef create fill:#FEF3C7,stroke:#F59E0B,color:#92400E
-    classDef validate fill:#D1FAE5,stroke:#10B981,color:#065F46
+    classDef understand fill:#1E3A5F,stroke:#0D47A1,color:#E3F2FD
+    classDef create fill:#5D4037,stroke:#3E2723,color:#FFF8E1
+    classDef validate fill:#1B5E20,stroke:#0D3D13,color:#E8F5E9
     
-    E[Empathize]:::understand --> D[Define]:::understand
-    D --> I[Ideate]:::create --> P[Prototype]:::create
-    P --> T[Test]:::validate
+    E[Empathize]:::understand
+    D[Define]:::understand
+    I[Ideate]:::create
+    P[Prototype]:::create
+    T[Test]:::validate
+    
+    E --> D --> I --> P --> T
     T -.->|iterate| E
 ```
 
@@ -38,20 +42,22 @@ The British Design Council's Double Diamond visualizes divergent and convergent 
 
 ```mermaid
 flowchart LR
-    classDef problem fill:#DBEAFE,stroke:#3B82F6,color:#1E40AF
-    classDef solution fill:#D1FAE5,stroke:#10B981,color:#065F46
+    classDef problem fill:#1E3A5F,stroke:#0D47A1,color:#E3F2FD
+    classDef solution fill:#1B5E20,stroke:#0D3D13,color:#E8F5E9
     
     subgraph Problem["PROBLEM SPACE"]
         direction LR
-        DIS[Discover]:::problem --> DEF[Define]:::problem
+        DIS[Discover]:::problem
+        DEF[Define]:::problem
     end
     
     subgraph Solution["SOLUTION SPACE"]
         direction LR
-        DEV[Develop]:::solution --> DEL[Deliver]:::solution
+        DEV[Develop]:::solution
+        DEL[Deliver]:::solution
     end
     
-    DEF --> DEV
+    DIS --> DEF --> DEV --> DEL
 ```
 
 | Phase | Mode | Activity |

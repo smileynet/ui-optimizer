@@ -7,16 +7,19 @@ This documentation follows the [Diataxis framework](https://diataxis.fr/) - orga
 ```
 docs/
 ├── product-design/          # Product design methodologies
-│   ├── tutorials/           # Learning-oriented guides
 │   ├── how-to/              # Task-oriented guides  
 │   ├── explanation/         # Understanding-oriented content
 │   └── reference/           # Information-oriented content
 │
-└── ui-design/               # UI design methodologies
-    ├── tutorials/           # Learning-oriented guides
-    ├── how-to/              # Task-oriented guides
-    ├── explanation/         # Understanding-oriented content
-    └── reference/           # Information-oriented content
+├── ui-design/               # UI design methodologies
+│   ├── how-to/              # Task-oriented guides
+│   ├── explanation/         # Understanding-oriented content
+│   └── reference/           # Information-oriented content
+│
+├── workflow/                # Agent workflow system
+│   └── phases/              # Phase-by-phase guides
+│
+└── contributing/            # Contributor documentation
 ```
 
 ## The Four Types

@@ -45,10 +45,10 @@ Map how users move through the solution:
 
 ```mermaid
 flowchart TB
-    classDef trigger fill:#E0E7FF,stroke:#4F46E5,color:#3730A3
-    classDef step fill:#F5F5F5,stroke:#9E9E9E,color:#212121
-    classDef decision fill:#FEF3C7,stroke:#F59E0B,color:#92400E
-    classDef success fill:#D1FAE5,stroke:#10B981,color:#065F46
+    classDef trigger fill:#303F9F,stroke:#1A237E,color:#E8EAF6
+    classDef step fill:#37474F,stroke:#263238,color:#ECEFF1
+    classDef decision fill:#5D4037,stroke:#3E2723,color:#FFF8E1
+    classDef success fill:#1B5E20,stroke:#0D3D13,color:#E8F5E9
     
     TRIGGER[TRIGGER]:::trigger
     S1[Step 1]:::step

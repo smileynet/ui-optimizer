@@ -8,10 +8,10 @@ Traditional UI development often jumps straight to visual design. This workflow 
 
 ```mermaid
 flowchart LR
-    classDef research fill:#DBEAFE,stroke:#3B82F6,color:#1E40AF
-    classDef design fill:#FEF3C7,stroke:#F59E0B,color:#92400E
-    classDef validate fill:#FEE2E2,stroke:#EF4444,color:#991B1B
-    classDef complete fill:#D1FAE5,stroke:#10B981,color:#065F46
+    classDef research fill:#1E3A5F,stroke:#0D47A1,color:#E3F2FD
+    classDef design fill:#5D4037,stroke:#3E2723,color:#FFF8E1
+    classDef validate fill:#B71C1C,stroke:#7F0000,color:#FFEBEE
+    classDef complete fill:#1B5E20,stroke:#0D3D13,color:#E8F5E9
     
     U[UNDERSTAND]:::research
     D[DEFINE]:::research
@@ -79,9 +79,17 @@ Each phase produces artifacts that flow forward:
 
 ## See It In Action
 
-Walk through complete examples showing this workflow applied:
+Run the interactive demo to see these patterns applied:
 
-- [Dashboard Example](/story/dashboard) — Analytics dashboard for a SaaS product
-- [Settings Example](/story/settings) — User preferences and account management
-- [E-commerce Example](/story/ecommerce) — Product browsing and purchase flow
-- [Data Table Example](/story/datatable) — Complex data management interface
+```bash
+cd ui-design-demo
+bun install
+bun run dev
+# Open http://localhost:5173
+```
+
+The demo includes examples for:
+- **Dashboard** — Analytics dashboard with progressive disclosure
+- **Settings** — User preferences with layered complexity
+- **E-commerce** — Product browsing with parallel paths
+- **Data Table** — Complex data with context-aware revelation
