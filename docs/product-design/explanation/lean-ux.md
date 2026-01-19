@@ -20,31 +20,19 @@ Lean UX applies lean startup principles to user experience design. Instead of ex
 
 ## The Build-Measure-Learn Loop
 
-```
-         ┌──────────────────┐
-         │      IDEAS       │
-         └────────┬─────────┘
-                  │
-                  ▼
-         ┌──────────────────┐
-    ┌────│      BUILD       │
-    │    └────────┬─────────┘
-    │             │
-    │             ▼
-    │    ┌──────────────────┐
-    │    │     PRODUCT      │
-    │    │    (prototype)   │
-    │    └────────┬─────────┘
-    │             │
-LEARN             ▼
-    │    ┌──────────────────┐
-    │    │     MEASURE      │
-    │    └────────┬─────────┘
-    │             │
-    │             ▼
-    │    ┌──────────────────┐
-    └────│      DATA        │
-         └──────────────────┘
+```mermaid
+flowchart TB
+    IDEAS[Ideas] --> BUILD[Build]
+    BUILD --> PRODUCT["Product<br/>(prototype)"]
+    PRODUCT --> MEASURE[Measure]
+    MEASURE --> DATA[Data]
+    DATA -.->|Learn| IDEAS
+    
+    style IDEAS fill:#fef3c7,stroke:#f59e0b
+    style BUILD fill:#dbeafe,stroke:#3b82f6
+    style PRODUCT fill:#dbeafe,stroke:#3b82f6
+    style MEASURE fill:#d1fae5,stroke:#10b981
+    style DATA fill:#d1fae5,stroke:#10b981
 ```
 
 **Goal**: Minimize the time through the loop. Learn faster by building less.

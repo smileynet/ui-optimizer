@@ -28,91 +28,57 @@ Generate multiple solution concepts before committing to one. This phase encoura
 
 For each HMW question, brainstorm multiple approaches:
 
-```
-HMW: How might we help users see what needs attention?
+**HMW: How might we help users see what needs attention?**
 
-SOLUTIONS:
-┌─────────────────────────────────────────────────────────────┐
-│ A. DASHBOARD APPROACH                                       │
-│    Surface key metrics and alerts on a central dashboard    │
-│    + Familiar pattern, at-a-glance view                     │
-│    - Requires users to check proactively                    │
-├─────────────────────────────────────────────────────────────┤
-│ B. NOTIFICATION APPROACH                                    │
-│    Push alerts when thresholds are crossed                  │
-│    + Proactive, no manual checking                          │
-│    - Can become noise, alert fatigue                        │
-├─────────────────────────────────────────────────────────────┤
-│ C. SMART INBOX APPROACH                                     │
-│    AI-prioritized list of items needing action              │
-│    + Actionable, prioritized                                │
-│    - Requires trust in prioritization                       │
-├─────────────────────────────────────────────────────────────┤
-│ D. CONTEXTUAL HIGHLIGHTS                                    │
-│    Surface relevant info where users already work           │
-│    + No context switching                                   │
-│    - Scattered, may miss things                             │
-└─────────────────────────────────────────────────────────────┘
-```
+| Approach | Description | Pros | Cons |
+|----------|-------------|------|------|
+| **A. Dashboard** | Surface key metrics and alerts on a central dashboard | Familiar pattern, at-a-glance view | Requires users to check proactively |
+| **B. Notifications** | Push alerts when thresholds are crossed | Proactive, no manual checking | Can become noise, alert fatigue |
+| **C. Smart Inbox** | AI-prioritized list of items needing action | Actionable, prioritized | Requires trust in prioritization |
+| **D. Contextual** | Surface relevant info where users already work | No context switching | Scattered, may miss things |
 
 ### 2. Sketch User Flows
 
 Map how users move through the solution:
 
-```
-USER FLOW: [Goal Name]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+**USER FLOW: [Goal Name]**
 
-TRIGGER: [What starts this flow]
-     │
-     ▼
-┌─────────────┐
-│   Step 1    │ ──► [What user sees/does]
-└─────────────┘     [Decision point?]
-     │                    │
-     │              ┌─────┴─────┐
-     ▼              ▼           ▼
-┌─────────────┐  ┌─────┐    ┌─────┐
-│   Step 2    │  │ Yes │    │ No  │
-└─────────────┘  └─────┘    └─────┘
-     │              │           │
-     ▼              ▼           ▼
-┌─────────────┐  ┌─────────────────┐
-│   Step 3    │  │  Alternate path │
-└─────────────┘  └─────────────────┘
-     │
-     ▼
-┌─────────────┐
-│   SUCCESS   │ ──► [Outcome achieved]
-└─────────────┘
-
-HAPPY PATH: Step 1 → Step 2 → Step 3 → Success
-EDGE CASES: [What could go wrong? How do we handle it?]
+```mermaid
+flowchart TB
+    TRIGGER["TRIGGER<br/>[What starts this flow]"]
+    S1["Step 1<br/>[What user sees/does]"]
+    DEC{Decision?}
+    S2[Step 2]
+    ALT[Alternate path]
+    S3[Step 3]
+    SUCCESS["SUCCESS<br/>[Outcome achieved]"]
+    
+    TRIGGER --> S1
+    S1 --> DEC
+    DEC -->|Yes| S2
+    DEC -->|No| ALT
+    S2 --> S3
+    ALT --> S3
+    S3 --> SUCCESS
+    
+    style TRIGGER fill:#e0e7ff,stroke:#4f46e5
+    style SUCCESS fill:#d1fae5,stroke:#10b981
 ```
+
+- **Happy path**: Trigger → Step 1 → Yes → Step 2 → Step 3 → Success
+- **Edge cases**: [What could go wrong? How do we handle it?]
 
 ### 3. Define Information Architecture
 
 What information needs to be present, and how should it be organized?
 
-```
-INFORMATION HIERARCHY:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+**INFORMATION HIERARCHY:**
 
-PRIMARY (Always visible)
-├── [Most critical info]
-├── [Primary action]
-└── [Status/state]
-
-SECONDARY (Visible on demand)
-├── [Supporting details]
-├── [Secondary actions]
-└── [Metadata]
-
-TERTIARY (Available if needed)
-├── [Advanced options]
-├── [Historical data]
-└── [Configuration]
-```
+| Level | Visibility | Content |
+|-------|------------|---------|
+| **PRIMARY** | Always visible | Most critical info, Primary action, Status/state |
+| **SECONDARY** | Visible on demand | Supporting details, Secondary actions, Metadata |
+| **TERTIARY** | Available if needed | Advanced options, Historical data, Configuration |
 
 ### 4. Evaluate Options
 

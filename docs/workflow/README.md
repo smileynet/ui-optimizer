@@ -6,10 +6,23 @@ A systematic, agent-based approach to creating user interfaces that starts with 
 
 Traditional UI development often jumps straight to visual design. This workflow enforces a disciplined journey:
 
-```
-UNDERSTAND → DEFINE → EXPLORE → DESIGN → VALIDATE → REFINE
-    │           │         │         │         │         │
-  Users      Problems   Solutions   UI      Testing   Polish
+```mermaid
+flowchart LR
+    U["UNDERSTAND<br/><small>Users</small>"]
+    D["DEFINE<br/><small>Problems</small>"]
+    E["EXPLORE<br/><small>Solutions</small>"]
+    DE["DESIGN<br/><small>UI</small>"]
+    V["VALIDATE<br/><small>Testing</small>"]
+    R["REFINE<br/><small>Polish</small>"]
+    
+    U --> D --> E --> DE --> V --> R
+    
+    style U fill:#dbeafe,stroke:#3b82f6
+    style D fill:#dbeafe,stroke:#3b82f6
+    style E fill:#dbeafe,stroke:#3b82f6
+    style DE fill:#fef3c7,stroke:#f59e0b
+    style V fill:#fee2e2,stroke:#ef4444
+    style R fill:#d1fae5,stroke:#10b981
 ```
 
 **Each phase has:**
@@ -42,39 +55,14 @@ AI agents can generate UI quickly—but speed without direction produces generic
 
 Each phase produces artifacts that flow forward:
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│ UNDERSTAND                                                       │
-│ ├── Persona cards                                               │
-│ ├── JTBD statements                                             │
-│ └── Context scenarios                                           │
-├─────────────────────────────────────────────────────────────────┤
-│ DEFINE                                                          │
-│ ├── Problem statement                                           │
-│ ├── Success metrics                                             │
-│ └── Constraints & requirements                                  │
-├─────────────────────────────────────────────────────────────────┤
-│ EXPLORE                                                         │
-│ ├── Solution hypotheses                                         │
-│ ├── User flow diagrams                                          │
-│ └── Information architecture                                    │
-├─────────────────────────────────────────────────────────────────┤
-│ DESIGN                                                          │
-│ ├── Component inventory                                         │
-│ ├── Layout specifications                                       │
-│ └── Interaction patterns                                        │
-├─────────────────────────────────────────────────────────────────┤
-│ VALIDATE                                                        │
-│ ├── Accessibility audit                                         │
-│ ├── Heuristic evaluation                                        │
-│ └── User flow verification                                      │
-├─────────────────────────────────────────────────────────────────┤
-│ REFINE                                                          │
-│ ├── Visual polish                                               │
-│ ├── Micro-interactions                                          │
-│ └── Final implementation                                        │
-└─────────────────────────────────────────────────────────────────┘
-```
+| Phase | Artifacts |
+|-------|-----------|
+| **UNDERSTAND** | Persona cards, JTBD statements, Context scenarios |
+| **DEFINE** | Problem statement, Success metrics, Constraints & requirements |
+| **EXPLORE** | Solution hypotheses, User flow diagrams, Information architecture |
+| **DESIGN** | Component inventory, Layout specifications, Interaction patterns |
+| **VALIDATE** | Accessibility audit, Heuristic evaluation, User flow verification |
+| **REFINE** | Visual polish, Micro-interactions, Final implementation |
 
 ## Getting Started
 

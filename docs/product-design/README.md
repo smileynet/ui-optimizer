@@ -29,29 +29,22 @@ Product design methodologies help teams understand user needs, define problems, 
 
 ## The Big Picture
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    PRODUCT DISCOVERY                         │
-├─────────────────────────────────────────────────────────────┤
-│                                                              │
-│   UNDERSTAND          DEFINE           IDEATE               │
-│   ┌─────────┐        ┌─────────┐      ┌─────────┐          │
-│   │  JTBD   │───────▶│ Personas│─────▶│ Design  │          │
-│   │ Research│        │ Journey │      │Thinking │          │
-│   └─────────┘        │  Maps   │      └─────────┘          │
-│                      └─────────┘            │               │
-│                                             ▼               │
-├─────────────────────────────────────────────────────────────┤
-│                    PRODUCT DELIVERY                          │
-├─────────────────────────────────────────────────────────────┤
-│                                                              │
-│   VALIDATE           BUILD            MEASURE               │
-│   ┌─────────┐       ┌─────────┐      ┌─────────┐           │
-│   │ Lean UX │──────▶│  User   │─────▶│ Kano    │           │
-│   │  MVPs   │       │ Stories │      │ Model   │           │
-│   └─────────┘       └─────────┘      └─────────┘           │
-│                                                              │
-└─────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TB
+    subgraph Discovery["PRODUCT DISCOVERY"]
+        direction LR
+        JTBD["JTBD<br/>Research"] --> Personas["Personas<br/>Journey Maps"] --> DT["Design<br/>Thinking"]
+    end
+    
+    subgraph Delivery["PRODUCT DELIVERY"]
+        direction LR
+        Lean["Lean UX<br/>MVPs"] --> Stories["User<br/>Stories"] --> Kano["Kano<br/>Model"]
+    end
+    
+    DT --> Lean
+    
+    style Discovery fill:#dbeafe,stroke:#3b82f6
+    style Delivery fill:#d1fae5,stroke:#10b981
 ```
 
 ## Quick Reference
