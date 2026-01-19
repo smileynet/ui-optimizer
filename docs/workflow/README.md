@@ -78,12 +78,18 @@ Each phase produces artifacts that flow forward:
 
 ## Getting Started
 
+### Phase Documentation
 1. [Phase 1: Understanding Users](./phases/01-understand.md)
 2. [Phase 2: Defining the Problem](./phases/02-define.md)
 3. [Phase 3: Exploring Solutions](./phases/03-explore.md)
 4. [Phase 4: Designing the Interface](./phases/04-design.md)
 5. [Phase 5: Validating the Design](./phases/05-validate.md)
 6. [Phase 6: Refining the Details](./phases/06-refine.md)
+
+### Agentic Workflow Reference
+- [Orchestrator Instructions](./orchestrator.md) — How to coordinate the workflow
+- [Quality Gates Reference](./quality-gates.md) — Pass/fail criteria for each phase
+- [Agent Prompts](./agent-prompts.md) — Detailed prompts for each specialized agent
 
 ## See It In Action
 
