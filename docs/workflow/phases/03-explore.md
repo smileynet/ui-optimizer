@@ -45,13 +45,18 @@ Map how users move through the solution:
 
 ```mermaid
 flowchart TB
-    TRIGGER[TRIGGER]
-    S1[Step 1]
-    DEC{Decision?}
-    S2[Step 2]
-    ALT[Alternate path]
-    S3[Step 3]
-    SUCCESS[SUCCESS]
+    classDef trigger fill:#E0E7FF,stroke:#4F46E5,color:#3730A3
+    classDef step fill:#F5F5F5,stroke:#9E9E9E,color:#212121
+    classDef decision fill:#FEF3C7,stroke:#F59E0B,color:#92400E
+    classDef success fill:#D1FAE5,stroke:#10B981,color:#065F46
+    
+    TRIGGER[TRIGGER]:::trigger
+    S1[Step 1]:::step
+    DEC{Decision?}:::decision
+    S2[Step 2]:::step
+    ALT[Alternate path]:::step
+    S3[Step 3]:::step
+    SUCCESS[SUCCESS]:::success
     
     TRIGGER --> S1
     S1 --> DEC

@@ -14,7 +14,13 @@ The most widely used design thinking framework comes from Stanford d.school and 
 
 ```mermaid
 flowchart LR
-    E[Empathize] --> D[Define] --> I[Ideate] --> P[Prototype] --> T[Test]
+    classDef understand fill:#DBEAFE,stroke:#3B82F6,color:#1E40AF
+    classDef create fill:#FEF3C7,stroke:#F59E0B,color:#92400E
+    classDef validate fill:#D1FAE5,stroke:#10B981,color:#065F46
+    
+    E[Empathize]:::understand --> D[Define]:::understand
+    D --> I[Ideate]:::create --> P[Prototype]:::create
+    P --> T[Test]:::validate
     T -.->|iterate| E
 ```
 
@@ -32,6 +38,9 @@ The British Design Council's Double Diamond visualizes divergent and convergent 
 
 ```mermaid
 flowchart LR
+    classDef problem fill:#DBEAFE,stroke:#3B82F6,color:#1E40AF
+    classDef solution fill:#D1FAE5,stroke:#10B981,color:#065F46
+    
     subgraph Problem["PROBLEM SPACE"]
         direction LR
         DIS[Discover] --> DEF[Define]
@@ -42,6 +51,8 @@ flowchart LR
         DEV[Develop] --> DEL[Deliver]
     end
     
+    Problem:::problem
+    Solution:::solution
     DEF --> DEV
 ```
 

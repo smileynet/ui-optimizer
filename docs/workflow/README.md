@@ -8,12 +8,17 @@ Traditional UI development often jumps straight to visual design. This workflow 
 
 ```mermaid
 flowchart LR
-    U[UNDERSTAND]
-    D[DEFINE]
-    E[EXPLORE]
-    DE[DESIGN]
-    V[VALIDATE]
-    R[REFINE]
+    classDef research fill:#DBEAFE,stroke:#3B82F6,color:#1E40AF
+    classDef design fill:#FEF3C7,stroke:#F59E0B,color:#92400E
+    classDef validate fill:#FEE2E2,stroke:#EF4444,color:#991B1B
+    classDef complete fill:#D1FAE5,stroke:#10B981,color:#065F46
+    
+    U[UNDERSTAND]:::research
+    D[DEFINE]:::research
+    E[EXPLORE]:::research
+    DE[DESIGN]:::design
+    V[VALIDATE]:::validate
+    R[REFINE]:::complete
     
     U --> D --> E --> DE --> V --> R
 ```
