@@ -53,6 +53,7 @@ theme:
     - navigation.indexes
     - navigation.tracking
     - navigation.prune
+    - toc.integrate
     - toc.follow
     - search.suggest
     - search.highlight
