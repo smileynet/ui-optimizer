@@ -40,7 +40,7 @@ Define reusable style classes instead of inline styles:
 flowchart LR
     classDef primary fill:#E3F2FD,stroke:#1E88E5,color:#0D47A1
     classDef success fill:#E8F5E9,stroke:#4CAF50,color:#1B5E20
-    classDef warning fill:#FFF3E0,stroke:#FF9800,color:#E65100
+    classDef warning fill:#FFF3E0,stroke:#FF9800,color:#9A3412
     classDef error fill:#FFEBEE,stroke:#F44336,color:#B71C1C
     
     A[Start]:::primary --> B[Process]
@@ -57,7 +57,7 @@ flowchart LR
     classDef primary fill:#E3F2FD,stroke:#1E88E5,color:#0D47A1
     classDef secondary fill:#F5F5F5,stroke:#9E9E9E,color:#212121
     classDef success fill:#E8F5E9,stroke:#4CAF50,color:#1B5E20
-    classDef warning fill:#FFF3E0,stroke:#FF9800,color:#E65100
+    classDef warning fill:#FFF3E0,stroke:#FF9800,color:#9A3412
     classDef error fill:#FFEBEE,stroke:#F44336,color:#B71C1C
     classDef info fill:#E1F5FE,stroke:#03A9F4,color:#01579B
 ```
