@@ -147,25 +147,30 @@ data -> ideas: Learn {
 
 ```mermaid
 flowchart TB
+    classDef client fill:#DBEAFE,stroke:#3B82F6,color:#1E40AF
+    classDef api fill:#E0E7FF,stroke:#4F46E5,color:#3730A3
+    classDef service fill:#FEF3C7,stroke:#F59E0B,color:#92400E
+    classDef data fill:#D1FAE5,stroke:#10B981,color:#065F46
+    
     subgraph Client["Client Layer"]
-        Web[Web App]
-        Mobile[Mobile App]
+        Web[Web App]:::client
+        Mobile[Mobile App]:::client
     end
     
     subgraph API["API Layer"]
-        Gateway[API Gateway]
-        Auth[Auth Service]
+        Gateway[API Gateway]:::api
+        Auth[Auth Service]:::api
     end
     
     subgraph Services["Service Layer"]
-        Users[User Service]
-        Products[Product Service]
-        Orders[Order Service]
+        Users[User Service]:::service
+        Products[Product Service]:::service
+        Orders[Order Service]:::service
     end
     
     subgraph Data["Data Layer"]
-        DB[(PostgreSQL)]
-        Cache[(Redis)]
+        DB[(PostgreSQL)]:::data
+        Cache[(Redis)]:::data
     end
     
     Web --> Gateway
