@@ -16,12 +16,12 @@ flowchart TB
     
     Orchestrator --> P1 & P2 & P3
     
-    P1["Phase 1<br/>Research Agent"]
-    P2["Phase 2<br/>Strategy Agent"]
-    P3["Phase 3<br/>Solution Agent"]
-    P4["Phase 4<br/>UI Agent"]
-    P5["Phase 5<br/>Critique Agent"]
-    P6["Phase 6<br/>Polish Agent"]
+    P1[Research Agent]
+    P2[Strategy Agent]
+    P3[Solution Agent]
+    P4[UI Agent]
+    P5[Critique Agent]
+    P6[Polish Agent]
     
     P1 --> P2 --> P3 --> P4 --> P5 --> P6
 ```

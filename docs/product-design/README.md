@@ -33,12 +33,12 @@ Product design methodologies help teams understand user needs, define problems, 
 flowchart TB
     subgraph Discovery["PRODUCT DISCOVERY"]
         direction LR
-        JTBD["JTBD<br/>Research"] --> Personas["Personas<br/>Journey Maps"] --> DT["Design<br/>Thinking"]
+        JTBD[JTBD Research] --> Personas[Personas & Journey Maps] --> DT[Design Thinking]
     end
     
     subgraph Delivery["PRODUCT DELIVERY"]
         direction LR
-        Lean["Lean UX<br/>MVPs"] --> Stories["User<br/>Stories"] --> Kano["Kano<br/>Model"]
+        Lean[Lean UX & MVPs] --> Stories[User Stories] --> Kano[Kano Model]
     end
     
     DT --> Lean

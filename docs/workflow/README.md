@@ -8,12 +8,12 @@ Traditional UI development often jumps straight to visual design. This workflow 
 
 ```mermaid
 flowchart LR
-    U["UNDERSTAND<br/><small>Users</small>"]
-    D["DEFINE<br/><small>Problems</small>"]
-    E["EXPLORE<br/><small>Solutions</small>"]
-    DE["DESIGN<br/><small>UI</small>"]
-    V["VALIDATE<br/><small>Testing</small>"]
-    R["REFINE<br/><small>Polish</small>"]
+    U[UNDERSTAND]
+    D[DEFINE]
+    E[EXPLORE]
+    DE[DESIGN]
+    V[VALIDATE]
+    R[REFINE]
     
     U --> D --> E --> DE --> V --> R
 ```
