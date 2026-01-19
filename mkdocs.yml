@@ -72,8 +72,8 @@ plugins:
   - d2:
       executable: /home/sam/.local/bin/d2
       layout: elk
-      theme: 200
-      dark_theme: 201
+      theme: 0
+      dark_theme: 200
       sketch: false
       pad: 20
   - minify:
