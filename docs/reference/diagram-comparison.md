@@ -45,39 +45,29 @@ direction: right
 # Define semantic style classes
 classes: {
   orchestrator: {
-    style: {
-      fill: "#E0E7FF"
-      stroke: "#4F46E5"
-      font-color: "#3730A3"
-    }
+    style.fill: "#E0E7FF"
+    style.stroke: "#4F46E5"
+    style.font-color: "#3730A3"
   }
   research: {
-    style: {
-      fill: "#DBEAFE"
-      stroke: "#3B82F6"
-      font-color: "#1E40AF"
-    }
+    style.fill: "#DBEAFE"
+    style.stroke: "#3B82F6"
+    style.font-color: "#1E40AF"
   }
   design: {
-    style: {
-      fill: "#FEF3C7"
-      stroke: "#F59E0B"
-      font-color: "#92400E"
-    }
+    style.fill: "#FEF3C7"
+    style.stroke: "#F59E0B"
+    style.font-color: "#92400E"
   }
   validate: {
-    style: {
-      fill: "#FEE2E2"
-      stroke: "#EF4444"
-      font-color: "#991B1B"
-    }
+    style.fill: "#FEE2E2"
+    style.stroke: "#EF4444"
+    style.font-color: "#991B1B"
   }
   complete: {
-    style: {
-      fill: "#D1FAE5"
-      stroke: "#10B981"
-      font-color: "#065F46"
-    }
+    style.fill: "#D1FAE5"
+    style.stroke: "#10B981"
+    style.font-color: "#065F46"
   }
 }
 
@@ -152,25 +142,19 @@ direction: down
 
 classes: {
   ideate: {
-    style: {
-      fill: "#FEF3C7"
-      stroke: "#F59E0B"
-      font-color: "#92400E"
-    }
+    style.fill: "#FEF3C7"
+    style.stroke: "#F59E0B"
+    style.font-color: "#92400E"
   }
   build: {
-    style: {
-      fill: "#DBEAFE"
-      stroke: "#3B82F6"
-      font-color: "#1E40AF"
-    }
+    style.fill: "#DBEAFE"
+    style.stroke: "#3B82F6"
+    style.font-color: "#1E40AF"
   }
   measure: {
-    style: {
-      fill: "#D1FAE5"
-      stroke: "#10B981"
-      font-color: "#065F46"
-    }
+    style.fill: "#D1FAE5"
+    style.stroke: "#10B981"
+    style.font-color: "#065F46"
   }
 }
 
@@ -237,32 +221,24 @@ direction: down
 
 classes: {
   client-layer: {
-    style: {
-      fill: "#DBEAFE"
-      stroke: "#3B82F6"
-      font-color: "#1E40AF"
-    }
+    style.fill: "#DBEAFE"
+    style.stroke: "#3B82F6"
+    style.font-color: "#1E40AF"
   }
   api-layer: {
-    style: {
-      fill: "#E0E7FF"
-      stroke: "#4F46E5"
-      font-color: "#3730A3"
-    }
+    style.fill: "#E0E7FF"
+    style.stroke: "#4F46E5"
+    style.font-color: "#3730A3"
   }
   service-layer: {
-    style: {
-      fill: "#FEF3C7"
-      stroke: "#F59E0B"
-      font-color: "#92400E"
-    }
+    style.fill: "#FEF3C7"
+    style.stroke: "#F59E0B"
+    style.font-color: "#92400E"
   }
   data-layer: {
-    style: {
-      fill: "#D1FAE5"
-      stroke: "#10B981"
-      font-color: "#065F46"
-    }
+    style.fill: "#D1FAE5"
+    style.stroke: "#10B981"
+    style.font-color: "#065F46"
   }
 }
 
@@ -318,18 +294,14 @@ D2 supports a hand-drawn "sketch" mode for a more informal feel:
 
 classes: {
   user-class: {
-    style: {
-      fill: "#DBEAFE"
-      stroke: "#3B82F6"
-      font-color: "#1E40AF"
-    }
+    style.fill: "#DBEAFE"
+    style.stroke: "#3B82F6"
+    style.font-color: "#1E40AF"
   }
   app-class: {
-    style: {
-      fill: "#F5F5F5"
-      stroke: "#9E9E9E"
-      font-color: "#212121"
-    }
+    style.fill: "#F5F5F5"
+    style.stroke: "#9E9E9E"
+    style.font-color: "#212121"
   }
 }
 

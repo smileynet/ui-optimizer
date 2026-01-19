@@ -144,32 +144,24 @@ D2 supports reusable style classes, similar to Mermaid's `classDef`. Define clas
 ```d2
 classes: {
   research: {
-    style: {
-      fill: "#DBEAFE"
-      stroke: "#3B82F6"
-      font-color: "#1E40AF"
-    }
+    style.fill: "#DBEAFE"
+    style.stroke: "#3B82F6"
+    style.font-color: "#1E40AF"
   }
   design: {
-    style: {
-      fill: "#FEF3C7"
-      stroke: "#F59E0B"
-      font-color: "#92400E"
-    }
+    style.fill: "#FEF3C7"
+    style.stroke: "#F59E0B"
+    style.font-color: "#92400E"
   }
   validate: {
-    style: {
-      fill: "#FEE2E2"
-      stroke: "#EF4444"
-      font-color: "#991B1B"
-    }
+    style.fill: "#FEE2E2"
+    style.stroke: "#EF4444"
+    style.font-color: "#991B1B"
   }
   complete: {
-    style: {
-      fill: "#D1FAE5"
-      stroke: "#10B981"
-      font-color: "#065F46"
-    }
+    style.fill: "#D1FAE5"
+    style.stroke: "#10B981"
+    style.font-color: "#065F46"
   }
 }
 
@@ -206,10 +198,8 @@ When inline styles are needed for special cases:
 ```d2
 # Only for special emphasis
 critical: Critical Path {
-  style: {
-    stroke: "#D32F2F"
-    stroke-width: 3
-  }
+  style.stroke: "#D32F2F"
+  style.stroke-width: 3
 }
 ```
 
