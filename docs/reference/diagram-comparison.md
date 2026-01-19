@@ -29,14 +29,6 @@ flowchart LR
     P5 --> P6["Phase 6\nPolish"]
     
     Orchestrator --> P1
-    
-    style Orchestrator fill:#e0e7ff,stroke:#4f46e5
-    style P1 fill:#dbeafe,stroke:#3b82f6
-    style P2 fill:#dbeafe,stroke:#3b82f6
-    style P3 fill:#dbeafe,stroke:#3b82f6
-    style P4 fill:#fef3c7,stroke:#f59e0b
-    style P5 fill:#fee2e2,stroke:#ef4444
-    style P6 fill:#d1fae5,stroke:#10b981
 ```
 
 ### D2 Version
@@ -70,12 +62,6 @@ flowchart TB
     PRODUCT --> MEASURE[Measure]
     MEASURE --> DATA[Data]
     DATA -.->|Learn| IDEAS
-    
-    style IDEAS fill:#fef3c7,stroke:#f59e0b
-    style BUILD fill:#dbeafe,stroke:#3b82f6
-    style PRODUCT fill:#dbeafe,stroke:#3b82f6
-    style MEASURE fill:#d1fae5,stroke:#10b981
-    style DATA fill:#d1fae5,stroke:#10b981
 ```
 
 ### D2 Version
