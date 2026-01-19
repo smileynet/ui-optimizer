@@ -24,17 +24,12 @@ flowchart LR
     classDef validate fill:#FEE2E2,stroke:#EF4444,color:#991B1B
     classDef complete fill:#D1FAE5,stroke:#10B981,color:#065F46
     
-    subgraph Orchestrator["ORCHESTRATOR"]
-        direction LR
-    end
-    
-    P1[Phase 1: Research]:::research --> P2[Phase 2: Strategy]:::research
+    O[ORCHESTRATOR]:::orchestrator --> P1[Phase 1: Research]:::research
+    P1 --> P2[Phase 2: Strategy]:::research
     P2 --> P3[Phase 3: Solution]:::research
     P3 --> P4[Phase 4: UI Design]:::design
     P4 --> P5[Phase 5: Critique]:::validate
     P5 --> P6[Phase 6: Polish]:::complete
-    
-    Orchestrator:::orchestrator --> P1
 ```
 
 ### D2 Version
@@ -95,10 +90,13 @@ flowchart TB
     classDef build fill:#DBEAFE,stroke:#3B82F6,color:#1E40AF
     classDef measure fill:#D1FAE5,stroke:#10B981,color:#065F46
     
-    IDEAS[Ideas]:::ideate --> BUILD[Build]:::build
-    BUILD --> PRODUCT[Product / Prototype]:::build
-    PRODUCT --> MEASURE[Measure]:::measure
-    MEASURE --> DATA[Data]:::measure
+    IDEAS[Ideas]:::ideate
+    BUILD[Build]:::build
+    PRODUCT[Product / Prototype]:::build
+    MEASURE[Measure]:::measure
+    DATA[Data]:::measure
+    
+    IDEAS --> BUILD --> PRODUCT --> MEASURE --> DATA
     DATA -.->|Learn| IDEAS
 ```
 
@@ -152,26 +150,15 @@ flowchart TB
     classDef service fill:#FEF3C7,stroke:#F59E0B,color:#92400E
     classDef data fill:#D1FAE5,stroke:#10B981,color:#065F46
     
-    subgraph Client["Client Layer"]
-        Web[Web App]:::client
-        Mobile[Mobile App]:::client
-    end
-    
-    subgraph API["API Layer"]
-        Gateway[API Gateway]:::api
-        Auth[Auth Service]:::api
-    end
-    
-    subgraph Services["Service Layer"]
-        Users[User Service]:::service
-        Products[Product Service]:::service
-        Orders[Order Service]:::service
-    end
-    
-    subgraph Data["Data Layer"]
-        DB[(PostgreSQL)]:::data
-        Cache[(Redis)]:::data
-    end
+    Web[Web App]:::client
+    Mobile[Mobile App]:::client
+    Gateway[API Gateway]:::api
+    Auth[Auth Service]:::api
+    Users[User Service]:::service
+    Products[Product Service]:::service
+    Orders[Order Service]:::service
+    DB[(PostgreSQL)]:::data
+    Cache[(Redis)]:::data
     
     Web --> Gateway
     Mobile --> Gateway
