@@ -52,19 +52,19 @@ function IconInfo({ className }: { className?: string }) {
 
 function FailureCallout({ forMarcus, forEmma }: { forMarcus: string; forEmma: string }) {
   return (
-    <div className="my-4 border-l-4 border-red-500 bg-red-50 dark:bg-red-900/20 p-4 rounded-r-lg">
-      <h4 className="text-red-800 dark:text-red-200 font-bold text-sm uppercase mb-2 flex items-center gap-2">
-        <span className="inline-block w-4 h-4 rounded-full bg-red-500 text-white text-[10px] flex items-center justify-center">!</span>
+    <div className="my-4 border-l-4 border-[var(--color-error)] bg-[var(--color-error-subtle)] p-4 rounded-r-lg">
+      <h4 className="text-[var(--color-error)] font-bold text-sm uppercase mb-2 flex items-center gap-2">
+        <span className="inline-block w-4 h-4 rounded-full bg-[var(--color-error)] text-[var(--color-text-inverse)] text-[10px] flex items-center justify-center">!</span>
         Compromise Failure
       </h4>
       <div className="grid md:grid-cols-2 gap-4">
         <div>
-          <span className="text-xs font-bold text-red-600 dark:text-red-300 uppercase block mb-1">For Marcus (Pro)</span>
-          <p className="text-sm text-red-900 dark:text-red-100">{forMarcus}</p>
+          <span className="text-xs font-bold text-[var(--color-error)] uppercase block mb-1">For Marcus (Pro)</span>
+          <p className="text-sm text-[var(--color-text-primary)]">{forMarcus}</p>
         </div>
         <div>
-          <span className="text-xs font-bold text-red-600 dark:text-red-300 uppercase block mb-1">For Emma (Lite)</span>
-          <p className="text-sm text-red-900 dark:text-red-100">{forEmma}</p>
+          <span className="text-xs font-bold text-[var(--color-error)] uppercase block mb-1">For Emma (Lite)</span>
+          <p className="text-sm text-[var(--color-text-primary)]">{forEmma}</p>
         </div>
       </div>
     </div>

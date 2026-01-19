@@ -30,8 +30,8 @@ const variantStyles = {
     hover:text-[var(--color-text-primary)]
   `,
   danger: `
-    bg-[var(--color-error)] text-white
-    hover:bg-[var(--red-600)]
+    bg-[var(--color-error)] text-[var(--color-text-inverse)]
+    hover:bg-[var(--color-error-hover)]
     shadow-sm
   `,
   accent: `
