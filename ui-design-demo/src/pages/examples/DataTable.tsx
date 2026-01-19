@@ -5,8 +5,43 @@ import { Card } from '../../components/ui/Card';
 import { Button } from '../../components/ui/Button';
 import { Badge } from '../../components/ui/Badge';
 import { Input } from '../../components/ui/Input';
-import { CalloutProvider, CalloutToggle, DesignCallout } from '../../components/ui';
+import { CalloutProvider, CalloutToggle, DesignCallout, PersonaSwitcher, PersonaSwitcherProvider, usePersona } from '../../components/ui';
+import { ThemeToggle } from '../../components/ThemeToggle';
 import { cn } from '../../lib/utils';
+
+const dataTablePersonas = [
+  { id: 'alex', name: 'Alex', avatar: 'A', description: 'Data Analyst - Search, filter, export' },
+  { id: 'david', name: 'David', avatar: 'D', description: 'Team Lead - Quick individual actions' }
+];
+
+function PersonaElement({ 
+  persona, 
+  children, 
+  className 
+}: { 
+  persona: 'alex' | 'david' | 'both'; 
+  children: React.ReactNode;
+  className?: string;
+}) {
+  const { activePersonaId } = usePersona();
+  
+  if (!activePersonaId) return <>{children}</>;
+  
+  const isRelevant = persona === 'both' || activePersonaId === persona;
+  
+  return (
+    <div 
+      className={cn(
+        "transition-all duration-500 ease-in-out", 
+        !isRelevant && "opacity-25 grayscale blur-[1px] pointer-events-none",
+        className
+      )}
+      data-persona={persona}
+    >
+      {children}
+    </div>
+  );
+}
 
 function SearchIcon({ className }: { className?: string }) {
   return (
@@ -112,7 +147,7 @@ const MOCK_DATA: User[] = [
   { id: 'USR-010', name: 'Kate Morrison', email: 'kate@untitledui.com', role: 'QA Engineer', status: 'active', lastActive: 'Jan 5, 2024' },
 ];
 
-export function DataTable() {
+function DataTableContent() {
   const [selectedItems, setSelectedItems] = useState<Set<string>>(new Set());
   const [data, _setData] = useState<User[]>(MOCK_DATA);
   void _setData;
@@ -142,8 +177,33 @@ export function DataTable() {
 
   return (
     <CalloutProvider>
-    <div className="min-h-screen bg-[var(--color-bg-page)] py-12 font-sans text-[var(--color-text-primary)]">
-      <Container size="xl">
+    <div className="min-h-screen bg-[var(--color-bg-page)] font-sans text-[var(--color-text-primary)]">
+      <header className="sticky top-0 z-50 bg-[var(--color-bg-surface)]/95 backdrop-blur-md border-b border-[var(--color-border)]">
+        <Container size="xl">
+          <div className="flex h-16 items-center justify-between">
+            <div className="flex items-center gap-4">
+              <a href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                <div className="w-8 h-8 rounded-[var(--radius-lg)] bg-[var(--color-primary)] flex items-center justify-center text-white font-bold text-sm shadow-sm">
+                  Ui
+                </div>
+                <span className="font-bold text-lg">Optimizer</span>
+              </a>
+              <span className="text-[var(--color-text-tertiary)]">/</span>
+              <span className="text-[var(--color-text-secondary)]">Data Table Example</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <Button variant="ghost" size="sm" onClick={() => window.location.href = '/story/datatable'}>
+                View Story
+              </Button>
+              <PersonaSwitcher />
+              <CalloutToggle />
+              <ThemeToggle />
+            </div>
+          </div>
+        </Container>
+      </header>
+
+      <Container size="xl" className="py-12">
         <Stack gap={8}>
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <Stack gap={1}>
@@ -155,32 +215,33 @@ export function DataTable() {
               </p>
             </Stack>
             <div className="flex gap-3">
-               <CalloutToggle />
-               <Button variant="secondary" leftIcon={<svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>}>
-                Export
-              </Button>
-              <Button leftIcon={<PlusIcon className="w-5 h-5" />}>
-                Add Member
-              </Button>
+              <PersonaElement persona="alex">
+                <Button variant="secondary" leftIcon={<svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>}>
+                  Export
+                </Button>
+              </PersonaElement>
+              <PersonaElement persona="david">
+                <Button leftIcon={<PlusIcon className="w-5 h-5" />}>
+                  Add Member
+                </Button>
+              </PersonaElement>
             </div>
           </div>
 
           <DesignCallout 
             variant="accessibility" 
-            title="Data Table Accessibility"
+            title="Context-Aware Revelation Pattern"
           >
-            Tables use semantic HTML (<code className="bg-[var(--color-bg-muted)] px-1 rounded">&lt;table&gt;</code>, 
-            <code className="bg-[var(--color-bg-muted)] px-1 rounded">&lt;thead&gt;</code>, 
-            <code className="bg-[var(--color-bg-muted)] px-1 rounded">&lt;tbody&gt;</code>) for screen reader support.
-            Zebra striping aids row tracking. Selection state is visually indicated AND 
-            communicated programmatically. Agents should always use proper table semantics, not divs.
+            <strong>Personas:</strong> <Badge variant="info" size="sm" className="ml-1 mr-1">Alex</Badge> uses bulk tools (search, filter, export), <Badge variant="info" size="sm" className="ml-1 mr-1">David</Badge> uses individual actions (add, edit, delete).<br/>
+            <strong>Pattern:</strong> Features reveal based on context - bulk actions appear on selection, row actions on hover.
+            Both personas get what they need without clutter.
           </DesignCallout>
 
           <Card className="overflow-hidden border border-[var(--color-border)] shadow-[var(--shadow-sm)]">
             <div className="p-4 border-b border-[var(--color-border)] bg-[var(--color-bg-surface)]">
               <div className="flex flex-col sm:flex-row gap-4 justify-between">
                 
-                <div className="flex flex-1 gap-3 flex-col sm:flex-row">
+                <PersonaElement persona="alex" className="flex flex-1 gap-3 flex-col sm:flex-row">
                   <div className="w-full sm:w-80">
                     <Input 
                       placeholder="Search users..." 
@@ -223,7 +284,7 @@ export function DataTable() {
                     <CalendarIcon className="w-4 h-4" />
                     <span>Last 30 days</span>
                   </button>
-                </div>
+                </PersonaElement>
 
                 {selectedItems.size > 0 && (
                   <div className="flex items-center gap-2 animate-in fade-in slide-in-from-right-4 duration-200">
@@ -392,5 +453,13 @@ export function DataTable() {
       </Container>
     </div>
     </CalloutProvider>
+  );
+}
+
+export function DataTable() {
+  return (
+    <PersonaSwitcherProvider personas={dataTablePersonas}>
+      <DataTableContent />
+    </PersonaSwitcherProvider>
   );
 }

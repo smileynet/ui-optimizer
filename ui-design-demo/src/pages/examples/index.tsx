@@ -76,8 +76,23 @@ function TableIcon() {
   );
 }
 
+function TrendingIcon() {
+  return (
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+    </svg>
+  );
+}
+
 export function Examples() {
   const examples = [
+    {
+      title: 'Trading Platform',
+      description: 'A "Kobayashi Maru" scenario showing mutually exclusive needs between Day Traders and Retail Investors.',
+      href: '/examples/trading',
+      icon: <TrendingIcon />,
+      tags: ['Tradeoffs', 'Personas', 'Density'],
+    },
     {
       title: 'Analytics Dashboard',
       description: 'A comprehensive dashboard with metrics cards, charts, and activity feeds. Demonstrates data visualization patterns and real-time updates.',

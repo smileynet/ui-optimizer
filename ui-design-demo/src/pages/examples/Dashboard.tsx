@@ -2,9 +2,46 @@ import { Stack } from '../../components/ui/Stack';
 import { Card } from '../../components/ui/Card';
 import { Button } from '../../components/ui/Button';
 import { Badge } from '../../components/ui/Badge';
-import { CalloutProvider, CalloutToggle, DesignCallout } from '../../components/ui';
+import { CalloutProvider, CalloutToggle, DesignCallout, PersonaSwitcher, PersonaSwitcherProvider, usePersona } from '../../components/ui';
 import { ThemeToggle } from '../../components/ThemeToggle';
 import { cn } from '../../lib/utils';
+
+// --- Persona Configuration ---
+
+const dashboardPersonas = [
+  { id: 'sarah', name: 'Sarah', avatar: 'S', description: 'PM - Quick daily glance' },
+  { id: 'james', name: 'James', avatar: 'J', description: 'Analyst - Deep data dive' }
+];
+
+function PersonaElement({ 
+  persona, 
+  children, 
+  className 
+}: { 
+  persona: 'sarah' | 'james' | 'both'; 
+  children: React.ReactNode;
+  className?: string;
+}) {
+  const { activePersonaId } = usePersona();
+  
+  // If no persona selected, show everything fully
+  if (!activePersonaId) return <>{children}</>;
+  
+  const isRelevant = persona === 'both' || activePersonaId === persona;
+  
+  return (
+    <div 
+      className={cn(
+        "transition-all duration-500 ease-in-out", 
+        !isRelevant && "opacity-25 grayscale blur-[1px] pointer-events-none",
+        className
+      )}
+      data-persona={persona}
+    >
+      {children}
+    </div>
+  );
+}
 
 // --- Icons ---
 
@@ -179,7 +216,7 @@ function SidebarItem({ icon, label, active = false }: { icon: React.ReactNode, l
 
 // --- Main Page ---
 
-export function Dashboard() {
+function DashboardContent() {
   return (
     <CalloutProvider>
     <div className="min-h-screen bg-[var(--color-bg-page)] text-[var(--color-text-primary)] font-[family-name:var(--font-sans)] flex">
@@ -195,12 +232,12 @@ export function Dashboard() {
           <strong>Tokens:</strong> <code className="bg-[var(--color-bg-muted)] px-1 rounded">w-64</code>, <code className="bg-[var(--color-bg-muted)] px-1 rounded">sticky top-0</code>, <code className="bg-[var(--color-bg-muted)] px-1 rounded">--color-primary-subtle</code> for active state.
         </DesignCallout>
         <div className="p-6 border-b border-[var(--color-border)]">
-          <div className="flex items-center gap-2">
+          <a href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-accent)] flex items-center justify-center text-white font-bold">
-              AI
+              Ui
             </div>
             <span className="font-bold text-[var(--text-lg)] tracking-tight">Optimizer</span>
-          </div>
+          </a>
         </div>
         
         <div className="p-4 flex-1 overflow-y-auto">
@@ -250,6 +287,10 @@ export function Dashboard() {
             </div>
 
             <div className="flex items-center gap-3">
+              <Button variant="ghost" size="sm" onClick={() => window.location.href = '/story/dashboard'}>
+                View Story
+              </Button>
+              <PersonaSwitcher />
               <CalloutToggle />
               <ThemeToggle />
               <button className="p-2 text-[var(--color-text-secondary)] hover:bg-[var(--color-bg-subtle)] rounded-full transition-colors relative">
@@ -280,9 +321,11 @@ export function Dashboard() {
               </p>
             </div>
             <div className="flex gap-3">
-              <Button variant="secondary" size="sm" leftIcon={<span className="text-lg leading-none">↓</span>}>
-                Export
-              </Button>
+              <PersonaElement persona="james">
+                <Button variant="secondary" size="sm" leftIcon={<span className="text-lg leading-none">↓</span>}>
+                  Export
+                </Button>
+              </PersonaElement>
               <Button variant="primary" size="sm" leftIcon={<span className="text-lg leading-none">+</span>}>
                 New Project
               </Button>
@@ -295,50 +338,53 @@ export function Dashboard() {
             className="mb-4"
           >
             <strong>JTBD:</strong> "When I start my workday, I want to see what needs my attention."<br/>
-            <strong>Design Decision:</strong> Stats at top, full width—F-pattern reading puts metrics in prime viewing position. Each card includes trend badges addressing persona frustration: "Unclear what matters."<br/>
-            <strong>Tokens:</strong> <code className="bg-[var(--color-bg-muted)] px-1 rounded">grid-cols-4</code>, <code className="bg-[var(--color-bg-muted)] px-1 rounded">gap-6 (--space-6)</code>.<br/>
-            <strong>Validation:</strong> Time-to-insight target &lt;30s achieved via glanceable layout.
+            <strong>Persona:</strong> <Badge variant="info" size="sm" className="ml-1 mr-1">Sarah</Badge> relies on this top-level view.<br/>
+            <strong>Design Decision:</strong> Stats at top, full width—F-pattern reading puts metrics in prime viewing position.<br/>
+            <strong>Tokens:</strong> <code className="bg-[var(--color-bg-muted)] px-1 rounded">grid-cols-4</code>, <code className="bg-[var(--color-bg-muted)] px-1 rounded">gap-6 (--space-6)</code>.
           </DesignCallout>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <MetricCard 
-              title="Total Revenue" 
-              value="$45,231.89" 
-              change="+20.1%" 
-              icon={<IconDollarSign className="w-6 h-6" />} 
-            />
-            <MetricCard 
-              title="Active Users" 
-              value="2,350" 
-              change="+180.1%" 
-              icon={<IconUsers className="w-6 h-6" />} 
-            />
-            <MetricCard 
-              title="New Orders" 
-              value="+12,234" 
-              change="+19%" 
-              icon={<IconShoppingBag className="w-6 h-6" />} 
-            />
-            <MetricCard 
-              title="Conversion Rate" 
-              value="3.25%" 
-              change="-4.5%" 
-              trend="down"
-              icon={<IconActivity className="w-6 h-6" />} 
-            />
-          </div>
+          <PersonaElement persona="sarah">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              <MetricCard 
+                title="Total Revenue" 
+                value="$45,231.89" 
+                change="+20.1%" 
+                icon={<IconDollarSign className="w-6 h-6" />} 
+              />
+              <MetricCard 
+                title="Active Users" 
+                value="2,350" 
+                change="+180.1%" 
+                icon={<IconUsers className="w-6 h-6" />} 
+              />
+              <MetricCard 
+                title="New Orders" 
+                value="+12,234" 
+                change="+19%" 
+                icon={<IconShoppingBag className="w-6 h-6" />} 
+              />
+              <MetricCard 
+                title="Conversion Rate" 
+                value="3.25%" 
+                change="-4.5%" 
+                trend="down"
+                icon={<IconActivity className="w-6 h-6" />} 
+              />
+            </div>
+          </PersonaElement>
 
           <DesignCallout 
             variant="token" 
-            title="Semantic Color for Data Visualization"
+            title="Data Visualization: Deep Dive"
             className="mb-4"
           >
+            <strong>Persona:</strong> <Badge variant="info" size="sm" className="ml-1 mr-1">James</Badge> uses these visualizations to find trends.<br/>
             <strong>Constraint:</strong> WCAG 2.2 AA compliance required—all colors must meet contrast ratios.<br/>
-            <strong>Token Strategy:</strong> Semantic tokens (<code className="bg-[var(--color-bg-muted)] px-1 rounded">--color-primary</code>, <code className="bg-[var(--color-bg-muted)] px-1 rounded">--color-accent</code>, <code className="bg-[var(--color-bg-muted)] px-1 rounded">--color-success/warning</code>) auto-adapt to dark mode.<br/>
-            <strong>Agent Guidance:</strong> Never use raw hex values. Trust the token system for consistent, accessible color.
+            <strong>Token Strategy:</strong> Semantic tokens (<code className="bg-[var(--color-bg-muted)] px-1 rounded">--color-primary</code>, <code className="bg-[var(--color-bg-muted)] px-1 rounded">--color-accent</code>) auto-adapt to dark mode.
           </DesignCallout>
           
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <PersonaElement persona="james">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <Card className="lg:col-span-2">
               <Card.Header className="flex items-center justify-between">
                 <div>
@@ -423,18 +469,20 @@ export function Dashboard() {
               </Card.Body>
             </Card>
           </div>
+          </PersonaElement>
 
           <DesignCallout 
             variant="accessibility" 
-            title="Information Architecture: Secondary Content"
+            title="Secondary Content: Contextual Updates"
             className="mb-4"
           >
-            <strong>User Flow:</strong> After scanning metrics, user may want to drill down (JTBD #3: "When something feels off").<br/>
+            <strong>Persona:</strong> <Badge variant="info" size="sm" className="ml-1 mr-1">Sarah</Badge> monitors team activity here.<br/>
             <strong>Design:</strong> Activity feed and project status are secondary—visible but not competing with stats.<br/>
-            <strong>Accessibility:</strong> Cards use proper heading hierarchy (h3), sufficient contrast, keyboard navigable "View All" buttons.
+            <strong>Accessibility:</strong> Cards use proper heading hierarchy (h3), sufficient contrast.
           </DesignCallout>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <PersonaElement persona="sarah">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
              <Card>
                <Card.Header className="flex items-center justify-between">
                  <h3 className="text-[var(--text-lg)] font-semibold">Recent Activity</h3>
@@ -533,9 +581,18 @@ export function Dashboard() {
                </Card.Body>
              </Card>
           </div>
+          </PersonaElement>
         </div>
       </main>
     </div>
     </CalloutProvider>
+  );
+}
+
+export function Dashboard() {
+  return (
+    <PersonaSwitcherProvider personas={dashboardPersonas}>
+      <DashboardContent />
+    </PersonaSwitcherProvider>
   );
 }

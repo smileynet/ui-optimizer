@@ -19,3 +19,10 @@ export {
   CalloutToggle, 
   useCallouts 
 } from './DesignCallout';
+
+export {
+  PersonaSwitcher,
+  PersonaSwitcherProvider,
+  usePersona
+} from './PersonaSwitcher';
+export type { Persona } from './PersonaSwitcher';

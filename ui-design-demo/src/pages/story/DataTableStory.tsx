@@ -18,7 +18,7 @@ const phases: { id: Phase; number: string; title: string; agent: string; color: 
   { id: 'refine', number: '06', title: 'Refine', agent: 'Polish Agent', color: 'var(--color-info)' },
 ];
 
-export function DashboardStory() {
+export function DataTableStory() {
   const [activePhase, setActivePhase] = useState<Phase>('understand');
 
   return (
@@ -88,7 +88,7 @@ function StoryHeader() {
               Stories
             </span>
             <span className="text-[var(--color-text-tertiary)]">/</span>
-            <span className="font-medium">Dashboard</span>
+            <span className="font-medium">Data Table</span>
           </div>
           <div className="flex items-center gap-4">
             <ThemeToggle />
@@ -117,7 +117,7 @@ function PhaseNavigation({ activePhase, setActivePhase }: { activePhase: Phase; 
           {nextPhase.number} {nextPhase.title} →
         </Button>
       ) : (
-        <Button variant="primary" onClick={() => window.location.href = '/examples/dashboard'}>
+        <Button variant="primary" onClick={() => window.location.href = '/examples/datatable'}>
           View Live Example →
         </Button>
       )}
@@ -158,14 +158,14 @@ function SectionCard({ title, children, variant = 'default' }: { title: string; 
 }
 
 function UnderstandPhase() {
-  const [selectedPersona, setSelectedPersona] = useState<'sarah' | 'james' | null>(null);
+  const [selectedPersona, setSelectedPersona] = useState<'alex' | 'david' | null>(null);
 
   const jtbds = [
-    { id: 1, situation: 'When I start my workday', motivation: 'I want to see what needs my attention', outcome: 'so I can prioritize my time effectively', personas: ['sarah'] },
-    { id: 2, situation: 'When preparing for a stakeholder meeting', motivation: 'I want to export key metrics', outcome: 'so I can present progress confidently', personas: ['sarah'] },
-    { id: 3, situation: 'When something feels "off"', motivation: 'I want to drill into the data', outcome: 'so I can identify the root cause', personas: ['sarah', 'james'] },
-    { id: 4, situation: 'When analyzing a trend over time', motivation: 'I want to compare historical data', outcome: 'so I can understand patterns and make predictions', personas: ['james'] },
-    { id: 5, situation: 'When presenting findings to the team', motivation: 'I want to create shareable reports', outcome: 'so stakeholders can see the data that supports my conclusions', personas: ['james', 'sarah'] },
+    { id: 1, situation: 'When I need to find a specific record', motivation: 'I want to search across all columns', outcome: 'so I find it regardless of what I remember about it', personas: ['alex', 'david'] },
+    { id: 2, situation: 'When I\'m analyzing a subset of data', motivation: 'I want to combine multiple filters', outcome: 'so I can focus on exactly what I need', personas: ['alex'] },
+    { id: 3, situation: 'When I need to update multiple records', motivation: 'I want to bulk select and edit', outcome: 'so I don\'t waste time on repetitive actions', personas: ['alex'] },
+    { id: 4, situation: 'When I need to share filtered data', motivation: 'I want to export or save views', outcome: 'so others see the same subset I\'m working with', personas: ['alex', 'david'] },
+    { id: 5, situation: 'When I need to update a single record', motivation: 'I want to edit it inline', outcome: 'so I don\'t lose context by navigating away', personas: ['david'] },
   ];
 
   const isJtbdHighlighted = (personas: string[]) => {
@@ -178,9 +178,9 @@ function UnderstandPhase() {
       <PhaseHeader phase={phases[0]} />
       
       <p className="text-[var(--text-lg)] text-[var(--color-text-secondary)] max-w-3xl">
-        Before designing a single pixel, we need to understand who will use this dashboard 
-        and what they're trying to accomplish. The Research Agent conducts user interviews 
-        and synthesizes findings into actionable personas and job statements.
+        Data tables are deceptively complex. They must serve users who glance at data occasionally 
+        and power users who live in spreadsheets. The challenge is making information dense without 
+        being overwhelming, and powerful without being complicated.
       </p>
 
       <div className="p-3 bg-[var(--color-info-subtle)] rounded-lg border border-[var(--color-info)]/30">
@@ -194,25 +194,26 @@ function UnderstandPhase() {
         <div 
           className={cn(
             "cursor-pointer transition-all duration-200",
-            selectedPersona === 'sarah' 
-              ? "ring-2 ring-[var(--color-primary)] ring-offset-2 rounded-[var(--radius-lg)]" 
-              : selectedPersona === 'james' 
+            selectedPersona === 'alex' 
+              ? "ring-2 ring-[var(--color-info)] ring-offset-2 rounded-[var(--radius-lg)]" 
+              : selectedPersona === 'david' 
                 ? "opacity-50" 
-                : "hover:ring-2 hover:ring-[var(--color-primary)]/50 rounded-[var(--radius-lg)]"
+                : "hover:ring-2 hover:ring-[var(--color-info)]/50 rounded-[var(--radius-lg)]"
           )}
-          onClick={() => setSelectedPersona(selectedPersona === 'sarah' ? null : 'sarah')}
+          onClick={() => setSelectedPersona(selectedPersona === 'alex' ? null : 'alex')}
         >
           <SectionCard title="Primary Persona" variant="highlight">
             <div className="space-y-4">
               <div className="flex items-start gap-4">
-                <div className="w-16 h-16 rounded-full bg-[var(--color-primary-subtle)] flex items-center justify-center text-2xl">
-                  👩‍💼
+                <div className="w-16 h-16 rounded-full bg-[var(--color-info-subtle)] flex items-center justify-center text-2xl">
+                  📊
                 </div>
                 <div>
-                  <h4 className="font-bold text-[var(--text-lg)]">Sarah Chen</h4>
-                  <p className="text-[var(--color-text-secondary)]">Product Manager, SaaS Company</p>
+                  <h4 className="font-bold text-[var(--text-lg)]">Alex Nguyen</h4>
+                  <p className="text-[var(--color-text-secondary)]">Data Analyst, Financial Services</p>
                   <p className="text-sm text-[var(--color-text-tertiary)] italic mt-2">
-                    "I need to know what's happening across my product without scheduling a dozen meetings."
+                    "I work with thousands of rows daily. I need to filter, sort, and export subsets quickly. 
+                    Keyboard shortcuts are essential—my mouse slows me down."
                   </p>
                 </div>
               </div>
@@ -221,17 +222,17 @@ function UnderstandPhase() {
                 <div>
                   <h5 className="text-xs font-bold uppercase text-[var(--color-text-tertiary)] mb-2">Goals</h5>
                   <ul className="text-sm space-y-1 text-[var(--color-text-secondary)]">
-                    <li>• Monitor product health daily</li>
-                    <li>• Identify issues before they escalate</li>
-                    <li>• Report progress to stakeholders</li>
+                    <li>• Process large datasets fast</li>
+                    <li>• Create custom filtered views</li>
+                    <li>• Export data for reports</li>
                   </ul>
                 </div>
                 <div>
                   <h5 className="text-xs font-bold uppercase text-[var(--color-text-tertiary)] mb-2">Frustrations</h5>
                   <ul className="text-sm space-y-1 text-[var(--color-text-secondary)]">
-                    <li>• Data scattered across tools</li>
-                    <li>• Too many metrics, unclear priorities</li>
-                    <li>• Manual report compilation</li>
+                    <li>• Slow performance on large data</li>
+                    <li>• Can't save filter combinations</li>
+                    <li>• No keyboard navigation</li>
                   </ul>
                 </div>
               </div>
@@ -242,25 +243,26 @@ function UnderstandPhase() {
         <div 
           className={cn(
             "cursor-pointer transition-all duration-200",
-            selectedPersona === 'james' 
+            selectedPersona === 'david' 
               ? "ring-2 ring-[var(--color-accent)] ring-offset-2 rounded-[var(--radius-lg)]" 
-              : selectedPersona === 'sarah' 
+              : selectedPersona === 'alex' 
                 ? "opacity-50" 
                 : "hover:ring-2 hover:ring-[var(--color-accent)]/50 rounded-[var(--radius-lg)]"
           )}
-          onClick={() => setSelectedPersona(selectedPersona === 'james' ? null : 'james')}
+          onClick={() => setSelectedPersona(selectedPersona === 'david' ? null : 'david')}
         >
           <SectionCard title="Secondary Persona">
             <div className="space-y-4">
               <div className="flex items-start gap-4">
                 <div className="w-16 h-16 rounded-full bg-[var(--color-accent-subtle)] flex items-center justify-center text-2xl">
-                  📊
+                  👔
                 </div>
                 <div>
-                  <h4 className="font-bold text-[var(--text-lg)]">James Park</h4>
-                  <p className="text-[var(--color-text-secondary)]">Data Analyst, Same Company</p>
+                  <h4 className="font-bold text-[var(--text-lg)]">David Kim</h4>
+                  <p className="text-[var(--color-text-secondary)]">Team Lead, Operations</p>
                   <p className="text-sm text-[var(--color-text-tertiary)] italic mt-2">
-                    "I need to dig into the details and understand the why behind the numbers."
+                    "I just need to find specific records and update their status. I don't need advanced 
+                    features—I need it to be obvious how to do the basics."
                   </p>
                 </div>
               </div>
@@ -269,17 +271,17 @@ function UnderstandPhase() {
                 <div>
                   <h5 className="text-xs font-bold uppercase text-[var(--color-text-tertiary)] mb-2">Goals</h5>
                   <ul className="text-sm space-y-1 text-[var(--color-text-secondary)]">
-                    <li>• Deep dive into metrics</li>
-                    <li>• Compare historical trends</li>
-                    <li>• Export raw data for analysis</li>
+                    <li>• Find specific records fast</li>
+                    <li>• Update status/fields inline</li>
+                    <li>• Track recent changes</li>
                   </ul>
                 </div>
                 <div>
                   <h5 className="text-xs font-bold uppercase text-[var(--color-text-tertiary)] mb-2">Frustrations</h5>
                   <ul className="text-sm space-y-1 text-[var(--color-text-secondary)]">
-                    <li>• Limited drill-down capabilities</li>
-                    <li>• Can't customize date ranges</li>
-                    <li>• No way to save custom views</li>
+                    <li>• Hidden features, cluttered UI</li>
+                    <li>• Need to open detail view for edits</li>
+                    <li>• Search doesn't find what I expect</li>
                   </ul>
                 </div>
               </div>
@@ -293,8 +295,8 @@ function UnderstandPhase() {
           {selectedPersona && (
             <div className="flex items-center gap-2 text-sm text-[var(--color-text-secondary)]">
               <span>Showing jobs for:</span>
-              <Badge variant={selectedPersona === 'sarah' ? 'default' : 'info'}>
-                {selectedPersona === 'sarah' ? 'Sarah' : 'James'}
+              <Badge variant={selectedPersona === 'alex' ? 'info' : 'default'}>
+                {selectedPersona === 'alex' ? 'Alex' : 'David'}
               </Badge>
               <button 
                 onClick={() => setSelectedPersona(null)}
@@ -309,10 +311,10 @@ function UnderstandPhase() {
               key={jtbd.id} 
               className={cn(
                 "p-4 bg-[var(--color-bg-subtle)] rounded-lg border-l-4 transition-all duration-200",
-                jtbd.personas.includes('sarah') && jtbd.personas.includes('james')
+                jtbd.personas.includes('alex') && jtbd.personas.includes('david')
                   ? "border-[var(--color-warning)]"
-                  : jtbd.personas.includes('sarah')
-                    ? "border-[var(--color-primary)]"
+                  : jtbd.personas.includes('alex')
+                    ? "border-[var(--color-info)]"
                     : "border-[var(--color-accent)]",
                 !isJtbdHighlighted(jtbd.personas) && "opacity-30"
               )}
@@ -327,11 +329,11 @@ function UnderstandPhase() {
                   <span className="font-medium">{jtbd.outcome}</span>.
                 </p>
                 <div className="flex gap-1 shrink-0">
-                  {jtbd.personas.includes('sarah') && (
-                    <span className="w-6 h-6 rounded-full bg-[var(--color-primary)] text-white text-xs flex items-center justify-center font-bold" title="Sarah">S</span>
+                  {jtbd.personas.includes('alex') && (
+                    <span className="w-6 h-6 rounded-full bg-[var(--color-info)] text-white text-xs flex items-center justify-center font-bold" title="Alex">A</span>
                   )}
-                  {jtbd.personas.includes('james') && (
-                    <span className="w-6 h-6 rounded-full bg-[var(--color-accent)] text-white text-xs flex items-center justify-center font-bold" title="James">J</span>
+                  {jtbd.personas.includes('david') && (
+                    <span className="w-6 h-6 rounded-full bg-[var(--color-accent)] text-white text-xs flex items-center justify-center font-bold" title="David">D</span>
                   )}
                 </div>
               </div>
@@ -347,9 +349,9 @@ function UnderstandPhase() {
             <div>
               <h4 className="font-bold mb-1">Validation Gate Passed</h4>
               <p className="text-sm text-[var(--color-text-secondary)]">
-                We've identified two personas with overlapping but distinct needs. Sarah needs quick status checks; 
-                James needs deep analysis. Our design must serve both through progressive disclosure—simple by default, 
-                powerful on demand.
+                Two distinct user types: power users (keyboard-driven, bulk operations, exports) and 
+                occasional users (search, simple edits). Design must surface simple actions while enabling 
+                power workflows. Progressive disclosure is key.
               </p>
             </div>
           </div>
@@ -365,19 +367,19 @@ function DefinePhase() {
       <PhaseHeader phase={phases[1]} />
       
       <p className="text-[var(--text-lg)] text-[var(--color-text-secondary)] max-w-3xl">
-        The Strategy Agent synthesizes user understanding into a clear problem statement, 
-        success metrics, and prioritized requirements. This ensures everyone agrees on 
-        what we're solving before exploring solutions.
+        The core challenge of data tables is density vs. clarity. Too sparse wastes space; 
+        too dense overwhelms. Success means both personas can achieve their goals without 
+        tripping over features meant for the other.
       </p>
 
       <SectionCard title="Problem Statement" variant="highlight">
         <div className="p-6 bg-[var(--color-bg-subtle)] rounded-lg text-center">
           <p className="text-[var(--text-xl)] leading-relaxed">
-            <span className="font-bold text-[var(--color-primary)]">Product managers</span> need a way to{' '}
-            <span className="font-bold text-[var(--color-primary)]">monitor their product's health at a glance</span>{' '}
-            because <span className="font-bold">delayed awareness of issues leads to escalation</span>, 
-            but currently they must <span className="font-bold text-[var(--color-error)]">check multiple tools 
-            and manually compile data</span>.
+            <span className="font-bold text-[var(--color-info)]">Data users with varying expertise levels</span> need a way to{' '}
+            <span className="font-bold text-[var(--color-info)]">view, filter, and manipulate tabular data efficiently</span>{' '}
+            because <span className="font-bold">data volume grows but time doesn't</span>, 
+            but currently <span className="font-bold text-[var(--color-error)]">tables are either too simple 
+            for power users or too complex for everyone else</span>.
           </p>
         </div>
       </SectionCard>
@@ -386,10 +388,10 @@ function DefinePhase() {
         <SectionCard title="Success Metrics">
           <div className="space-y-4">
             {[
-              { metric: 'Time to insight', target: '< 30 seconds', current: '5-10 minutes' },
-              { metric: 'Daily check-ins', target: '3+/day', current: '1-2/day' },
-              { metric: 'Tools required', target: '1', current: '4-5' },
-              { metric: 'Manual exports/week', target: '0', current: '3-5' },
+              { metric: 'Time to find specific record', target: '< 5 seconds', current: '15-30 seconds' },
+              { metric: 'Bulk operation completion', target: '< 10 seconds', current: '30-60 seconds' },
+              { metric: 'Filter combination time', target: '< 8 seconds', current: '20+ seconds' },
+              { metric: 'Export workflow steps', target: '2 clicks', current: '5+ clicks' },
             ].map((m, i) => (
               <div key={i} className="flex justify-between items-center p-3 bg-[var(--color-bg-subtle)] rounded-lg">
                 <span className="font-medium">{m.metric}</span>
@@ -402,17 +404,27 @@ function DefinePhase() {
           </div>
         </SectionCard>
 
-        <SectionCard title="Constraints">
+        <SectionCard title="Feature Priority Matrix">
           <div className="space-y-3">
             {[
-              { type: 'Technical', constraint: 'Must integrate with existing API (REST, 30s cache)' },
-              { type: 'Design', constraint: 'Must use existing design system components' },
-              { type: 'Accessibility', constraint: 'WCAG 2.2 AA compliance required' },
-              { type: 'Timeline', constraint: 'MVP in 2 weeks, full version in 6 weeks' },
-            ].map((c, i) => (
-              <div key={i} className="flex gap-3 items-start">
-                <Badge variant="default" size="sm">{c.type}</Badge>
-                <span className="text-sm text-[var(--color-text-secondary)]">{c.constraint}</span>
+              { feature: 'Global search', priority: 'Must Have', reason: 'Both personas need it' },
+              { feature: 'Column sorting', priority: 'Must Have', reason: 'Basic expectation' },
+              { feature: 'Inline editing', priority: 'Must Have', reason: 'Casual user JTBD' },
+              { feature: 'Advanced filters', priority: 'Should Have', reason: 'Power user need' },
+              { feature: 'Keyboard shortcuts', priority: 'Should Have', reason: 'Power user efficiency' },
+              { feature: 'Saved views', priority: 'Nice to Have', reason: 'Team collaboration' },
+            ].map((f, i) => (
+              <div key={i} className="flex items-center justify-between p-2 bg-[var(--color-bg-subtle)] rounded">
+                <span className="text-sm font-medium">{f.feature}</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-[var(--color-text-tertiary)]">{f.reason}</span>
+                  <Badge 
+                    variant={f.priority === 'Must Have' ? 'error' : f.priority === 'Should Have' ? 'warning' : 'info'} 
+                    size="sm"
+                  >
+                    {f.priority}
+                  </Badge>
+                </div>
               </div>
             ))}
           </div>
@@ -422,14 +434,14 @@ function DefinePhase() {
       <SectionCard title="How Might We Questions">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
-            'How might we surface urgent issues automatically?',
-            'How might we reduce time spent compiling data?',
-            'How might we make the dashboard glanceable?',
-            'How might we support drill-down without overwhelming?',
-            'How might we adapt to different check-in contexts?',
-            'How might we make exports effortless?',
+            'How might we make search find records regardless of which field matches?',
+            'How might we enable power features without cluttering the interface?',
+            'How might we make bulk operations feel safe and undoable?',
+            'How might we maintain performance with thousands of rows?',
+            'How might we support keyboard-first workflows?',
+            'How might we show data density appropriate to the content?',
           ].map((q, i) => (
-            <div key={i} className="p-3 bg-[var(--color-accent-subtle)] rounded-lg text-sm">
+            <div key={i} className="p-3 bg-[var(--color-info-subtle)] rounded-lg text-sm">
               {q}
             </div>
           ))}
@@ -439,39 +451,39 @@ function DefinePhase() {
       <SectionCard title="Serving Multiple Personas" variant="highlight">
         <div className="space-y-4">
           <p className="text-sm text-[var(--color-text-secondary)]">
-            Our design must serve both Sarah (quick-check PM) and James (deep-dive analyst) without forcing either to compromise.
+            Our design must serve both Alex (data analyst) and David (team lead) without forcing either to compromise.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="p-4 bg-[var(--color-primary-subtle)] rounded-lg border border-[var(--color-primary)]/30">
+            <div className="p-4 bg-[var(--color-info-subtle)] rounded-lg border border-[var(--color-info)]/30">
               <h5 className="font-bold text-sm mb-2 flex items-center gap-2">
-                <span className="w-6 h-6 rounded-full bg-[var(--color-primary)] text-white text-xs flex items-center justify-center">S</span>
-                For Sarah (Quick Check PM)
+                <span className="w-6 h-6 rounded-full bg-[var(--color-info)] text-white text-xs flex items-center justify-center">A</span>
+                For Alex (Data Analyst)
               </h5>
               <ul className="text-sm text-[var(--color-text-secondary)] space-y-1">
-                <li>• Key metrics visible at a glance (above fold)</li>
-                <li>• Trend indicators show direction without reading numbers</li>
-                <li>• Alert badges for items needing attention</li>
-                <li>• 2-5 minute check-in optimized layout</li>
-                <li>• One-click export for stakeholder reports</li>
+                <li>• Keyboard shortcuts for all common operations</li>
+                <li>• Advanced multi-column filtering and sorting</li>
+                <li>• Bulk selection and batch operations</li>
+                <li>• Export to CSV/Excel with custom columns</li>
+                <li>• Saved filter presets for repeated analysis</li>
               </ul>
             </div>
             <div className="p-4 bg-[var(--color-accent-subtle)] rounded-lg border border-[var(--color-accent)]/30">
               <h5 className="font-bold text-sm mb-2 flex items-center gap-2">
-                <span className="w-6 h-6 rounded-full bg-[var(--color-accent)] text-white text-xs flex items-center justify-center">J</span>
-                For James (Deep-Dive Analyst)
+                <span className="w-6 h-6 rounded-full bg-[var(--color-accent)] text-white text-xs flex items-center justify-center">D</span>
+                For David (Team Lead)
               </h5>
               <ul className="text-sm text-[var(--color-text-secondary)] space-y-1">
-                <li>• Clickable metrics drill down to detailed views</li>
-                <li>• Date range selectors for historical analysis</li>
-                <li>• Interactive charts with hover tooltips</li>
-                <li>• Filter controls to segment data</li>
-                <li>• Export raw data for external analysis</li>
+                <li>• Global search that finds records across all columns</li>
+                <li>• Inline editing for quick status updates</li>
+                <li>• Clear visual indicators of row states</li>
+                <li>• Simple click-to-sort on any column</li>
+                <li>• Obvious pagination and row counts</li>
               </ul>
             </div>
           </div>
           <div className="p-3 bg-[var(--color-primary-subtle)] rounded-lg">
             <p className="text-sm font-medium text-[var(--color-primary)]">
-              Flexibility Strategy: Top-level metrics serve Sarah's glance-and-go workflow, while expandable cards and drill-down links serve James's exploration needs. Both use the same dashboard—depth is revealed on demand.
+              Flexibility Strategy: Progressive disclosure keeps the interface clean for David while Alex can access power features through keyboard shortcuts, filter popovers, and column header menus. The toolbar shows simple search prominently while advanced options are one click away.
             </p>
           </div>
         </div>
@@ -480,8 +492,8 @@ function DefinePhase() {
       <SectionCard title="Resolving Competing Needs" variant="highlight">
         <div className="space-y-6">
           <p className="text-sm text-[var(--color-text-secondary)]">
-            Sarah and James have fundamentally different—sometimes incompatible—needs. Here's how we identify conflicts 
-            and apply design patterns to resolve them without compromise.
+            Alex and David have opposing needs around interface complexity and interaction style. Here's how we 
+            design for both without creating mode confusion or feature bloat.
           </p>
 
           <div className="space-y-4">
@@ -492,25 +504,25 @@ function DefinePhase() {
             <div className="space-y-3">
               {[
                 { 
-                  conflict: 'Information Density', 
-                  sarah: 'Wants minimal, scannable metrics', 
-                  james: 'Wants rich, detailed data',
-                  resolution: 'Progressive Disclosure',
-                  how: 'Show summary cards by default; click to expand full data tables and charts'
+                  conflict: 'Interaction Speed', 
+                  alex: 'Keyboard-first, never touch mouse', 
+                  david: 'Mouse-first, visual feedback needed',
+                  resolution: 'Parallel Input Methods',
+                  how: 'Every action has both keyboard shortcut AND mouse/click path. Neither is "advanced"—both are primary.'
                 },
                 { 
-                  conflict: 'Interaction Depth', 
-                  sarah: 'Quick glance, no interaction needed', 
-                  james: 'Deep filtering, date range selection',
-                  resolution: 'Multiple Interaction Paths',
-                  how: 'Static view loads instantly; interactive controls appear on hover/focus'
+                  conflict: 'Filter Complexity', 
+                  alex: 'Multi-column, compound conditions, saved filters', 
+                  david: 'Simple search bar, maybe one dropdown',
+                  resolution: 'Layered Filter UI',
+                  how: 'Search bar always visible. Click column headers for quick filters. "Advanced Filters" button for compound conditions.'
                 },
                 { 
-                  conflict: 'Time Investment', 
-                  sarah: '2-5 min sessions, frequent interruptions', 
-                  james: '30+ min deep analysis sessions',
-                  resolution: 'Context Preservation',
-                  how: 'Save view state in URL; James can bookmark filtered views, Sarah always starts fresh'
+                  conflict: 'Data Operations', 
+                  alex: 'Bulk select, batch edit, mass export', 
+                  david: 'Single row select, inline edit, no export',
+                  resolution: 'Context-Aware Actions',
+                  how: 'Bulk actions appear only after multi-select. Single-row actions always available. Export in menu (not prominent).'
                 },
               ].map((item, i) => (
                 <div key={i} className="p-4 bg-[var(--color-bg-subtle)] rounded-lg border border-[var(--color-border)]">
@@ -520,12 +532,12 @@ function DefinePhase() {
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
                     <div className="flex items-start gap-2">
-                      <span className="w-5 h-5 rounded-full bg-[var(--color-primary)] text-white text-xs flex items-center justify-center shrink-0">S</span>
-                      <span className="text-sm text-[var(--color-text-secondary)]">{item.sarah}</span>
+                      <span className="w-5 h-5 rounded-full bg-[var(--color-info)] text-white text-xs flex items-center justify-center shrink-0">A</span>
+                      <span className="text-sm text-[var(--color-text-secondary)]">{item.alex}</span>
                     </div>
                     <div className="flex items-start gap-2">
-                      <span className="w-5 h-5 rounded-full bg-[var(--color-accent)] text-white text-xs flex items-center justify-center shrink-0">J</span>
-                      <span className="text-sm text-[var(--color-text-secondary)]">{item.james}</span>
+                      <span className="w-5 h-5 rounded-full bg-[var(--color-accent)] text-white text-xs flex items-center justify-center shrink-0">D</span>
+                      <span className="text-sm text-[var(--color-text-secondary)]">{item.david}</span>
                     </div>
                   </div>
                   <div className="p-2 bg-[var(--color-success-subtle)] rounded text-sm">
@@ -544,10 +556,10 @@ function DefinePhase() {
             </h5>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {[
-                { pattern: 'Feature Bloat', avoided: 'Show all features to all users', instead: 'Progressive disclosure reveals complexity on demand' },
-                { pattern: 'One-Size-Fits-All', avoided: 'Single "compromise" interface', instead: 'Same page, different depths based on interaction' },
-                { pattern: 'Mode Confusion', avoided: 'Hidden mode switches users forget', instead: 'Current state always visible in URL and UI' },
-                { pattern: 'Pogo-Stick Navigation', avoided: 'Drill-down pages that lose context', instead: 'Expand-in-place with breadcrumb trail' },
+                { pattern: 'Spreadsheet Syndrome', avoided: 'All features visible in dense toolbar', instead: 'Toolbar shows search + filters; power features in menus' },
+                { pattern: 'Mode Confusion', avoided: '"Expert mode" toggle that changes everything', instead: 'Same interface, features appear contextually' },
+                { pattern: 'Keyboard-Only', avoided: 'Power features only via shortcuts', instead: 'All shortcuts have discoverable menu/click alternatives' },
+                { pattern: 'Performance Theater', avoided: 'Loading spinner for every action', instead: 'Optimistic updates; virtualized rows; instant feedback' },
               ].map((item, i) => (
                 <div key={i} className="p-3 bg-[var(--color-bg-subtle)] rounded-lg">
                   <div className="flex items-center gap-2 mb-2">
@@ -561,15 +573,14 @@ function DefinePhase() {
           </div>
 
           <div className="p-4 bg-[var(--color-info-subtle)] rounded-lg border border-[var(--color-info)]/30">
-            <h5 className="font-bold text-sm mb-2 text-[var(--color-info)]">Design Pattern Applied: Progressive Disclosure</h5>
+            <h5 className="font-bold text-sm mb-2 text-[var(--color-info)]">Design Pattern Applied: Context-Aware Revelation</h5>
             <p className="text-sm text-[var(--color-text-secondary)] mb-3">
-              The primary pattern for this dashboard. Shows only essential information initially, reveals advanced features on user request.
+              Features appear based on user actions, not upfront. Complexity emerges naturally as users demonstrate need.
             </p>
             <div className="flex flex-wrap gap-2">
-              <span className="px-2 py-1 bg-[var(--color-bg-surface)] rounded text-xs">Level 1: KPI cards (always visible)</span>
-              <span className="px-2 py-1 bg-[var(--color-bg-surface)] rounded text-xs">Level 2: Trend charts (below fold)</span>
-              <span className="px-2 py-1 bg-[var(--color-bg-surface)] rounded text-xs">Level 3: Filters & date range (on demand)</span>
-              <span className="px-2 py-1 bg-[var(--color-bg-surface)] rounded text-xs">Level 4: Raw data export (in menu)</span>
+              <span className="px-2 py-1 bg-[var(--color-bg-surface)] rounded text-xs">0 rows selected: Search + Sort + Basic filters</span>
+              <span className="px-2 py-1 bg-[var(--color-bg-surface)] rounded text-xs">1 row selected: Edit + Delete + Details</span>
+              <span className="px-2 py-1 bg-[var(--color-bg-surface)] rounded text-xs">2+ rows selected: Bulk Edit + Export + Delete All</span>
             </div>
           </div>
         </div>
@@ -582,8 +593,8 @@ function DefinePhase() {
             <div>
               <h4 className="font-bold mb-1">Validation Gate Passed</h4>
               <p className="text-sm text-[var(--color-text-secondary)]">
-                Problem statement is user-focused (not feature-focused), metrics are measurable, 
-                constraints are documented, and HMW questions are ready for ideation.
+                Problem focused on efficiency across skill levels. Feature priorities established 
+                based on user needs, not technical ease. Performance acknowledged as a design constraint.
               </p>
             </div>
           </div>
@@ -599,33 +610,32 @@ function ExplorePhase() {
       <PhaseHeader phase={phases[2]} />
       
       <p className="text-[var(--text-lg)] text-[var(--color-text-secondary)] max-w-3xl">
-        The Solution Agent generates multiple approaches before committing to one. 
-        This divergent thinking phase ensures we don't settle on the first idea 
-        but explore the solution space thoroughly.
+        Data tables have evolved significantly. We'll evaluate approaches from basic HTML tables 
+        to spreadsheet-like interfaces to determine the right level of complexity.
       </p>
 
       <SectionCard title="Solution Hypotheses">
         <div className="space-y-4">
           {[
             { 
-              name: 'A: Metrics Dashboard', 
-              description: 'Traditional grid of KPI cards with charts below',
-              pros: ['Familiar pattern', 'Easy to scan', 'Well-understood'],
-              cons: ['Can become cluttered', 'Passive (user must check)'],
+              name: 'A: Enhanced Table with Toolbar', 
+              description: 'Standard table with toolbar for search, filters, and actions',
+              pros: ['Familiar pattern', 'Clear separation of controls', 'Good for moderate data'],
+              cons: ['Toolbar takes vertical space', 'Advanced filters hidden in modals'],
               score: 8
             },
             { 
-              name: 'B: Smart Inbox', 
-              description: 'AI-prioritized list of items needing attention',
-              pros: ['Proactive', 'Prioritized', 'Actionable'],
-              cons: ['Requires trust in AI', 'May miss context'],
-              score: 7
+              name: 'B: Spreadsheet-Like Grid', 
+              description: 'Full AG-Grid style with cell-level editing and formulas',
+              pros: ['Maximum power', 'Familiar to Excel users', 'Cell-level control'],
+              cons: ['Steep learning curve', 'Overkill for simple needs'],
+              score: 6
             },
             { 
-              name: 'C: Ambient Display', 
-              description: 'Minimal interface showing only anomalies',
-              pros: ['Zero noise normally', 'Clear signals'],
-              cons: ['Missing context', 'Unusual pattern'],
+              name: 'C: Card-Based Data View', 
+              description: 'Individual cards per record, grid or list layout',
+              pros: ['Great on mobile', 'More context per record', 'Visually appealing'],
+              cons: ['Poor information density', 'Bad for comparison'],
               score: 5
             },
           ].map((s, i) => (
@@ -660,56 +670,73 @@ function ExplorePhase() {
         </div>
       </SectionCard>
 
-      <SectionCard title="User Flow: Morning Check-in">
+      <SectionCard title="User Flow: Filter and Export Workflow">
         <div className="p-4 bg-[var(--color-bg-subtle)] rounded-lg font-mono text-sm">
           <div className="space-y-2">
             <div className="flex items-center gap-2">
-              <span className="w-6 h-6 rounded-full bg-[var(--color-primary)] text-white text-xs flex items-center justify-center">1</span>
-              <span>User opens dashboard → Sees 4 key metrics at top</span>
+              <span className="w-6 h-6 rounded-full bg-[var(--color-info)] text-white text-xs flex items-center justify-center">1</span>
+              <span>User opens data table → Sees search bar + quick filters + data grid</span>
             </div>
             <div className="ml-8 text-[var(--color-text-tertiary)]">↓</div>
             <div className="flex items-center gap-2">
-              <span className="w-6 h-6 rounded-full bg-[var(--color-primary)] text-white text-xs flex items-center justify-center">2</span>
-              <span>Scans trend indicators → Identifies any red flags</span>
+              <span className="w-6 h-6 rounded-full bg-[var(--color-info)] text-white text-xs flex items-center justify-center">2</span>
+              <span>Types in search OR clicks column header filter icon</span>
             </div>
             <div className="ml-8 text-[var(--color-text-tertiary)]">↓</div>
             <div className="flex items-center gap-2">
-              <span className="w-6 h-6 rounded-full bg-[var(--color-primary)] text-white text-xs flex items-center justify-center">3</span>
-              <span>If alert: Clicks metric → Sees detailed breakdown</span>
+              <span className="w-6 h-6 rounded-full bg-[var(--color-info)] text-white text-xs flex items-center justify-center">3</span>
+              <span>Applies filter → Table updates instantly, shows filter badges</span>
+            </div>
+            <div className="ml-8 text-[var(--color-text-tertiary)]">↓</div>
+            <div className="flex items-center gap-2">
+              <span className="w-6 h-6 rounded-full bg-[var(--color-info)] text-white text-xs flex items-center justify-center">4</span>
+              <span>Adds more filters → Badges stack, "Clear all" appears</span>
             </div>
             <div className="ml-8 text-[var(--color-text-tertiary)]">↓</div>
             <div className="flex items-center gap-2">
               <span className="w-6 h-6 rounded-full bg-[var(--color-success)] text-white text-xs flex items-center justify-center">✓</span>
-              <span>Understands status → Takes action or moves on</span>
+              <span>Clicks Export → Dropdown with format options, downloads filtered data</span>
             </div>
           </div>
         </div>
       </SectionCard>
 
-      <SectionCard title="Information Architecture">
-        <div className="grid grid-cols-3 gap-4 text-sm">
+      <SectionCard title="Interaction Model">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
           <div className="p-4 bg-[var(--color-primary-subtle)] rounded-lg">
-            <h5 className="font-bold text-xs uppercase text-[var(--color-primary)] mb-2">Primary (Always Visible)</h5>
+            <h5 className="font-bold text-xs uppercase text-[var(--color-primary)] mb-2">Selection</h5>
             <ul className="space-y-1 text-[var(--color-text-secondary)]">
-              <li>• Key metrics (4 cards)</li>
-              <li>• Trend indicators</li>
-              <li>• Alert badges</li>
+              <li>• Click to select row</li>
+              <li>• Shift+click for range</li>
+              <li>• Cmd/Ctrl for multi</li>
+              <li>• Checkbox column</li>
             </ul>
           </div>
           <div className="p-4 bg-[var(--color-bg-subtle)] rounded-lg">
-            <h5 className="font-bold text-xs uppercase text-[var(--color-text-tertiary)] mb-2">Secondary (Visible Below)</h5>
+            <h5 className="font-bold text-xs uppercase text-[var(--color-text-tertiary)] mb-2">Sorting</h5>
             <ul className="space-y-1 text-[var(--color-text-secondary)]">
-              <li>• Revenue chart</li>
-              <li>• Traffic breakdown</li>
-              <li>• Recent activity</li>
+              <li>• Click header to sort</li>
+              <li>• Click again to reverse</li>
+              <li>• Third click to clear</li>
+              <li>• Multi-sort with shift</li>
             </ul>
           </div>
           <div className="p-4 bg-[var(--color-bg-subtle)] rounded-lg">
-            <h5 className="font-bold text-xs uppercase text-[var(--color-text-tertiary)] mb-2">Tertiary (On Demand)</h5>
+            <h5 className="font-bold text-xs uppercase text-[var(--color-text-tertiary)] mb-2">Filtering</h5>
             <ul className="space-y-1 text-[var(--color-text-secondary)]">
-              <li>• Detailed analytics</li>
-              <li>• Historical data</li>
-              <li>• Export options</li>
+              <li>• Global search bar</li>
+              <li>• Per-column filters</li>
+              <li>• Filter badges shown</li>
+              <li>• Save filter sets</li>
+            </ul>
+          </div>
+          <div className="p-4 bg-[var(--color-bg-subtle)] rounded-lg">
+            <h5 className="font-bold text-xs uppercase text-[var(--color-text-tertiary)] mb-2">Editing</h5>
+            <ul className="space-y-1 text-[var(--color-text-secondary)]">
+              <li>• Double-click to edit</li>
+              <li>• Enter to save</li>
+              <li>• Escape to cancel</li>
+              <li>• Tab to next cell</li>
             </ul>
           </div>
         </div>
@@ -722,9 +749,9 @@ function ExplorePhase() {
             <div>
               <h4 className="font-bold mb-1">Validation Gate Passed</h4>
               <p className="text-sm text-[var(--color-text-secondary)]">
-                Multiple solutions explored, user flows mapped, information hierarchy defined. 
-                Recommendation: Solution A (Metrics Dashboard) with elements from B (proactive alerts). 
-                Rationale documented. Ready to design.
+                Recommendation: Solution A (Enhanced Table) with progressive disclosure of power features. 
+                Keyboard shortcuts available but not required. Filter state visible but not intrusive. 
+                Inline editing for quick updates.
               </p>
             </div>
           </div>
@@ -740,20 +767,22 @@ function DesignPhase() {
       <PhaseHeader phase={phases[3]} />
       
       <p className="text-[var(--text-lg)] text-[var(--color-text-secondary)] max-w-3xl">
-        The UI Agent translates the solution concept into concrete interface specifications. 
-        Every component, spacing value, and color must come from the design system—no arbitrary values.
+        Data table design is about consistency and predictability. Every cell, header, and action 
+        must behave as users expect. Visual hierarchy guides attention to what matters.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <SectionCard title="Component Inventory">
           <div className="space-y-3">
             {[
-              { component: 'StatCard', status: 'existing', usage: 'KPI display with trend' },
-              { component: 'Card', status: 'existing', usage: 'Content containers' },
-              { component: 'Badge', status: 'existing', usage: 'Status indicators' },
-              { component: 'Button', status: 'existing', usage: 'Actions' },
-              { component: 'BarChart', status: 'new', usage: 'Revenue visualization' },
-              { component: 'DonutChart', status: 'new', usage: 'Traffic breakdown' },
+              { component: 'DataTable', status: 'new', usage: 'Main table container with virtualization' },
+              { component: 'TableHeader', status: 'new', usage: 'Sortable column headers' },
+              { component: 'TableRow', status: 'new', usage: 'Data rows with selection state' },
+              { component: 'TableCell', status: 'new', usage: 'Individual cells, supports editing' },
+              { component: 'FilterPopover', status: 'new', usage: 'Per-column filter UI' },
+              { component: 'FilterBadge', status: 'new', usage: 'Active filter indicator' },
+              { component: 'Pagination', status: 'existing', usage: 'Page navigation' },
+              { component: 'Checkbox', status: 'existing', usage: 'Row selection' },
             ].map((c, i) => (
               <div key={i} className="flex items-center justify-between p-2 bg-[var(--color-bg-subtle)] rounded">
                 <div className="flex items-center gap-2">
@@ -768,39 +797,33 @@ function DesignPhase() {
           </div>
         </SectionCard>
 
-        <SectionCard title="Layout Specification">
+        <SectionCard title="Table Anatomy">
           <div className="space-y-4">
             <div className="p-4 bg-[var(--color-bg-subtle)] rounded font-mono text-xs">
-              <div className="border-2 border-dashed border-[var(--color-border)] p-2 mb-2">
-                <div className="text-[var(--color-text-tertiary)]">Header (h-16, sticky)</div>
-              </div>
-              <div className="flex gap-2">
-                <div className="w-16 border-2 border-dashed border-[var(--color-border)] p-2">
-                  <div className="text-[var(--color-text-tertiary)] [writing-mode:vertical-rl]">Sidebar (w-64)</div>
+              <div className="space-y-1">
+                <div className="flex items-center h-8 bg-[var(--color-primary-subtle)] rounded px-2 text-[var(--color-text-secondary)]">
+                  Toolbar: Search | Filters | Actions | Export
                 </div>
-                <div className="flex-1 space-y-2">
-                  <div className="grid grid-cols-4 gap-1">
-                    {[1,2,3,4].map(i => (
-                      <div key={i} className="h-8 bg-[var(--color-primary-subtle)] rounded text-[8px] flex items-center justify-center">
-                        Stat {i}
-                      </div>
-                    ))}
-                  </div>
-                  <div className="grid grid-cols-3 gap-1">
-                    <div className="col-span-2 h-16 bg-[var(--color-bg-muted)] rounded text-[8px] flex items-center justify-center">
-                      Chart
+                <div className="flex items-center h-10 bg-[var(--color-bg-muted)] rounded px-2 font-bold text-[var(--color-text-secondary)]">
+                  Header: ☐ | Name ↑ | Status | Date | Actions
+                </div>
+                <div className="space-y-0.5">
+                  {[1,2,3].map(i => (
+                    <div key={i} className="flex items-center h-12 bg-[var(--color-bg-surface)] border border-[var(--color-border)] rounded px-2 text-[var(--color-text-secondary)]">
+                      Row {i}: ☐ | Data | Badge | Date | Edit | Delete
                     </div>
-                    <div className="h-16 bg-[var(--color-bg-muted)] rounded text-[8px] flex items-center justify-center">
-                      Donut
-                    </div>
-                  </div>
+                  ))}
+                </div>
+                <div className="flex items-center justify-between h-10 bg-[var(--color-bg-muted)] rounded px-2 text-[var(--color-text-secondary)]">
+                  <span>Footer: Showing 1-10 of 1,234</span>
+                  <span>« 1 2 3 ... 124 »</span>
                 </div>
               </div>
             </div>
             <div className="text-xs text-[var(--color-text-secondary)]">
-              Page padding: <code className="bg-[var(--color-bg-muted)] px-1 rounded">--space-8</code><br/>
-              Card gap: <code className="bg-[var(--color-bg-muted)] px-1 rounded">--space-6</code><br/>
-              Section gap: <code className="bg-[var(--color-bg-muted)] px-1 rounded">--space-8</code>
+              Row height: <code className="bg-[var(--color-bg-muted)] px-1 rounded">48px</code><br/>
+              Header height: <code className="bg-[var(--color-bg-muted)] px-1 rounded">40px</code><br/>
+              Cell padding: <code className="bg-[var(--color-bg-muted)] px-1 rounded">--space-3</code>
             </div>
           </div>
         </SectionCard>
@@ -810,19 +833,24 @@ function DesignPhase() {
         <div className="space-y-4">
           {[
             {
-              decision: 'Stats at top, full width',
-              rationale: 'JTBD #1: Users need to see status immediately. F-pattern reading puts stats in prime position.',
-              tokens: ['grid-cols-4', '--space-6 gap']
+              decision: 'Sticky header and toolbar',
+              rationale: 'JTBD #1-2: Users scroll through many rows. Column headers and search must remain visible for context and quick filtering.',
+              tokens: ['sticky top-0', 'z-10', 'bg-[var(--color-bg-surface)]']
             },
             {
-              decision: 'Trend badges on stat cards',
-              rationale: 'Persona frustration: Unclear what matters. Trends provide instant context without reading numbers.',
-              tokens: ['Badge variant="success/error"', '--color-success/error']
+              decision: 'Filter badges in toolbar, not inline',
+              rationale: 'Casual user need: Clear indication of active filters without cluttering column headers. Badges are dismissible with one click.',
+              tokens: ['Badge', 'FilterBadge', 'flex gap-2']
             },
             {
-              decision: 'Sidebar navigation, fixed',
-              rationale: 'Context scenario: Users check quickly between tasks. Persistent nav allows fast switching.',
-              tokens: ['w-64', 'sticky top-0', 'h-screen']
+              decision: 'Hover row highlight',
+              rationale: 'Both personas: Visual feedback for which row is active. Essential for wide tables where eyes can lose track.',
+              tokens: ['hover:bg-[var(--color-bg-subtle)]', 'transition-colors']
+            },
+            {
+              decision: 'Virtualized rendering',
+              rationale: 'Performance constraint: Tables may have 10,000+ rows. Only render visible rows to maintain 60fps scrolling.',
+              tokens: ['react-virtual', 'overscan={5}', 'height: 100%']
             },
           ].map((d, i) => (
             <div key={i} className="p-4 border border-[var(--color-border)] rounded-lg">
@@ -847,8 +875,8 @@ function DesignPhase() {
             <div>
               <h4 className="font-bold mb-1">Validation Gate Passed</h4>
               <p className="text-sm text-[var(--color-text-secondary)]">
-                All components from design system, all values from tokens, visual hierarchy clear, 
-                design decisions documented with rationale. Ready to validate.
+                Component structure defined with clear responsibilities. Visual design optimizes for 
+                scanability. Performance addressed through virtualization. Ready to validate.
               </p>
             </div>
           </div>
@@ -864,20 +892,21 @@ function ValidatePhase() {
       <PhaseHeader phase={phases[4]} />
       
       <p className="text-[var(--text-lg)] text-[var(--color-text-secondary)] max-w-3xl">
-        The Critique Agent rigorously evaluates the design against accessibility standards, 
-        usability heuristics, and the original user needs. Problems found now are cheap to fix.
+        Data tables have critical accessibility requirements. Screen reader users need to understand 
+        table structure, and keyboard users need full functionality without a mouse.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <SectionCard title="Accessibility Audit">
           <div className="space-y-3">
             {[
-              { check: 'Color contrast (4.5:1)', status: 'pass' },
-              { check: 'Focus indicators visible', status: 'warning', note: 'Needs stronger ring' },
-              { check: 'Keyboard navigation', status: 'pass' },
-              { check: 'Screen reader labels', status: 'pass' },
-              { check: 'Touch targets (44px)', status: 'pass' },
-              { check: 'Skip-to-main link', status: 'fail', note: 'Missing' },
+              { check: 'Proper table semantics', status: 'pass' },
+              { check: 'Column headers associated', status: 'pass' },
+              { check: 'Sort state announced', status: 'warning', note: 'Add aria-sort' },
+              { check: 'Selection state announced', status: 'fail', note: 'Missing aria-selected' },
+              { check: 'Focus management in cells', status: 'warning', note: 'Needs roving tabindex' },
+              { check: 'Filter changes announced', status: 'fail', note: 'No live region for results count' },
+              { check: 'Keyboard shortcuts documented', status: 'pass' },
             ].map((c, i) => (
               <div key={i} className="flex items-center justify-between">
                 <span className="text-sm">{c.check}</span>
@@ -895,22 +924,23 @@ function ValidatePhase() {
           </div>
         </SectionCard>
 
-        <SectionCard title="Heuristic Evaluation">
+        <SectionCard title="Performance Audit">
           <div className="space-y-3">
             {[
-              { heuristic: 'Visibility of system status', score: 9 },
-              { heuristic: 'Match real world', score: 8 },
-              { heuristic: 'User control & freedom', score: 7, note: 'Add undo for actions' },
-              { heuristic: 'Consistency', score: 9 },
-              { heuristic: 'Error prevention', score: 8 },
-              { heuristic: 'Recognition over recall', score: 9 },
-            ].map((h, i) => (
+              { check: 'Initial render (100 rows)', score: '< 50ms', status: 'pass' },
+              { check: 'Scroll performance (10k rows)', score: '60fps', status: 'pass' },
+              { check: 'Filter response time', score: '< 100ms', status: 'pass' },
+              { check: 'Sort operation', score: '< 200ms', status: 'warning', note: 'Slow on 10k+ rows' },
+              { check: 'Memory usage', score: '< 50MB', status: 'pass' },
+              { check: 'Export performance', score: '< 3s for 10k', status: 'pass' },
+            ].map((p, i) => (
               <div key={i} className="flex items-center justify-between">
-                <span className="text-sm">{h.heuristic}</span>
+                <span className="text-sm">{p.check}</span>
                 <div className="flex items-center gap-2">
-                  {h.note && <span className="text-xs text-[var(--color-text-tertiary)]">{h.note}</span>}
-                  <Badge variant={h.score >= 8 ? 'success' : 'warning'} size="sm">
-                    {h.score}/10
+                  <span className="text-xs text-[var(--color-text-tertiary)]">{p.score}</span>
+                  {p.note && <span className="text-xs text-[var(--color-warning)]">({p.note})</span>}
+                  <Badge variant={p.status === 'pass' ? 'success' : 'warning'} size="sm">
+                    {p.status}
                   </Badge>
                 </div>
               </div>
@@ -922,9 +952,11 @@ function ValidatePhase() {
       <SectionCard title="Issue List">
         <div className="space-y-3">
           {[
-            { severity: 'Major', issue: 'Missing skip-to-main link', fix: 'Add hidden skip link at top of page' },
-            { severity: 'Minor', issue: 'Focus ring too subtle', fix: 'Increase to 2px solid with offset' },
-            { severity: 'Minor', issue: 'No undo for quick actions', fix: 'Add toast with undo button' },
+            { severity: 'Major', issue: 'Row selection not announced to screen readers', fix: 'Add aria-selected to rows, announce selection count changes' },
+            { severity: 'Major', issue: 'Filter results count not announced', fix: 'Add aria-live region: "Showing X of Y results"' },
+            { severity: 'Minor', issue: 'Sort state not communicated', fix: 'Add aria-sort="ascending/descending" to sorted column' },
+            { severity: 'Minor', issue: 'Cell focus management inconsistent', fix: 'Implement roving tabindex pattern for grid navigation' },
+            { severity: 'Minor', issue: 'Sort slow on large datasets', fix: 'Consider web worker for sort, or server-side for 10k+' },
           ].map((issue, i) => (
             <div key={i} className="flex gap-4 p-3 bg-[var(--color-bg-subtle)] rounded-lg">
               <Badge variant={issue.severity === 'Major' ? 'error' : 'warning'} size="sm">
@@ -946,8 +978,8 @@ function ValidatePhase() {
             <div>
               <h4 className="font-bold mb-1">Validation Gate: Issues Found</h4>
               <p className="text-sm text-[var(--color-text-secondary)]">
-                1 Major issue (skip link) and 2 Minor issues identified. 
-                All must be resolved in Refine phase before shipping.
+                2 Major accessibility issues (selection and filter announcements) and 3 Minor issues. 
+                Performance acceptable but sort optimization recommended. Must fix before shipping.
               </p>
             </div>
           </div>
@@ -963,29 +995,35 @@ function RefinePhase() {
       <PhaseHeader phase={phases[5]} />
       
       <p className="text-[var(--text-lg)] text-[var(--color-text-secondary)] max-w-3xl">
-        The Polish Agent addresses validation findings and adds the details that transform 
-        a functional design into a delightful experience. Every micro-interaction matters.
+        Data table polish is about micro-feedback that confirms actions and reduces anxiety. 
+        Users should never wonder "did that work?" Every interaction needs clear response.
       </p>
 
       <SectionCard title="Issue Resolutions">
         <div className="space-y-4">
           {[
             {
-              issue: 'Missing skip-to-main link',
-              resolution: 'Added visually hidden link that appears on focus',
-              code: '<a href="#main" class="skip-link">Skip to main</a>',
+              issue: 'Row selection not announced',
+              resolution: 'Added aria-selected and live region announcing selection changes',
+              code: '<tr aria-selected={selected}> + <div aria-live="polite">{count} rows selected</div>',
               verified: true
             },
             {
-              issue: 'Focus ring too subtle',
-              resolution: 'Updated to 2px solid with 2px offset',
-              code: 'outline: 2px solid var(--color-focus); outline-offset: 2px;',
+              issue: 'Filter results not announced',
+              resolution: 'Added results summary in aria-live region after filter changes',
+              code: '<div aria-live="polite" aria-atomic="true">Showing {visible} of {total} results</div>',
               verified: true
             },
             {
-              issue: 'No undo for actions',
-              resolution: 'Added toast notifications with 10s undo window',
-              code: '<Toast action={{ label: "Undo", onClick: handleUndo }} />',
+              issue: 'Sort state not communicated',
+              resolution: 'Added aria-sort attribute to sorted column header',
+              code: '<th aria-sort={direction}>{column.name}</th>',
+              verified: true
+            },
+            {
+              issue: 'Cell focus management',
+              resolution: 'Implemented roving tabindex with arrow key navigation',
+              code: 'tabIndex={isFocused ? 0 : -1} + onKeyDown={handleArrowKeys}',
               verified: true
             },
           ].map((r, i) => (
@@ -1004,10 +1042,12 @@ function RefinePhase() {
       <SectionCard title="Micro-interactions Added">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
-            { element: 'Stat cards', interaction: 'Hover lift (translateY -4px, shadow increase)' },
-            { element: 'Chart bars', interaction: 'Hover highlight with tooltip showing value' },
-            { element: 'Sidebar items', interaction: 'Smooth background transition (150ms ease)' },
-            { element: 'Page transitions', interaction: 'Fade in (200ms) on route change' },
+            { element: 'Row hover', interaction: 'Subtle background change (100ms ease)' },
+            { element: 'Sort click', interaction: 'Icon rotation animation on direction change' },
+            { element: 'Row selection', interaction: 'Checkbox fills with scale animation' },
+            { element: 'Filter badge', interaction: 'Slide-in when applied, shrink-out on remove' },
+            { element: 'Inline edit', interaction: 'Cell border highlight, save shimmer on confirm' },
+            { element: 'Empty state', interaction: 'Fade in illustration with bounce on action' },
           ].map((m, i) => (
             <div key={i} className="p-3 bg-[var(--color-bg-subtle)] rounded-lg">
               <h5 className="font-medium text-sm">{m.element}</h5>
@@ -1017,13 +1057,35 @@ function RefinePhase() {
         </div>
       </SectionCard>
 
+      <SectionCard title="Keyboard Shortcuts">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+          {[
+            { category: 'Navigation', shortcuts: ['↑↓ Row focus', '←→ Cell focus', 'Home/End First/last', 'Ctrl+Home Top'] },
+            { category: 'Selection', shortcuts: ['Space Select row', 'Shift+↑↓ Extend', 'Ctrl+A Select all', 'Escape Clear'] },
+            { category: 'Editing', shortcuts: ['Enter Edit cell', 'Escape Cancel', 'Tab Next cell', 'Delete Clear cell'] },
+            { category: 'Actions', shortcuts: ['Ctrl+F Search', 'Ctrl+E Export', 'Ctrl+/ Help', 'F2 Rename'] },
+          ].map((cat, i) => (
+            <div key={i} className="p-3 bg-[var(--color-bg-subtle)] rounded-lg">
+              <h5 className="font-bold text-xs uppercase text-[var(--color-text-tertiary)] mb-2">{cat.category}</h5>
+              <ul className="space-y-1">
+                {cat.shortcuts.map((shortcut, j) => (
+                  <li key={j} className="text-xs text-[var(--color-text-secondary)]">
+                    {shortcut}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </SectionCard>
+
       <SectionCard title="Final QA Checklist">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { category: 'Visual', checks: ['Token usage', 'Spacing consistent', 'Colors semantic'] },
-            { category: 'Interaction', checks: ['All states defined', 'Feedback immediate', 'Transitions smooth'] },
-            { category: 'Accessibility', checks: ['Contrast passes', 'Keyboard works', 'Screen reader OK'] },
-            { category: 'Responsive', checks: ['Mobile works', 'Tablet works', 'No overflow'] },
+            { category: 'Functionality', checks: ['Sort works', 'Filter works', 'Export works', 'Inline edit works'] },
+            { category: 'Accessibility', checks: ['Screen reader tested', 'Keyboard only tested', 'Focus visible', 'States announced'] },
+            { category: 'Performance', checks: ['10k rows smooth', 'Filter instant', 'No memory leaks', 'Export fast'] },
+            { category: 'Edge Cases', checks: ['Empty state', 'Single row', 'Long content', 'Error handling'] },
           ].map((cat, i) => (
             <div key={i} className="p-3 bg-[var(--color-bg-subtle)] rounded-lg">
               <h5 className="font-bold text-xs uppercase text-[var(--color-text-tertiary)] mb-2">{cat.category}</h5>
@@ -1047,8 +1109,8 @@ function RefinePhase() {
             <div>
               <h4 className="font-bold mb-1">Design Complete!</h4>
               <p className="text-sm text-[var(--color-text-secondary)]">
-                All validation issues resolved, micro-interactions added, QA checklist passed. 
-                The dashboard is ready for implementation. View the live example to see the result.
+                All validation issues resolved, keyboard navigation comprehensive, performance optimized. 
+                The data table serves both power users and casual users through progressive disclosure. View the live example.
               </p>
             </div>
           </div>
@@ -1060,21 +1122,21 @@ function RefinePhase() {
 
 function CallToAction() {
   return (
-    <div className="py-16 bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-accent)] text-white">
+    <div className="py-16 bg-gradient-to-br from-[var(--color-info)] to-[var(--color-primary)] text-white">
       <Container size="md">
         <Stack gap={6} align="center" className="text-center">
           <h2 className="text-[var(--text-3xl)] font-bold">See the Final Result</h2>
           <p className="text-lg opacity-90 max-w-xl">
-            Experience the dashboard built through this workflow. Toggle design notes to see 
-            how every decision traces back to user needs.
+            Experience the data table built through this workflow. Toggle design notes to see 
+            how every interaction serves different user expertise levels.
           </p>
           <Button 
             variant="secondary" 
             size="lg" 
-            onClick={() => window.location.href = '/examples/dashboard'}
-            className="bg-white text-[var(--color-primary)] hover:bg-white/90"
+            onClick={() => window.location.href = '/examples/datatable'}
+            className="bg-white text-[var(--color-info)] hover:bg-white/90"
           >
-            View Live Dashboard →
+            View Live Data Table →
           </Button>
         </Stack>
       </Container>

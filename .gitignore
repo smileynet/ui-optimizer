@@ -19,3 +19,6 @@ dist/
 
 # Screenshots (local testing artifacts)
 **/screenshots/
+
+# Results
+results/

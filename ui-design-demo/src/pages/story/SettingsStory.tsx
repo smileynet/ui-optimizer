@@ -18,7 +18,7 @@ const phases: { id: Phase; number: string; title: string; agent: string; color: 
   { id: 'refine', number: '06', title: 'Refine', agent: 'Polish Agent', color: 'var(--color-info)' },
 ];
 
-export function DashboardStory() {
+export function SettingsStory() {
   const [activePhase, setActivePhase] = useState<Phase>('understand');
 
   return (
@@ -88,7 +88,7 @@ function StoryHeader() {
               Stories
             </span>
             <span className="text-[var(--color-text-tertiary)]">/</span>
-            <span className="font-medium">Dashboard</span>
+            <span className="font-medium">Settings</span>
           </div>
           <div className="flex items-center gap-4">
             <ThemeToggle />
@@ -117,7 +117,7 @@ function PhaseNavigation({ activePhase, setActivePhase }: { activePhase: Phase; 
           {nextPhase.number} {nextPhase.title} →
         </Button>
       ) : (
-        <Button variant="primary" onClick={() => window.location.href = '/examples/dashboard'}>
+        <Button variant="primary" onClick={() => window.location.href = '/examples/settings'}>
           View Live Example →
         </Button>
       )}
@@ -158,14 +158,14 @@ function SectionCard({ title, children, variant = 'default' }: { title: string; 
 }
 
 function UnderstandPhase() {
-  const [selectedPersona, setSelectedPersona] = useState<'sarah' | 'james' | null>(null);
+  const [selectedPersona, setSelectedPersona] = useState<'marcus' | 'elena' | null>(null);
 
   const jtbds = [
-    { id: 1, situation: 'When I start my workday', motivation: 'I want to see what needs my attention', outcome: 'so I can prioritize my time effectively', personas: ['sarah'] },
-    { id: 2, situation: 'When preparing for a stakeholder meeting', motivation: 'I want to export key metrics', outcome: 'so I can present progress confidently', personas: ['sarah'] },
-    { id: 3, situation: 'When something feels "off"', motivation: 'I want to drill into the data', outcome: 'so I can identify the root cause', personas: ['sarah', 'james'] },
-    { id: 4, situation: 'When analyzing a trend over time', motivation: 'I want to compare historical data', outcome: 'so I can understand patterns and make predictions', personas: ['james'] },
-    { id: 5, situation: 'When presenting findings to the team', motivation: 'I want to create shareable reports', outcome: 'so stakeholders can see the data that supports my conclusions', personas: ['james', 'sarah'] },
+    { id: 1, situation: 'When I first set up the product', motivation: 'I want to personalize my experience', outcome: 'so it works the way I expect', personas: ['marcus', 'elena'] },
+    { id: 2, situation: 'When I receive too many notifications', motivation: 'I want to adjust my preferences', outcome: 'so I\'m not constantly interrupted', personas: ['elena'] },
+    { id: 3, situation: 'When security is a concern', motivation: 'I want to enable additional protection', outcome: 'so my account stays safe', personas: ['marcus', 'elena'] },
+    { id: 4, situation: 'When I can\'t find a setting', motivation: 'I want to search for it', outcome: 'so I don\'t waste time navigating', personas: ['marcus'] },
+    { id: 5, situation: 'When I need to configure integrations', motivation: 'I want access to advanced options', outcome: 'so I can connect my workflow tools', personas: ['marcus'] },
   ];
 
   const isJtbdHighlighted = (personas: string[]) => {
@@ -178,9 +178,8 @@ function UnderstandPhase() {
       <PhaseHeader phase={phases[0]} />
       
       <p className="text-[var(--text-lg)] text-[var(--color-text-secondary)] max-w-3xl">
-        Before designing a single pixel, we need to understand who will use this dashboard 
-        and what they're trying to accomplish. The Research Agent conducts user interviews 
-        and synthesizes findings into actionable personas and job statements.
+        Settings pages often become dumping grounds for every configurable option. Before designing, 
+        we need to understand who changes settings, how often, and why—most users never touch them.
       </p>
 
       <div className="p-3 bg-[var(--color-info-subtle)] rounded-lg border border-[var(--color-info)]/30">
@@ -194,25 +193,25 @@ function UnderstandPhase() {
         <div 
           className={cn(
             "cursor-pointer transition-all duration-200",
-            selectedPersona === 'sarah' 
-              ? "ring-2 ring-[var(--color-primary)] ring-offset-2 rounded-[var(--radius-lg)]" 
-              : selectedPersona === 'james' 
+            selectedPersona === 'marcus' 
+              ? "ring-2 ring-[var(--color-success)] ring-offset-2 rounded-[var(--radius-lg)]" 
+              : selectedPersona === 'elena' 
                 ? "opacity-50" 
-                : "hover:ring-2 hover:ring-[var(--color-primary)]/50 rounded-[var(--radius-lg)]"
+                : "hover:ring-2 hover:ring-[var(--color-success)]/50 rounded-[var(--radius-lg)]"
           )}
-          onClick={() => setSelectedPersona(selectedPersona === 'sarah' ? null : 'sarah')}
+          onClick={() => setSelectedPersona(selectedPersona === 'marcus' ? null : 'marcus')}
         >
           <SectionCard title="Primary Persona" variant="highlight">
             <div className="space-y-4">
               <div className="flex items-start gap-4">
-                <div className="w-16 h-16 rounded-full bg-[var(--color-primary-subtle)] flex items-center justify-center text-2xl">
-                  👩‍💼
+                <div className="w-16 h-16 rounded-full bg-[var(--color-success-subtle)] flex items-center justify-center text-2xl">
+                  🧑‍💻
                 </div>
                 <div>
-                  <h4 className="font-bold text-[var(--text-lg)]">Sarah Chen</h4>
-                  <p className="text-[var(--color-text-secondary)]">Product Manager, SaaS Company</p>
+                  <h4 className="font-bold text-[var(--text-lg)]">Marcus Rivera</h4>
+                  <p className="text-[var(--color-text-secondary)]">Senior Developer, Tech Startup</p>
                   <p className="text-sm text-[var(--color-text-tertiary)] italic mt-2">
-                    "I need to know what's happening across my product without scheduling a dozen meetings."
+                    "I want to set things up once and forget about them. When I do need to change something, I need to find it fast."
                   </p>
                 </div>
               </div>
@@ -221,17 +220,17 @@ function UnderstandPhase() {
                 <div>
                   <h5 className="text-xs font-bold uppercase text-[var(--color-text-tertiary)] mb-2">Goals</h5>
                   <ul className="text-sm space-y-1 text-[var(--color-text-secondary)]">
-                    <li>• Monitor product health daily</li>
-                    <li>• Identify issues before they escalate</li>
-                    <li>• Report progress to stakeholders</li>
+                    <li>• Configure once, forget it</li>
+                    <li>• Find specific settings quickly</li>
+                    <li>• Understand impact of changes</li>
                   </ul>
                 </div>
                 <div>
                   <h5 className="text-xs font-bold uppercase text-[var(--color-text-tertiary)] mb-2">Frustrations</h5>
                   <ul className="text-sm space-y-1 text-[var(--color-text-secondary)]">
-                    <li>• Data scattered across tools</li>
-                    <li>• Too many metrics, unclear priorities</li>
-                    <li>• Manual report compilation</li>
+                    <li>• Buried options, poor organization</li>
+                    <li>• No search functionality</li>
+                    <li>• Unclear what options do</li>
                   </ul>
                 </div>
               </div>
@@ -242,25 +241,25 @@ function UnderstandPhase() {
         <div 
           className={cn(
             "cursor-pointer transition-all duration-200",
-            selectedPersona === 'james' 
+            selectedPersona === 'elena' 
               ? "ring-2 ring-[var(--color-accent)] ring-offset-2 rounded-[var(--radius-lg)]" 
-              : selectedPersona === 'sarah' 
+              : selectedPersona === 'marcus' 
                 ? "opacity-50" 
                 : "hover:ring-2 hover:ring-[var(--color-accent)]/50 rounded-[var(--radius-lg)]"
           )}
-          onClick={() => setSelectedPersona(selectedPersona === 'james' ? null : 'james')}
+          onClick={() => setSelectedPersona(selectedPersona === 'elena' ? null : 'elena')}
         >
           <SectionCard title="Secondary Persona">
             <div className="space-y-4">
               <div className="flex items-start gap-4">
                 <div className="w-16 h-16 rounded-full bg-[var(--color-accent-subtle)] flex items-center justify-center text-2xl">
-                  📊
+                  👩‍🏫
                 </div>
                 <div>
-                  <h4 className="font-bold text-[var(--text-lg)]">James Park</h4>
-                  <p className="text-[var(--color-text-secondary)]">Data Analyst, Same Company</p>
+                  <h4 className="font-bold text-[var(--text-lg)]">Elena Kowalski</h4>
+                  <p className="text-[var(--color-text-secondary)]">Casual User, Marketing Manager</p>
                   <p className="text-sm text-[var(--color-text-tertiary)] italic mt-2">
-                    "I need to dig into the details and understand the why behind the numbers."
+                    "I just want to change my notification preferences without accidentally breaking something."
                   </p>
                 </div>
               </div>
@@ -269,17 +268,17 @@ function UnderstandPhase() {
                 <div>
                   <h5 className="text-xs font-bold uppercase text-[var(--color-text-tertiary)] mb-2">Goals</h5>
                   <ul className="text-sm space-y-1 text-[var(--color-text-secondary)]">
-                    <li>• Deep dive into metrics</li>
-                    <li>• Compare historical trends</li>
-                    <li>• Export raw data for analysis</li>
+                    <li>• Simple, common changes</li>
+                    <li>• Not overwhelmed by options</li>
+                    <li>• Confidence in actions</li>
                   </ul>
                 </div>
                 <div>
                   <h5 className="text-xs font-bold uppercase text-[var(--color-text-tertiary)] mb-2">Frustrations</h5>
                   <ul className="text-sm space-y-1 text-[var(--color-text-secondary)]">
-                    <li>• Limited drill-down capabilities</li>
-                    <li>• Can't customize date ranges</li>
-                    <li>• No way to save custom views</li>
+                    <li>• Too many technical options</li>
+                    <li>• Fear of breaking things</li>
+                    <li>• Jargon-heavy labels</li>
                   </ul>
                 </div>
               </div>
@@ -293,8 +292,8 @@ function UnderstandPhase() {
           {selectedPersona && (
             <div className="flex items-center gap-2 text-sm text-[var(--color-text-secondary)]">
               <span>Showing jobs for:</span>
-              <Badge variant={selectedPersona === 'sarah' ? 'default' : 'info'}>
-                {selectedPersona === 'sarah' ? 'Sarah' : 'James'}
+              <Badge variant={selectedPersona === 'marcus' ? 'success' : 'info'}>
+                {selectedPersona === 'marcus' ? 'Marcus' : 'Elena'}
               </Badge>
               <button 
                 onClick={() => setSelectedPersona(null)}
@@ -309,10 +308,10 @@ function UnderstandPhase() {
               key={jtbd.id} 
               className={cn(
                 "p-4 bg-[var(--color-bg-subtle)] rounded-lg border-l-4 transition-all duration-200",
-                jtbd.personas.includes('sarah') && jtbd.personas.includes('james')
+                jtbd.personas.includes('marcus') && jtbd.personas.includes('elena')
                   ? "border-[var(--color-warning)]"
-                  : jtbd.personas.includes('sarah')
-                    ? "border-[var(--color-primary)]"
+                  : jtbd.personas.includes('marcus')
+                    ? "border-[var(--color-success)]"
                     : "border-[var(--color-accent)]",
                 !isJtbdHighlighted(jtbd.personas) && "opacity-30"
               )}
@@ -327,11 +326,11 @@ function UnderstandPhase() {
                   <span className="font-medium">{jtbd.outcome}</span>.
                 </p>
                 <div className="flex gap-1 shrink-0">
-                  {jtbd.personas.includes('sarah') && (
-                    <span className="w-6 h-6 rounded-full bg-[var(--color-primary)] text-white text-xs flex items-center justify-center font-bold" title="Sarah">S</span>
+                  {jtbd.personas.includes('marcus') && (
+                    <span className="w-6 h-6 rounded-full bg-[var(--color-success)] text-white text-xs flex items-center justify-center font-bold" title="Marcus">M</span>
                   )}
-                  {jtbd.personas.includes('james') && (
-                    <span className="w-6 h-6 rounded-full bg-[var(--color-accent)] text-white text-xs flex items-center justify-center font-bold" title="James">J</span>
+                  {jtbd.personas.includes('elena') && (
+                    <span className="w-6 h-6 rounded-full bg-[var(--color-accent)] text-white text-xs flex items-center justify-center font-bold" title="Elena">E</span>
                   )}
                 </div>
               </div>
@@ -347,9 +346,8 @@ function UnderstandPhase() {
             <div>
               <h4 className="font-bold mb-1">Validation Gate Passed</h4>
               <p className="text-sm text-[var(--color-text-secondary)]">
-                We've identified two personas with overlapping but distinct needs. Sarah needs quick status checks; 
-                James needs deep analysis. Our design must serve both through progressive disclosure—simple by default, 
-                powerful on demand.
+                We've identified two distinct user types with different needs: power users who want findability 
+                and casual users who want simplicity. Our design must serve both through progressive disclosure.
               </p>
             </div>
           </div>
@@ -365,19 +363,18 @@ function DefinePhase() {
       <PhaseHeader phase={phases[1]} />
       
       <p className="text-[var(--text-lg)] text-[var(--color-text-secondary)] max-w-3xl">
-        The Strategy Agent synthesizes user understanding into a clear problem statement, 
-        success metrics, and prioritized requirements. This ensures everyone agrees on 
-        what we're solving before exploring solutions.
+        The challenge isn't showing all options—it's revealing the right options at the right time. 
+        Settings should feel simple for common tasks while remaining powerful for advanced needs.
       </p>
 
       <SectionCard title="Problem Statement" variant="highlight">
         <div className="p-6 bg-[var(--color-bg-subtle)] rounded-lg text-center">
           <p className="text-[var(--text-xl)] leading-relaxed">
-            <span className="font-bold text-[var(--color-primary)]">Product managers</span> need a way to{' '}
-            <span className="font-bold text-[var(--color-primary)]">monitor their product's health at a glance</span>{' '}
-            because <span className="font-bold">delayed awareness of issues leads to escalation</span>, 
-            but currently they must <span className="font-bold text-[var(--color-error)]">check multiple tools 
-            and manually compile data</span>.
+            <span className="font-bold text-[var(--color-success)]">Both power users and casual users</span> need a way to{' '}
+            <span className="font-bold text-[var(--color-success)]">configure their preferences efficiently</span>{' '}
+            because <span className="font-bold">different users have vastly different comfort levels with complexity</span>, 
+            but currently settings pages <span className="font-bold text-[var(--color-error)]">either overwhelm beginners 
+            or frustrate experts</span>.
           </p>
         </div>
       </SectionCard>
@@ -386,10 +383,10 @@ function DefinePhase() {
         <SectionCard title="Success Metrics">
           <div className="space-y-4">
             {[
-              { metric: 'Time to insight', target: '< 30 seconds', current: '5-10 minutes' },
-              { metric: 'Daily check-ins', target: '3+/day', current: '1-2/day' },
-              { metric: 'Tools required', target: '1', current: '4-5' },
-              { metric: 'Manual exports/week', target: '0', current: '3-5' },
+              { metric: 'Time to find setting', target: '< 10 seconds', current: '30-60 seconds' },
+              { metric: 'Settings search usage', target: '40%+ of visits', current: 'N/A (no search)' },
+              { metric: 'Support tickets for settings', target: '-50%', current: 'Baseline' },
+              { metric: 'Settings completion rate', target: '> 80%', current: '45%' },
             ].map((m, i) => (
               <div key={i} className="flex justify-between items-center p-3 bg-[var(--color-bg-subtle)] rounded-lg">
                 <span className="font-medium">{m.metric}</span>
@@ -402,76 +399,57 @@ function DefinePhase() {
           </div>
         </SectionCard>
 
-        <SectionCard title="Constraints">
+        <SectionCard title="Design Principles">
           <div className="space-y-3">
             {[
-              { type: 'Technical', constraint: 'Must integrate with existing API (REST, 30s cache)' },
-              { type: 'Design', constraint: 'Must use existing design system components' },
-              { type: 'Accessibility', constraint: 'WCAG 2.2 AA compliance required' },
-              { type: 'Timeline', constraint: 'MVP in 2 weeks, full version in 6 weeks' },
-            ].map((c, i) => (
-              <div key={i} className="flex gap-3 items-start">
-                <Badge variant="default" size="sm">{c.type}</Badge>
-                <span className="text-sm text-[var(--color-text-secondary)]">{c.constraint}</span>
+              { principle: 'Progressive Disclosure', description: 'Show simple first, reveal complex on demand' },
+              { principle: 'Immediate Feedback', description: 'Changes take effect instantly with visual confirmation' },
+              { principle: 'Reversibility', description: 'Every change can be undone or reset to default' },
+              { principle: 'Contextual Help', description: 'Explain what each setting does, not just what it is' },
+            ].map((p, i) => (
+              <div key={i} className="p-3 bg-[var(--color-bg-subtle)] rounded-lg">
+                <h5 className="font-bold text-sm">{p.principle}</h5>
+                <p className="text-sm text-[var(--color-text-secondary)]">{p.description}</p>
               </div>
             ))}
           </div>
         </SectionCard>
       </div>
 
-      <SectionCard title="How Might We Questions">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {[
-            'How might we surface urgent issues automatically?',
-            'How might we reduce time spent compiling data?',
-            'How might we make the dashboard glanceable?',
-            'How might we support drill-down without overwhelming?',
-            'How might we adapt to different check-in contexts?',
-            'How might we make exports effortless?',
-          ].map((q, i) => (
-            <div key={i} className="p-3 bg-[var(--color-accent-subtle)] rounded-lg text-sm">
-              {q}
-            </div>
-          ))}
-        </div>
-      </SectionCard>
-
       <SectionCard title="Serving Multiple Personas" variant="highlight">
         <div className="space-y-4">
           <p className="text-sm text-[var(--color-text-secondary)]">
-            Our design must serve both Sarah (quick-check PM) and James (deep-dive analyst) without forcing either to compromise.
+            Our design must serve both Marcus (power user) and Elena (casual user) without forcing either to compromise.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="p-4 bg-[var(--color-primary-subtle)] rounded-lg border border-[var(--color-primary)]/30">
+            <div className="p-4 bg-[var(--color-success-subtle)] rounded-lg border border-[var(--color-success)]/30">
               <h5 className="font-bold text-sm mb-2 flex items-center gap-2">
-                <span className="w-6 h-6 rounded-full bg-[var(--color-primary)] text-white text-xs flex items-center justify-center">S</span>
-                For Sarah (Quick Check PM)
+                <span className="w-6 h-6 rounded-full bg-[var(--color-success)] text-white text-xs flex items-center justify-center">M</span>
+                For Marcus (Power User)
               </h5>
               <ul className="text-sm text-[var(--color-text-secondary)] space-y-1">
-                <li>• Key metrics visible at a glance (above fold)</li>
-                <li>• Trend indicators show direction without reading numbers</li>
-                <li>• Alert badges for items needing attention</li>
-                <li>• 2-5 minute check-in optimized layout</li>
-                <li>• One-click export for stakeholder reports</li>
+                <li>• Global search to find any setting instantly</li>
+                <li>• Keyboard shortcuts for frequent actions</li>
+                <li>• URL-addressable settings for bookmarking</li>
+                <li>• Bulk operations and import/export</li>
               </ul>
             </div>
             <div className="p-4 bg-[var(--color-accent-subtle)] rounded-lg border border-[var(--color-accent)]/30">
               <h5 className="font-bold text-sm mb-2 flex items-center gap-2">
-                <span className="w-6 h-6 rounded-full bg-[var(--color-accent)] text-white text-xs flex items-center justify-center">J</span>
-                For James (Deep-Dive Analyst)
+                <span className="w-6 h-6 rounded-full bg-[var(--color-accent)] text-white text-xs flex items-center justify-center">E</span>
+                For Elena (Casual User)
               </h5>
               <ul className="text-sm text-[var(--color-text-secondary)] space-y-1">
-                <li>• Clickable metrics drill down to detailed views</li>
-                <li>• Date range selectors for historical analysis</li>
-                <li>• Interactive charts with hover tooltips</li>
-                <li>• Filter controls to segment data</li>
-                <li>• Export raw data for external analysis</li>
+                <li>• Clear categories with plain language labels</li>
+                <li>• Smart defaults that "just work"</li>
+                <li>• Confirmation dialogs for risky changes</li>
+                <li>• Visual indicators showing current state</li>
               </ul>
             </div>
           </div>
           <div className="p-3 bg-[var(--color-primary-subtle)] rounded-lg">
             <p className="text-sm font-medium text-[var(--color-primary)]">
-              Flexibility Strategy: Top-level metrics serve Sarah's glance-and-go workflow, while expandable cards and drill-down links serve James's exploration needs. Both use the same dashboard—depth is revealed on demand.
+              Flexibility Strategy: Progressive disclosure ensures Elena sees a clean interface while Marcus can access advanced features through search, keyboard shortcuts, and expandable sections.
             </p>
           </div>
         </div>
@@ -480,8 +458,8 @@ function DefinePhase() {
       <SectionCard title="Resolving Competing Needs" variant="highlight">
         <div className="space-y-6">
           <p className="text-sm text-[var(--color-text-secondary)]">
-            Sarah and James have fundamentally different—sometimes incompatible—needs. Here's how we identify conflicts 
-            and apply design patterns to resolve them without compromise.
+            Marcus and Elena have fundamentally opposing needs around complexity. Here's how we identify conflicts 
+            and apply design patterns to serve both without compromise.
           </p>
 
           <div className="space-y-4">
@@ -492,25 +470,25 @@ function DefinePhase() {
             <div className="space-y-3">
               {[
                 { 
-                  conflict: 'Information Density', 
-                  sarah: 'Wants minimal, scannable metrics', 
-                  james: 'Wants rich, detailed data',
-                  resolution: 'Progressive Disclosure',
-                  how: 'Show summary cards by default; click to expand full data tables and charts'
+                  conflict: 'Feature Visibility', 
+                  marcus: 'Wants all options visible and searchable', 
+                  elena: 'Wants minimal options, hidden complexity',
+                  resolution: 'Progressive Disclosure + Search',
+                  how: 'Simple categories visible; advanced options in "Show more" sections; global search finds everything'
                 },
                 { 
-                  conflict: 'Interaction Depth', 
-                  sarah: 'Quick glance, no interaction needed', 
-                  james: 'Deep filtering, date range selection',
+                  conflict: 'Risk Tolerance', 
+                  marcus: 'Confident making changes, wants efficiency', 
+                  elena: 'Afraid of breaking things, wants guardrails',
+                  resolution: 'Contextual Safeguards',
+                  how: 'Dangerous actions require confirmation only for Elena\'s common paths; Marcus can disable confirmations'
+                },
+                { 
+                  conflict: 'Navigation Model', 
+                  marcus: 'Keyboard-first, URL bookmarks, batch changes', 
+                  elena: 'Visual browsing, one change at a time',
                   resolution: 'Multiple Interaction Paths',
-                  how: 'Static view loads instantly; interactive controls appear on hover/focus'
-                },
-                { 
-                  conflict: 'Time Investment', 
-                  sarah: '2-5 min sessions, frequent interruptions', 
-                  james: '30+ min deep analysis sessions',
-                  resolution: 'Context Preservation',
-                  how: 'Save view state in URL; James can bookmark filtered views, Sarah always starts fresh'
+                  how: 'Both click-through navigation AND keyboard shortcuts AND direct URL access work simultaneously'
                 },
               ].map((item, i) => (
                 <div key={i} className="p-4 bg-[var(--color-bg-subtle)] rounded-lg border border-[var(--color-border)]">
@@ -520,12 +498,12 @@ function DefinePhase() {
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
                     <div className="flex items-start gap-2">
-                      <span className="w-5 h-5 rounded-full bg-[var(--color-primary)] text-white text-xs flex items-center justify-center shrink-0">S</span>
-                      <span className="text-sm text-[var(--color-text-secondary)]">{item.sarah}</span>
+                      <span className="w-5 h-5 rounded-full bg-[var(--color-success)] text-white text-xs flex items-center justify-center shrink-0">M</span>
+                      <span className="text-sm text-[var(--color-text-secondary)]">{item.marcus}</span>
                     </div>
                     <div className="flex items-start gap-2">
-                      <span className="w-5 h-5 rounded-full bg-[var(--color-accent)] text-white text-xs flex items-center justify-center shrink-0">J</span>
-                      <span className="text-sm text-[var(--color-text-secondary)]">{item.james}</span>
+                      <span className="w-5 h-5 rounded-full bg-[var(--color-accent)] text-white text-xs flex items-center justify-center shrink-0">E</span>
+                      <span className="text-sm text-[var(--color-text-secondary)]">{item.elena}</span>
                     </div>
                   </div>
                   <div className="p-2 bg-[var(--color-success-subtle)] rounded text-sm">
@@ -544,10 +522,10 @@ function DefinePhase() {
             </h5>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {[
-                { pattern: 'Feature Bloat', avoided: 'Show all features to all users', instead: 'Progressive disclosure reveals complexity on demand' },
-                { pattern: 'One-Size-Fits-All', avoided: 'Single "compromise" interface', instead: 'Same page, different depths based on interaction' },
-                { pattern: 'Mode Confusion', avoided: 'Hidden mode switches users forget', instead: 'Current state always visible in URL and UI' },
-                { pattern: 'Pogo-Stick Navigation', avoided: 'Drill-down pages that lose context', instead: 'Expand-in-place with breadcrumb trail' },
+                { pattern: 'Idiot Boxes', avoided: 'Constant tooltips treating users as incapable', instead: 'Contextual help on hover/focus, dismissible tips' },
+                { pattern: 'Magic Pushbutton', avoided: 'No feedback until final save', instead: 'Immediate visual feedback on each change' },
+                { pattern: 'Feature Bloat', avoided: 'All 200 settings on one page', instead: 'Categorized, searchable, progressively disclosed' },
+                { pattern: 'One-Size-Fits-All', avoided: 'Single complexity level for everyone', instead: 'Simple view by default, "Advanced" sections expand' },
               ].map((item, i) => (
                 <div key={i} className="p-3 bg-[var(--color-bg-subtle)] rounded-lg">
                   <div className="flex items-center gap-2 mb-2">
@@ -561,17 +539,33 @@ function DefinePhase() {
           </div>
 
           <div className="p-4 bg-[var(--color-info-subtle)] rounded-lg border border-[var(--color-info)]/30">
-            <h5 className="font-bold text-sm mb-2 text-[var(--color-info)]">Design Pattern Applied: Progressive Disclosure</h5>
+            <h5 className="font-bold text-sm mb-2 text-[var(--color-info)]">Design Pattern Applied: Layered Complexity</h5>
             <p className="text-sm text-[var(--color-text-secondary)] mb-3">
-              The primary pattern for this dashboard. Shows only essential information initially, reveals advanced features on user request.
+              Settings are organized in layers of increasing complexity. Elena sees only Layer 1; Marcus can dive to Layer 3.
             </p>
             <div className="flex flex-wrap gap-2">
-              <span className="px-2 py-1 bg-[var(--color-bg-surface)] rounded text-xs">Level 1: KPI cards (always visible)</span>
-              <span className="px-2 py-1 bg-[var(--color-bg-surface)] rounded text-xs">Level 2: Trend charts (below fold)</span>
-              <span className="px-2 py-1 bg-[var(--color-bg-surface)] rounded text-xs">Level 3: Filters & date range (on demand)</span>
-              <span className="px-2 py-1 bg-[var(--color-bg-surface)] rounded text-xs">Level 4: Raw data export (in menu)</span>
+              <span className="px-2 py-1 bg-[var(--color-bg-surface)] rounded text-xs">Layer 1: Common settings (notifications, theme)</span>
+              <span className="px-2 py-1 bg-[var(--color-bg-surface)] rounded text-xs">Layer 2: Advanced settings (integrations, API)</span>
+              <span className="px-2 py-1 bg-[var(--color-bg-surface)] rounded text-xs">Layer 3: Developer settings (raw JSON, webhooks)</span>
             </div>
           </div>
+        </div>
+      </SectionCard>
+
+      <SectionCard title="How Might We Questions">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {[
+            'How might we make settings searchable and discoverable?',
+            'How might we show only relevant options without hiding power features?',
+            'How might we provide confidence that changes won\'t break things?',
+            'How might we help users understand the impact of each setting?',
+            'How might we organize settings intuitively for different mental models?',
+            'How might we make dangerous actions harder to do accidentally?',
+          ].map((q, i) => (
+            <div key={i} className="p-3 bg-[var(--color-accent-subtle)] rounded-lg text-sm">
+              {q}
+            </div>
+          ))}
         </div>
       </SectionCard>
 
@@ -582,8 +576,8 @@ function DefinePhase() {
             <div>
               <h4 className="font-bold mb-1">Validation Gate Passed</h4>
               <p className="text-sm text-[var(--color-text-secondary)]">
-                Problem statement is user-focused (not feature-focused), metrics are measurable, 
-                constraints are documented, and HMW questions are ready for ideation.
+                Problem focuses on the tension between simplicity and power. Multi-persona strategy defined with 
+                specific features for each user type. Design principles established for progressive disclosure.
               </p>
             </div>
           </div>
@@ -599,34 +593,33 @@ function ExplorePhase() {
       <PhaseHeader phase={phases[2]} />
       
       <p className="text-[var(--text-lg)] text-[var(--color-text-secondary)] max-w-3xl">
-        The Solution Agent generates multiple approaches before committing to one. 
-        This divergent thinking phase ensures we don't settle on the first idea 
-        but explore the solution space thoroughly.
+        Settings pages have well-established patterns, but the best approach depends on the number 
+        of options, user expertise, and how frequently settings change. We'll evaluate three approaches.
       </p>
 
       <SectionCard title="Solution Hypotheses">
         <div className="space-y-4">
           {[
             { 
-              name: 'A: Metrics Dashboard', 
-              description: 'Traditional grid of KPI cards with charts below',
-              pros: ['Familiar pattern', 'Easy to scan', 'Well-understood'],
-              cons: ['Can become cluttered', 'Passive (user must check)'],
-              score: 8
+              name: 'A: Categorized Sidebar', 
+              description: 'Traditional left nav with categories, content on right',
+              pros: ['Familiar pattern', 'Good for many categories', 'URL-addressable sections'],
+              cons: ['Requires scanning', 'Categories may not match mental models'],
+              score: 9
             },
             { 
-              name: 'B: Smart Inbox', 
-              description: 'AI-prioritized list of items needing attention',
-              pros: ['Proactive', 'Prioritized', 'Actionable'],
-              cons: ['Requires trust in AI', 'May miss context'],
+              name: 'B: Search-First', 
+              description: 'Prominent search with results showing all matching settings',
+              pros: ['Fastest for known settings', 'No navigation needed', 'Handles any organization'],
+              cons: ['Requires knowing what to search', 'Bad for discovery'],
               score: 7
             },
             { 
-              name: 'C: Ambient Display', 
-              description: 'Minimal interface showing only anomalies',
-              pros: ['Zero noise normally', 'Clear signals'],
-              cons: ['Missing context', 'Unusual pattern'],
-              score: 5
+              name: 'C: Progressive Cards', 
+              description: 'Stacked cards with expanding sections, most common at top',
+              pros: ['Good progressive disclosure', 'Works well on mobile'],
+              cons: ['Limited scalability', 'Harder to link to specific settings'],
+              score: 6
             },
           ].map((s, i) => (
             <Card key={i} className={i === 0 ? 'border-2 border-[var(--color-success)]' : ''}>
@@ -660,56 +653,72 @@ function ExplorePhase() {
         </div>
       </SectionCard>
 
-      <SectionCard title="User Flow: Morning Check-in">
+      <SectionCard title="User Flow: Changing Notification Preferences">
         <div className="p-4 bg-[var(--color-bg-subtle)] rounded-lg font-mono text-sm">
           <div className="space-y-2">
             <div className="flex items-center gap-2">
-              <span className="w-6 h-6 rounded-full bg-[var(--color-primary)] text-white text-xs flex items-center justify-center">1</span>
-              <span>User opens dashboard → Sees 4 key metrics at top</span>
+              <span className="w-6 h-6 rounded-full bg-[var(--color-success)] text-white text-xs flex items-center justify-center">1</span>
+              <span>User clicks Settings → Sees category sidebar + search bar</span>
             </div>
             <div className="ml-8 text-[var(--color-text-tertiary)]">↓</div>
             <div className="flex items-center gap-2">
-              <span className="w-6 h-6 rounded-full bg-[var(--color-primary)] text-white text-xs flex items-center justify-center">2</span>
-              <span>Scans trend indicators → Identifies any red flags</span>
+              <span className="w-6 h-6 rounded-full bg-[var(--color-success)] text-white text-xs flex items-center justify-center">2</span>
+              <span>Types "notifications" OR clicks "Notifications" in sidebar</span>
             </div>
             <div className="ml-8 text-[var(--color-text-tertiary)]">↓</div>
             <div className="flex items-center gap-2">
-              <span className="w-6 h-6 rounded-full bg-[var(--color-primary)] text-white text-xs flex items-center justify-center">3</span>
-              <span>If alert: Clicks metric → Sees detailed breakdown</span>
+              <span className="w-6 h-6 rounded-full bg-[var(--color-success)] text-white text-xs flex items-center justify-center">3</span>
+              <span>Sees grouped notification options with toggles</span>
+            </div>
+            <div className="ml-8 text-[var(--color-text-tertiary)]">↓</div>
+            <div className="flex items-center gap-2">
+              <span className="w-6 h-6 rounded-full bg-[var(--color-success)] text-white text-xs flex items-center justify-center">4</span>
+              <span>Toggles off email notifications → Instant feedback "Saved"</span>
             </div>
             <div className="ml-8 text-[var(--color-text-tertiary)]">↓</div>
             <div className="flex items-center gap-2">
               <span className="w-6 h-6 rounded-full bg-[var(--color-success)] text-white text-xs flex items-center justify-center">✓</span>
-              <span>Understands status → Takes action or moves on</span>
+              <span>Done in 3 clicks, no page reload</span>
             </div>
           </div>
         </div>
       </SectionCard>
 
       <SectionCard title="Information Architecture">
-        <div className="grid grid-cols-3 gap-4 text-sm">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
           <div className="p-4 bg-[var(--color-primary-subtle)] rounded-lg">
-            <h5 className="font-bold text-xs uppercase text-[var(--color-primary)] mb-2">Primary (Always Visible)</h5>
+            <h5 className="font-bold text-xs uppercase text-[var(--color-primary)] mb-2">Profile</h5>
             <ul className="space-y-1 text-[var(--color-text-secondary)]">
-              <li>• Key metrics (4 cards)</li>
-              <li>• Trend indicators</li>
-              <li>• Alert badges</li>
+              <li>• Display name</li>
+              <li>• Avatar</li>
+              <li>• Email</li>
+              <li>• Bio</li>
             </ul>
           </div>
           <div className="p-4 bg-[var(--color-bg-subtle)] rounded-lg">
-            <h5 className="font-bold text-xs uppercase text-[var(--color-text-tertiary)] mb-2">Secondary (Visible Below)</h5>
+            <h5 className="font-bold text-xs uppercase text-[var(--color-text-tertiary)] mb-2">Notifications</h5>
             <ul className="space-y-1 text-[var(--color-text-secondary)]">
-              <li>• Revenue chart</li>
-              <li>• Traffic breakdown</li>
-              <li>• Recent activity</li>
+              <li>• Email alerts</li>
+              <li>• Push notifications</li>
+              <li>• In-app messages</li>
+              <li>• Digest frequency</li>
             </ul>
           </div>
           <div className="p-4 bg-[var(--color-bg-subtle)] rounded-lg">
-            <h5 className="font-bold text-xs uppercase text-[var(--color-text-tertiary)] mb-2">Tertiary (On Demand)</h5>
+            <h5 className="font-bold text-xs uppercase text-[var(--color-text-tertiary)] mb-2">Privacy</h5>
             <ul className="space-y-1 text-[var(--color-text-secondary)]">
-              <li>• Detailed analytics</li>
-              <li>• Historical data</li>
-              <li>• Export options</li>
+              <li>• Profile visibility</li>
+              <li>• Data sharing</li>
+              <li>• Activity status</li>
+              <li>• Blocked users</li>
+            </ul>
+          </div>
+          <div className="p-4 bg-[var(--color-error-subtle)] rounded-lg">
+            <h5 className="font-bold text-xs uppercase text-[var(--color-error)] mb-2">Danger Zone</h5>
+            <ul className="space-y-1 text-[var(--color-text-secondary)]">
+              <li>• Export data</li>
+              <li>• Deactivate account</li>
+              <li>• Delete account</li>
             </ul>
           </div>
         </div>
@@ -722,9 +731,9 @@ function ExplorePhase() {
             <div>
               <h4 className="font-bold mb-1">Validation Gate Passed</h4>
               <p className="text-sm text-[var(--color-text-secondary)]">
-                Multiple solutions explored, user flows mapped, information hierarchy defined. 
-                Recommendation: Solution A (Metrics Dashboard) with elements from B (proactive alerts). 
-                Rationale documented. Ready to design.
+                Recommendation: Solution A (Categorized Sidebar) with search from Solution B. 
+                This hybrid serves both power users (search) and casual users (browsing). 
+                IA groups settings by user mental models, with dangerous actions isolated.
               </p>
             </div>
           </div>
@@ -740,20 +749,22 @@ function DesignPhase() {
       <PhaseHeader phase={phases[3]} />
       
       <p className="text-[var(--text-lg)] text-[var(--color-text-secondary)] max-w-3xl">
-        The UI Agent translates the solution concept into concrete interface specifications. 
-        Every component, spacing value, and color must come from the design system—no arbitrary values.
+        Settings UI must balance density (showing enough options) with clarity (not overwhelming). 
+        Every control, label, and helper text serves a purpose.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <SectionCard title="Component Inventory">
           <div className="space-y-3">
             {[
-              { component: 'StatCard', status: 'existing', usage: 'KPI display with trend' },
-              { component: 'Card', status: 'existing', usage: 'Content containers' },
-              { component: 'Badge', status: 'existing', usage: 'Status indicators' },
-              { component: 'Button', status: 'existing', usage: 'Actions' },
-              { component: 'BarChart', status: 'new', usage: 'Revenue visualization' },
-              { component: 'DonutChart', status: 'new', usage: 'Traffic breakdown' },
+              { component: 'Toggle', status: 'existing', usage: 'On/off preferences' },
+              { component: 'Select', status: 'existing', usage: 'Single choice from list' },
+              { component: 'Input', status: 'existing', usage: 'Text values' },
+              { component: 'Card', status: 'existing', usage: 'Setting groups' },
+              { component: 'Search', status: 'existing', usage: 'Find settings quickly' },
+              { component: 'Sidebar', status: 'existing', usage: 'Category navigation' },
+              { component: 'SettingRow', status: 'new', usage: 'Label + control + help' },
+              { component: 'DangerZone', status: 'new', usage: 'Destructive actions section' },
             ].map((c, i) => (
               <div key={i} className="flex items-center justify-between p-2 bg-[var(--color-bg-subtle)] rounded">
                 <div className="flex items-center gap-2">
@@ -772,35 +783,30 @@ function DesignPhase() {
           <div className="space-y-4">
             <div className="p-4 bg-[var(--color-bg-subtle)] rounded font-mono text-xs">
               <div className="border-2 border-dashed border-[var(--color-border)] p-2 mb-2">
-                <div className="text-[var(--color-text-tertiary)]">Header (h-16, sticky)</div>
+                <div className="text-[var(--color-text-tertiary)]">Header + Search (sticky)</div>
               </div>
               <div className="flex gap-2">
-                <div className="w-16 border-2 border-dashed border-[var(--color-border)] p-2">
-                  <div className="text-[var(--color-text-tertiary)] [writing-mode:vertical-rl]">Sidebar (w-64)</div>
+                <div className="w-20 border-2 border-dashed border-[var(--color-border)] p-2">
+                  <div className="text-[var(--color-text-tertiary)] [writing-mode:vertical-rl]">Sidebar (w-56)</div>
                 </div>
                 <div className="flex-1 space-y-2">
-                  <div className="grid grid-cols-4 gap-1">
-                    {[1,2,3,4].map(i => (
-                      <div key={i} className="h-8 bg-[var(--color-primary-subtle)] rounded text-[8px] flex items-center justify-center">
-                        Stat {i}
+                  <div className="h-8 bg-[var(--color-primary-subtle)] rounded text-[8px] flex items-center justify-center px-2">
+                    Section Title
+                  </div>
+                  <div className="space-y-1">
+                    {[1,2,3].map(i => (
+                      <div key={i} className="h-10 bg-[var(--color-bg-muted)] rounded text-[8px] flex items-center px-2">
+                        Setting Row {i}
                       </div>
                     ))}
-                  </div>
-                  <div className="grid grid-cols-3 gap-1">
-                    <div className="col-span-2 h-16 bg-[var(--color-bg-muted)] rounded text-[8px] flex items-center justify-center">
-                      Chart
-                    </div>
-                    <div className="h-16 bg-[var(--color-bg-muted)] rounded text-[8px] flex items-center justify-center">
-                      Donut
-                    </div>
                   </div>
                 </div>
               </div>
             </div>
             <div className="text-xs text-[var(--color-text-secondary)]">
-              Page padding: <code className="bg-[var(--color-bg-muted)] px-1 rounded">--space-8</code><br/>
-              Card gap: <code className="bg-[var(--color-bg-muted)] px-1 rounded">--space-6</code><br/>
-              Section gap: <code className="bg-[var(--color-bg-muted)] px-1 rounded">--space-8</code>
+              Sidebar width: <code className="bg-[var(--color-bg-muted)] px-1 rounded">14rem</code><br/>
+              Content max-width: <code className="bg-[var(--color-bg-muted)] px-1 rounded">48rem</code><br/>
+              Row height: <code className="bg-[var(--color-bg-muted)] px-1 rounded">--space-12</code>
             </div>
           </div>
         </SectionCard>
@@ -810,19 +816,24 @@ function DesignPhase() {
         <div className="space-y-4">
           {[
             {
-              decision: 'Stats at top, full width',
-              rationale: 'JTBD #1: Users need to see status immediately. F-pattern reading puts stats in prime position.',
-              tokens: ['grid-cols-4', '--space-6 gap']
+              decision: 'Search always visible at top',
+              rationale: 'JTBD #4: Power users want to find settings fast. Search reduces time-to-setting from 30s to <10s.',
+              tokens: ['Input with icon', 'sticky position', '--space-4 padding']
             },
             {
-              decision: 'Trend badges on stat cards',
-              rationale: 'Persona frustration: Unclear what matters. Trends provide instant context without reading numbers.',
-              tokens: ['Badge variant="success/error"', '--color-success/error']
+              decision: 'Toggle labels on left, controls on right',
+              rationale: 'F-pattern reading: users scan labels first, then take action. Consistent alignment reduces cognitive load.',
+              tokens: ['flex justify-between', 'align-items-center']
             },
             {
-              decision: 'Sidebar navigation, fixed',
-              rationale: 'Context scenario: Users check quickly between tasks. Persistent nav allows fast switching.',
-              tokens: ['w-64', 'sticky top-0', 'h-screen']
+              decision: 'Danger Zone at bottom with red border',
+              rationale: 'Progressive disclosure: destructive actions should be hard to reach accidentally. Visual warning signals risk.',
+              tokens: ['border-[var(--color-error)]', 'mt-8', 'Card']
+            },
+            {
+              decision: 'Inline save with toast confirmation',
+              rationale: 'Immediate feedback principle: users see changes take effect instantly without losing context.',
+              tokens: ['Toast', 'success variant', '--duration-200']
             },
           ].map((d, i) => (
             <div key={i} className="p-4 border border-[var(--color-border)] rounded-lg">
@@ -847,8 +858,8 @@ function DesignPhase() {
             <div>
               <h4 className="font-bold mb-1">Validation Gate Passed</h4>
               <p className="text-sm text-[var(--color-text-secondary)]">
-                All components from design system, all values from tokens, visual hierarchy clear, 
-                design decisions documented with rationale. Ready to validate.
+                All components from design system, layout supports both navigation patterns (search and browse), 
+                design decisions documented with user-centered rationale. Ready to validate.
               </p>
             </div>
           </div>
@@ -864,8 +875,8 @@ function ValidatePhase() {
       <PhaseHeader phase={phases[4]} />
       
       <p className="text-[var(--text-lg)] text-[var(--color-text-secondary)] max-w-3xl">
-        The Critique Agent rigorously evaluates the design against accessibility standards, 
-        usability heuristics, and the original user needs. Problems found now are cheap to fix.
+        Settings pages have unique accessibility challenges: many interactive elements, 
+        complex form controls, and state changes that must be announced to screen readers.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -873,11 +884,12 @@ function ValidatePhase() {
           <div className="space-y-3">
             {[
               { check: 'Color contrast (4.5:1)', status: 'pass' },
-              { check: 'Focus indicators visible', status: 'warning', note: 'Needs stronger ring' },
-              { check: 'Keyboard navigation', status: 'pass' },
+              { check: 'Focus indicators visible', status: 'pass' },
+              { check: 'Keyboard navigation', status: 'warning', note: 'Tab order in danger zone needs review' },
               { check: 'Screen reader labels', status: 'pass' },
-              { check: 'Touch targets (44px)', status: 'pass' },
-              { check: 'Skip-to-main link', status: 'fail', note: 'Missing' },
+              { check: 'Form labels associated', status: 'pass' },
+              { check: 'State changes announced', status: 'fail', note: 'Toggle changes not announced' },
+              { check: 'Search results announced', status: 'fail', note: 'Missing live region' },
             ].map((c, i) => (
               <div key={i} className="flex items-center justify-between">
                 <span className="text-sm">{c.check}</span>
@@ -895,15 +907,15 @@ function ValidatePhase() {
           </div>
         </SectionCard>
 
-        <SectionCard title="Heuristic Evaluation">
+        <SectionCard title="Usability Evaluation">
           <div className="space-y-3">
             {[
-              { heuristic: 'Visibility of system status', score: 9 },
-              { heuristic: 'Match real world', score: 8 },
-              { heuristic: 'User control & freedom', score: 7, note: 'Add undo for actions' },
+              { heuristic: 'Visibility of system status', score: 7, note: 'Need save confirmations' },
+              { heuristic: 'Match real world', score: 9 },
+              { heuristic: 'User control & freedom', score: 9, note: 'Good reset defaults' },
               { heuristic: 'Consistency', score: 9 },
               { heuristic: 'Error prevention', score: 8 },
-              { heuristic: 'Recognition over recall', score: 9 },
+              { heuristic: 'Recognition over recall', score: 8 },
             ].map((h, i) => (
               <div key={i} className="flex items-center justify-between">
                 <span className="text-sm">{h.heuristic}</span>
@@ -922,9 +934,10 @@ function ValidatePhase() {
       <SectionCard title="Issue List">
         <div className="space-y-3">
           {[
-            { severity: 'Major', issue: 'Missing skip-to-main link', fix: 'Add hidden skip link at top of page' },
-            { severity: 'Minor', issue: 'Focus ring too subtle', fix: 'Increase to 2px solid with offset' },
-            { severity: 'Minor', issue: 'No undo for quick actions', fix: 'Add toast with undo button' },
+            { severity: 'Major', issue: 'Toggle state changes not announced to screen readers', fix: 'Add aria-live region or role="status" to toggle feedback' },
+            { severity: 'Major', issue: 'Search results count not announced', fix: 'Add aria-live="polite" region announcing "X results found"' },
+            { severity: 'Minor', issue: 'Tab order jumps in danger zone', fix: 'Ensure logical tab order with tabindex adjustments' },
+            { severity: 'Minor', issue: 'No confirmation for successful save', fix: 'Add toast notification with "Settings saved" message' },
           ].map((issue, i) => (
             <div key={i} className="flex gap-4 p-3 bg-[var(--color-bg-subtle)] rounded-lg">
               <Badge variant={issue.severity === 'Major' ? 'error' : 'warning'} size="sm">
@@ -946,8 +959,8 @@ function ValidatePhase() {
             <div>
               <h4 className="font-bold mb-1">Validation Gate: Issues Found</h4>
               <p className="text-sm text-[var(--color-text-secondary)]">
-                1 Major issue (skip link) and 2 Minor issues identified. 
-                All must be resolved in Refine phase before shipping.
+                2 Major accessibility issues (screen reader announcements) and 2 Minor issues identified. 
+                Must resolve before shipping to ensure WCAG 2.2 AA compliance.
               </p>
             </div>
           </div>
@@ -963,29 +976,35 @@ function RefinePhase() {
       <PhaseHeader phase={phases[5]} />
       
       <p className="text-[var(--text-lg)] text-[var(--color-text-secondary)] max-w-3xl">
-        The Polish Agent addresses validation findings and adds the details that transform 
-        a functional design into a delightful experience. Every micro-interaction matters.
+        Settings pages benefit from subtle polish that builds trust: smooth transitions, 
+        clear feedback, and thoughtful micro-interactions that reassure users their changes are saved.
       </p>
 
       <SectionCard title="Issue Resolutions">
         <div className="space-y-4">
           {[
             {
-              issue: 'Missing skip-to-main link',
-              resolution: 'Added visually hidden link that appears on focus',
-              code: '<a href="#main" class="skip-link">Skip to main</a>',
+              issue: 'Toggle state changes not announced',
+              resolution: 'Added aria-live region that announces "Setting enabled/disabled"',
+              code: '<span role="status" aria-live="polite">{message}</span>',
               verified: true
             },
             {
-              issue: 'Focus ring too subtle',
-              resolution: 'Updated to 2px solid with 2px offset',
-              code: 'outline: 2px solid var(--color-focus); outline-offset: 2px;',
+              issue: 'Search results count not announced',
+              resolution: 'Added live region below search announcing result count',
+              code: '<div aria-live="polite">{count} settings found</div>',
               verified: true
             },
             {
-              issue: 'No undo for actions',
-              resolution: 'Added toast notifications with 10s undo window',
-              code: '<Toast action={{ label: "Undo", onClick: handleUndo }} />',
+              issue: 'Tab order in danger zone',
+              resolution: 'Restructured DOM order to match visual order',
+              code: 'Moved confirm button before cancel in markup',
+              verified: true
+            },
+            {
+              issue: 'No save confirmation',
+              resolution: 'Added toast notification with success state',
+              code: '<Toast variant="success">Settings saved</Toast>',
               verified: true
             },
           ].map((r, i) => (
@@ -1004,10 +1023,12 @@ function RefinePhase() {
       <SectionCard title="Micro-interactions Added">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
-            { element: 'Stat cards', interaction: 'Hover lift (translateY -4px, shadow increase)' },
-            { element: 'Chart bars', interaction: 'Hover highlight with tooltip showing value' },
-            { element: 'Sidebar items', interaction: 'Smooth background transition (150ms ease)' },
-            { element: 'Page transitions', interaction: 'Fade in (200ms) on route change' },
+            { element: 'Toggle switch', interaction: 'Smooth slide animation (150ms ease-out)' },
+            { element: 'Sidebar items', interaction: 'Active state transition with background slide' },
+            { element: 'Setting cards', interaction: 'Subtle hover elevation' },
+            { element: 'Search input', interaction: 'Focus ring with smooth expansion' },
+            { element: 'Save feedback', interaction: 'Checkmark animation on success' },
+            { element: 'Danger buttons', interaction: 'Confirm dialog with shake on cancel' },
           ].map((m, i) => (
             <div key={i} className="p-3 bg-[var(--color-bg-subtle)] rounded-lg">
               <h5 className="font-medium text-sm">{m.element}</h5>
@@ -1020,10 +1041,10 @@ function RefinePhase() {
       <SectionCard title="Final QA Checklist">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { category: 'Visual', checks: ['Token usage', 'Spacing consistent', 'Colors semantic'] },
-            { category: 'Interaction', checks: ['All states defined', 'Feedback immediate', 'Transitions smooth'] },
-            { category: 'Accessibility', checks: ['Contrast passes', 'Keyboard works', 'Screen reader OK'] },
-            { category: 'Responsive', checks: ['Mobile works', 'Tablet works', 'No overflow'] },
+            { category: 'Visual', checks: ['Consistent spacing', 'Proper alignment', 'Correct tokens'] },
+            { category: 'Interaction', checks: ['All toggles work', 'Search filters', 'Save feedback shows'] },
+            { category: 'Accessibility', checks: ['Screen reader tested', 'Keyboard nav works', 'Focus visible'] },
+            { category: 'Edge Cases', checks: ['Empty search', 'Long labels', 'Error states'] },
           ].map((cat, i) => (
             <div key={i} className="p-3 bg-[var(--color-bg-subtle)] rounded-lg">
               <h5 className="font-bold text-xs uppercase text-[var(--color-text-tertiary)] mb-2">{cat.category}</h5>
@@ -1047,8 +1068,8 @@ function RefinePhase() {
             <div>
               <h4 className="font-bold mb-1">Design Complete!</h4>
               <p className="text-sm text-[var(--color-text-secondary)]">
-                All validation issues resolved, micro-interactions added, QA checklist passed. 
-                The dashboard is ready for implementation. View the live example to see the result.
+                All validation issues resolved, accessibility verified, micro-interactions polished. 
+                The settings page balances simplicity for casual users with power for experts. View the live example.
               </p>
             </div>
           </div>
@@ -1060,21 +1081,21 @@ function RefinePhase() {
 
 function CallToAction() {
   return (
-    <div className="py-16 bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-accent)] text-white">
+    <div className="py-16 bg-gradient-to-br from-[var(--color-success)] to-[var(--color-accent)] text-white">
       <Container size="md">
         <Stack gap={6} align="center" className="text-center">
           <h2 className="text-[var(--text-3xl)] font-bold">See the Final Result</h2>
           <p className="text-lg opacity-90 max-w-xl">
-            Experience the dashboard built through this workflow. Toggle design notes to see 
-            how every decision traces back to user needs.
+            Experience the settings page built through this workflow. Toggle design notes to see 
+            how progressive disclosure serves both casual and power users.
           </p>
           <Button 
             variant="secondary" 
             size="lg" 
-            onClick={() => window.location.href = '/examples/dashboard'}
-            className="bg-white text-[var(--color-primary)] hover:bg-white/90"
+            onClick={() => window.location.href = '/examples/settings'}
+            className="bg-white text-[var(--color-success)] hover:bg-white/90"
           >
-            View Live Dashboard →
+            View Live Settings →
           </Button>
         </Stack>
       </Container>

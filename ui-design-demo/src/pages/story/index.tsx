@@ -9,6 +9,7 @@ export function StoryIndex() {
     <div className="min-h-screen bg-[var(--color-bg-page)] text-[var(--color-text-primary)] font-sans transition-colors duration-200">
       <StoryHeader />
       <HeroSection />
+      <MultiPersonaSection />
       <WorkflowOverview />
       <ExampleJourneys />
       <StoryFooter />
@@ -62,6 +63,91 @@ function HeroSection() {
           </p>
           <div className="pt-4">
             <div className="w-px h-24 bg-gradient-to-b from-[var(--color-border)] to-[var(--color-primary)] mx-auto" />
+          </div>
+        </Stack>
+      </Container>
+    </div>
+  );
+}
+
+function MultiPersonaSection() {
+  return (
+    <div className="py-24 border-t border-[var(--color-border)]">
+      <Container size="lg">
+        <Stack gap={12}>
+          <div className="text-center max-w-3xl mx-auto">
+            <div className="inline-block px-4 py-1.5 rounded-full bg-[var(--color-success-subtle)] text-[var(--color-success)] text-sm font-medium tracking-wide mb-4">
+              DESIGNING FOR EVERYONE
+            </div>
+            <h2 className="text-[var(--text-3xl)] font-bold mb-4">Multiple Personas, One Flexible Interface</h2>
+            <p className="text-[var(--color-text-secondary)] text-[var(--text-lg)]">
+              Great design serves diverse users with different needs, expertise levels, and preferences. 
+              Our approach ensures interfaces adapt through progressive disclosure, personalization, 
+              and intentional flexibility.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <Card className="border-2 border-[var(--color-primary-subtle)]">
+              <Card.Body className="p-6">
+                <div className="w-12 h-12 rounded-full bg-[var(--color-primary-subtle)] flex items-center justify-center text-[var(--color-primary)] mb-4">
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-[var(--text-lg)] font-bold mb-2">Research Multiple Personas</h3>
+                <p className="text-[var(--color-text-secondary)] text-sm mb-4">
+                  Every story identifies primary and secondary personas with distinct goals, frustrations, 
+                  and mental models. We design for the spectrum, not just the average.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="text-xs px-2 py-1 rounded-full bg-[var(--color-bg-subtle)]">Power Users</span>
+                  <span className="text-xs px-2 py-1 rounded-full bg-[var(--color-bg-subtle)]">Casual Users</span>
+                  <span className="text-xs px-2 py-1 rounded-full bg-[var(--color-bg-subtle)]">First-timers</span>
+                </div>
+              </Card.Body>
+            </Card>
+
+            <Card className="border-2 border-[var(--color-accent-subtle)]">
+              <Card.Body className="p-6">
+                <div className="w-12 h-12 rounded-full bg-[var(--color-accent-subtle)] flex items-center justify-center text-[var(--color-accent)] mb-4">
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                  </svg>
+                </div>
+                <h3 className="text-[var(--text-lg)] font-bold mb-2">Progressive Disclosure</h3>
+                <p className="text-[var(--color-text-secondary)] text-sm mb-4">
+                  Simple by default, powerful on demand. Advanced features reveal themselves when needed, 
+                  keeping the interface clean for casual users while empowering experts.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="text-xs px-2 py-1 rounded-full bg-[var(--color-bg-subtle)]">Smart Defaults</span>
+                  <span className="text-xs px-2 py-1 rounded-full bg-[var(--color-bg-subtle)]">Hidden Complexity</span>
+                  <span className="text-xs px-2 py-1 rounded-full bg-[var(--color-bg-subtle)]">Expert Mode</span>
+                </div>
+              </Card.Body>
+            </Card>
+
+            <Card className="border-2 border-[var(--color-success-subtle)]">
+              <Card.Body className="p-6">
+                <div className="w-12 h-12 rounded-full bg-[var(--color-success-subtle)] flex items-center justify-center text-[var(--color-success)] mb-4">
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-[var(--text-lg)] font-bold mb-2">Personalization & Flexibility</h3>
+                <p className="text-[var(--color-text-secondary)] text-sm mb-4">
+                  Users can customize their experience. Views adapt to preferences, saved configurations 
+                  persist across sessions, and the interface remembers how each user works best.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="text-xs px-2 py-1 rounded-full bg-[var(--color-bg-subtle)]">Saved Views</span>
+                  <span className="text-xs px-2 py-1 rounded-full bg-[var(--color-bg-subtle)]">Theme Options</span>
+                  <span className="text-xs px-2 py-1 rounded-full bg-[var(--color-bg-subtle)]">Custom Layouts</span>
+                </div>
+              </Card.Body>
+            </Card>
           </div>
         </Stack>
       </Container>
@@ -157,6 +243,14 @@ function ExampleJourneys() {
       href: '/story/datatable',
       persona: 'Data Analyst',
       jtbd: 'Analyze and act on data efficiently',
+    },
+    {
+      title: 'Trading Platform',
+      description: 'High-stakes financial interface. See how we resolve the "Kobayashi Maru" of mutually exclusive user needs through explicit modes.',
+      image: 'bg-gradient-to-br from-gray-700 to-gray-900',
+      href: '/story/trading',
+      persona: 'Trader & Investor',
+      jtbd: 'Trade safely or quickly',
     },
   ];
 
