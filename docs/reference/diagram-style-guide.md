@@ -137,14 +137,71 @@ frontend.mobile -> backend.api
 backend.api -> backend.db
 ```
 
-### Styling
+### Styling with Classes (Recommended)
 
-**Prefer themes over inline styles.** Our configuration:
+D2 supports reusable style classes, similar to Mermaid's `classDef`. Define classes at the top of your diagram:
+
+```d2
+classes: {
+  research: {
+    style: {
+      fill: "#DBEAFE"
+      stroke: "#3B82F6"
+      font-color: "#1E40AF"
+    }
+  }
+  design: {
+    style: {
+      fill: "#FEF3C7"
+      stroke: "#F59E0B"
+      font-color: "#92400E"
+    }
+  }
+  validate: {
+    style: {
+      fill: "#FEE2E2"
+      stroke: "#EF4444"
+      font-color: "#991B1B"
+    }
+  }
+  complete: {
+    style: {
+      fill: "#D1FAE5"
+      stroke: "#10B981"
+      font-color: "#065F46"
+    }
+  }
+}
+
+phase1: Research { class: research }
+phase2: Design { class: design }
+phase3: Validate { class: validate }
+phase4: Complete { class: complete }
+
+phase1 -> phase2 -> phase3 -> phase4
+```
+
+### Semantic Color Palette
+
+Use these colors to match our Mermaid diagrams:
+
+| Purpose | Fill | Stroke | Text |
+|---------|------|--------|------|
+| **Research/Understand** | `#DBEAFE` | `#3B82F6` | `#1E40AF` |
+| **Design/Create** | `#FEF3C7` | `#F59E0B` | `#92400E` |
+| **Validate/Test** | `#FEE2E2` | `#EF4444` | `#991B1B` |
+| **Complete/Success** | `#D1FAE5` | `#10B981` | `#065F46` |
+| **Orchestrator/Primary** | `#E0E7FF` | `#4F46E5` | `#3730A3` |
+| **Secondary/Neutral** | `#F5F5F5` | `#9E9E9E` | `#212121` |
+
+### Theme Configuration
+
+Our mkdocs.yml configuration:
 
 - Light mode: `theme: 0` (Neutral Default)
 - Dark mode: `dark_theme: 200` (Dark Mauve)
 
-When inline styles are needed, use sparingly:
+When inline styles are needed for special cases:
 
 ```d2
 # Only for special emphasis
