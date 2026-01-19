@@ -74,14 +74,14 @@ flowchart LR
 
 Let MkDocs Material handle theming automatically. Avoid setting explicit themes unless needed:
 
-```mermaid
+```text
 %% AVOID: Forces a specific theme
 %%{init: {'theme': 'dark'}}%%
-
-%% PREFER: Let Material handle light/dark
 flowchart LR
     A --> B --> C
 ```
+
+**PREFER:** Let Material handle light/dark mode automatically - don't specify a theme.
 
 ### Anti-Patterns to Avoid
 
