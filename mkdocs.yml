@@ -69,6 +69,13 @@ plugins:
   - search:
       lang: en
       separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])'
+  - d2:
+      executable: /home/sam/.local/bin/d2
+      layout: elk
+      theme: 200
+      dark_theme: 201
+      sketch: false
+      pad: 20
   - minify:
       minify_html: true
       minify_js: true
@@ -169,6 +176,9 @@ nav:
           - 4. Design: workflow/phases/04-design.md
           - 5. Validate: workflow/phases/05-validate.md
           - 6. Refine: workflow/phases/06-refine.md
+  - Reference:
+      - Diagram Comparison: reference/diagram-comparison.md
+      - Kroki Setup: reference/kroki-setup.md
 
 extra:
   social:
