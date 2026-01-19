@@ -42,74 +42,41 @@ flowchart LR
 ```d2
 direction: right
 
-# Define semantic style classes
-classes: {
-  orchestrator: {
-    style.fill: "#E0E7FF"
-    style.stroke: "#4F46E5"
-    style.font-color: "#3730A3"
-  }
-  research: {
-    style.fill: "#DBEAFE"
-    style.stroke: "#3B82F6"
-    style.font-color: "#1E40AF"
-  }
-  design: {
-    style.fill: "#FEF3C7"
-    style.stroke: "#F59E0B"
-    style.font-color: "#92400E"
-  }
-  validate: {
-    style.fill: "#FEE2E2"
-    style.stroke: "#EF4444"
-    style.font-color: "#991B1B"
-  }
-  complete: {
-    style.fill: "#D1FAE5"
-    style.stroke: "#10B981"
-    style.font-color: "#065F46"
-  }
-}
-
 orchestrator: ORCHESTRATOR {
-  class: orchestrator
+  style.fill: "#E0E7FF"
+  style.stroke: "#4F46E5"
+  style.font-color: "#3730A3"
 }
 
-p1: |md
-  **Phase 1**
-  Research
-| {
-  class: research
+p1: Phase 1 Research {
+  style.fill: "#DBEAFE"
+  style.stroke: "#3B82F6"
+  style.font-color: "#1E40AF"
 }
-p2: |md
-  **Phase 2**
-  Strategy
-| {
-  class: research
+p2: Phase 2 Strategy {
+  style.fill: "#DBEAFE"
+  style.stroke: "#3B82F6"
+  style.font-color: "#1E40AF"
 }
-p3: |md
-  **Phase 3**
-  Solution
-| {
-  class: research
+p3: Phase 3 Solution {
+  style.fill: "#DBEAFE"
+  style.stroke: "#3B82F6"
+  style.font-color: "#1E40AF"
 }
-p4: |md
-  **Phase 4**
-  UI Design
-| {
-  class: design
+p4: Phase 4 UI Design {
+  style.fill: "#FEF3C7"
+  style.stroke: "#F59E0B"
+  style.font-color: "#92400E"
 }
-p5: |md
-  **Phase 5**
-  Critique
-| {
-  class: validate
+p5: Phase 5 Critique {
+  style.fill: "#FEE2E2"
+  style.stroke: "#EF4444"
+  style.font-color: "#991B1B"
 }
-p6: |md
-  **Phase 6**
-  Polish
-| {
-  class: complete
+p6: Phase 6 Polish {
+  style.fill: "#D1FAE5"
+  style.stroke: "#10B981"
+  style.font-color: "#065F46"
 }
 
 orchestrator -> p1
@@ -140,32 +107,31 @@ flowchart TB
 ```d2
 direction: down
 
-classes: {
-  ideate: {
-    style.fill: "#FEF3C7"
-    style.stroke: "#F59E0B"
-    style.font-color: "#92400E"
-  }
-  build: {
-    style.fill: "#DBEAFE"
-    style.stroke: "#3B82F6"
-    style.font-color: "#1E40AF"
-  }
-  measure: {
-    style.fill: "#D1FAE5"
-    style.stroke: "#10B981"
-    style.font-color: "#065F46"
-  }
+ideas: Ideas {
+  style.fill: "#FEF3C7"
+  style.stroke: "#F59E0B"
+  style.font-color: "#92400E"
 }
-
-ideas: Ideas { class: ideate }
-build: Build { class: build }
-product: |md
-  **Product**
-  (prototype)
-| { class: build }
-measure: Measure { class: measure }
-data: Data { class: measure }
+build: Build {
+  style.fill: "#DBEAFE"
+  style.stroke: "#3B82F6"
+  style.font-color: "#1E40AF"
+}
+product: Product (prototype) {
+  style.fill: "#DBEAFE"
+  style.stroke: "#3B82F6"
+  style.font-color: "#1E40AF"
+}
+measure: Measure {
+  style.fill: "#D1FAE5"
+  style.stroke: "#10B981"
+  style.font-color: "#065F46"
+}
+data: Data {
+  style.fill: "#D1FAE5"
+  style.stroke: "#10B981"
+  style.font-color: "#065F46"
+}
 
 ideas -> build -> product -> measure -> data
 data -> ideas: Learn {
@@ -219,50 +185,35 @@ flowchart TB
 ```d2
 direction: down
 
-classes: {
-  client-layer: {
-    style.fill: "#DBEAFE"
-    style.stroke: "#3B82F6"
-    style.font-color: "#1E40AF"
-  }
-  api-layer: {
-    style.fill: "#E0E7FF"
-    style.stroke: "#4F46E5"
-    style.font-color: "#3730A3"
-  }
-  service-layer: {
-    style.fill: "#FEF3C7"
-    style.stroke: "#F59E0B"
-    style.font-color: "#92400E"
-  }
-  data-layer: {
-    style.fill: "#D1FAE5"
-    style.stroke: "#10B981"
-    style.font-color: "#065F46"
-  }
-}
-
 client: Client Layer {
-  class: client-layer
+  style.fill: "#DBEAFE"
+  style.stroke: "#3B82F6"
+  style.font-color: "#1E40AF"
   web: Web App
   mobile: Mobile App
 }
 
 api: API Layer {
-  class: api-layer
+  style.fill: "#E0E7FF"
+  style.stroke: "#4F46E5"
+  style.font-color: "#3730A3"
   gateway: API Gateway
   auth: Auth Service
 }
 
 services: Service Layer {
-  class: service-layer
+  style.fill: "#FEF3C7"
+  style.stroke: "#F59E0B"
+  style.font-color: "#92400E"
   users: User Service
   products: Product Service
   orders: Order Service
 }
 
 data: Data Layer {
-  class: data-layer
+  style.fill: "#D1FAE5"
+  style.stroke: "#10B981"
+  style.font-color: "#065F46"
   db: PostgreSQL {
     shape: cylinder
   }
@@ -292,26 +243,17 @@ D2 supports a hand-drawn "sketch" mode for a more informal feel:
 ```d2
 # This would render in sketch mode if configured
 
-classes: {
-  user-class: {
-    style.fill: "#DBEAFE"
-    style.stroke: "#3B82F6"
-    style.font-color: "#1E40AF"
-  }
-  app-class: {
-    style.fill: "#F5F5F5"
-    style.stroke: "#9E9E9E"
-    style.font-color: "#212121"
-  }
-}
-
 user: User {
   shape: person
-  class: user-class
+  style.fill: "#DBEAFE"
+  style.stroke: "#3B82F6"
+  style.font-color: "#1E40AF"
 }
 
 app: Application {
-  class: app-class
+  style.fill: "#F5F5F5"
+  style.stroke: "#9E9E9E"
+  style.font-color: "#212121"
   ui: Frontend
   api: Backend API
   db: Database {
