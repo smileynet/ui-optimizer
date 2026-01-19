@@ -22,11 +22,11 @@ flowchart LR
         direction LR
     end
     
-    P1["Phase 1<br/>Research"] --> P2["Phase 2<br/>Strategy"]
-    P2 --> P3["Phase 3<br/>Solution"]
-    P3 --> P4["Phase 4<br/>UI Design"]
-    P4 --> P5["Phase 5<br/>Critique"]
-    P5 --> P6["Phase 6<br/>Polish"]
+    P1[Phase 1: Research] --> P2[Phase 2: Strategy]
+    P2 --> P3[Phase 3: Solution]
+    P3 --> P4[Phase 4: UI Design]
+    P4 --> P5[Phase 5: Critique]
+    P5 --> P6[Phase 6: Polish]
     
     Orchestrator --> P1
 ```
@@ -58,7 +58,7 @@ p1 -> p2 -> p3 -> p4 -> p5 -> p6
 ```mermaid
 flowchart TB
     IDEAS[Ideas] --> BUILD[Build]
-    BUILD --> PRODUCT["Product<br/>(prototype)"]
+    BUILD --> PRODUCT[Product / Prototype]
     PRODUCT --> MEASURE[Measure]
     MEASURE --> DATA[Data]
     DATA -.->|Learn| IDEAS

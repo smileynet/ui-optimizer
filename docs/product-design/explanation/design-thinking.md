@@ -34,12 +34,12 @@ The British Design Council's Double Diamond visualizes divergent and convergent 
 flowchart LR
     subgraph Problem["PROBLEM SPACE"]
         direction LR
-        DIS["Discover<br/><small>Diverge</small>"] --> DEF["Define<br/><small>Converge</small>"]
+        DIS[Discover] --> DEF[Define]
     end
     
     subgraph Solution["SOLUTION SPACE"]
         direction LR
-        DEV["Develop<br/><small>Diverge</small>"] --> DEL["Deliver<br/><small>Converge</small>"]
+        DEV[Develop] --> DEL[Deliver]
     end
     
     DEF --> DEV

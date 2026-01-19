@@ -45,13 +45,13 @@ Map how users move through the solution:
 
 ```mermaid
 flowchart TB
-    TRIGGER["TRIGGER<br/>[What starts this flow]"]
-    S1["Step 1<br/>[What user sees/does]"]
+    TRIGGER[TRIGGER]
+    S1[Step 1]
     DEC{Decision?}
     S2[Step 2]
     ALT[Alternate path]
     S3[Step 3]
-    SUCCESS["SUCCESS<br/>[Outcome achieved]"]
+    SUCCESS[SUCCESS]
     
     TRIGGER --> S1
     S1 --> DEC
