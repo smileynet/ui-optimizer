@@ -16,12 +16,6 @@ The most widely used design thinking framework comes from Stanford d.school and 
 flowchart LR
     E[Empathize] --> D[Define] --> I[Ideate] --> P[Prototype] --> T[Test]
     T -.->|iterate| E
-    
-    style E fill:#dbeafe,stroke:#3b82f6
-    style D fill:#dbeafe,stroke:#3b82f6
-    style I fill:#fef3c7,stroke:#f59e0b
-    style P fill:#fef3c7,stroke:#f59e0b
-    style T fill:#d1fae5,stroke:#10b981
 ```
 
 | Phase | Goal | Key Activities |
@@ -49,9 +43,6 @@ flowchart LR
     end
     
     DEF --> DEV
-    
-    style Problem fill:#dbeafe,stroke:#3b82f6
-    style Solution fill:#d1fae5,stroke:#10b981
 ```
 
 | Phase | Mode | Activity |

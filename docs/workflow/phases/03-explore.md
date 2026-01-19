@@ -60,9 +60,6 @@ flowchart TB
     S2 --> S3
     ALT --> S3
     S3 --> SUCCESS
-    
-    style TRIGGER fill:#e0e7ff,stroke:#4f46e5
-    style SUCCESS fill:#d1fae5,stroke:#10b981
 ```
 
 - **Happy path**: Trigger → Step 1 → Yes → Step 2 → Step 3 → Success

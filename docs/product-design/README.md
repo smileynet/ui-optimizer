@@ -42,9 +42,6 @@ flowchart TB
     end
     
     DT --> Lean
-    
-    style Discovery fill:#dbeafe,stroke:#3b82f6
-    style Delivery fill:#d1fae5,stroke:#10b981
 ```
 
 ## Quick Reference

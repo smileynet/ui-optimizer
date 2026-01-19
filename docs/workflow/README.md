@@ -16,13 +16,6 @@ flowchart LR
     R["REFINE<br/><small>Polish</small>"]
     
     U --> D --> E --> DE --> V --> R
-    
-    style U fill:#dbeafe,stroke:#3b82f6
-    style D fill:#dbeafe,stroke:#3b82f6
-    style E fill:#dbeafe,stroke:#3b82f6
-    style DE fill:#fef3c7,stroke:#f59e0b
-    style V fill:#fee2e2,stroke:#ef4444
-    style R fill:#d1fae5,stroke:#10b981
 ```
 
 **Each phase has:**

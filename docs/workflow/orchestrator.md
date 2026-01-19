@@ -24,14 +24,6 @@ flowchart TB
     P6["Phase 6<br/>Polish Agent"]
     
     P1 --> P2 --> P3 --> P4 --> P5 --> P6
-    
-    style Orchestrator fill:#e0e7ff,stroke:#4f46e5
-    style P1 fill:#dbeafe,stroke:#3b82f6
-    style P2 fill:#dbeafe,stroke:#3b82f6
-    style P3 fill:#dbeafe,stroke:#3b82f6
-    style P4 fill:#fef3c7,stroke:#f59e0b
-    style P5 fill:#fee2e2,stroke:#ef4444
-    style P6 fill:#d1fae5,stroke:#10b981
 ```
 
 ## State Schema
