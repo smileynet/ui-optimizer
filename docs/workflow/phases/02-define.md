@@ -88,27 +88,23 @@ What boundaries must we work within?
 
 Use a simple priority matrix:
 
+```mermaid
+quadrantChart
+    title Priority Matrix
+    x-axis Low Effort --> High Effort
+    y-axis Low Value --> High Value
+    quadrant-1 Plan Carefully
+    quadrant-2 Do First
+    quadrant-3 Consider Later
+    quadrant-4 Skip
 ```
-                    HIGH USER VALUE
-                          │
-                          │
-    ┌─────────────────────┼─────────────────────┐
-    │                     │                     │
-    │   CONSIDER LATER    │      DO FIRST       │
-    │   (Low effort,      │   (Low effort,      │
-    │    high value)      │    high value)      │
-    │                     │                     │
-LOW ──────────────────────┼────────────────────── HIGH
-EFFORT                    │                      EFFORT
-    │                     │                     │
-    │     SKIP            │   PLAN CAREFULLY    │
-    │   (High effort,     │   (High effort,     │
-    │    low value)       │    high value)      │
-    │                     │                     │
-    └─────────────────────┼─────────────────────┘
-                          │
-                    LOW USER VALUE
-```
+
+| Quadrant | Effort | Value | Action |
+|----------|--------|-------|--------|
+| **Do First** | Low | High | Quick wins, immediate impact |
+| **Plan Carefully** | High | High | Strategic initiatives, schedule properly |
+| **Consider Later** | Low | Low | Nice-to-haves, backlog |
+| **Skip** | High | Low | Avoid, deprioritize |
 
 ### 6. Create "How Might We" Questions
 

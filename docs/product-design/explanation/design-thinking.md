@@ -12,15 +12,16 @@ Design thinking is a methodology for creative problem-solving that prioritizes u
 
 The most widely used design thinking framework comes from Stanford d.school and IDEO:
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                                                                 │
-│  EMPATHIZE → DEFINE → IDEATE → PROTOTYPE → TEST               │
-│      ↑                                         │                │
-│      └─────────────────────────────────────────┘                │
-│                     (iterate)                                   │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart LR
+    E[Empathize] --> D[Define] --> I[Ideate] --> P[Prototype] --> T[Test]
+    T -.->|iterate| E
+    
+    style E fill:#dbeafe,stroke:#3b82f6
+    style D fill:#dbeafe,stroke:#3b82f6
+    style I fill:#fef3c7,stroke:#f59e0b
+    style P fill:#fef3c7,stroke:#f59e0b
+    style T fill:#d1fae5,stroke:#10b981
 ```
 
 | Phase | Goal | Key Activities |
@@ -35,21 +36,22 @@ The most widely used design thinking framework comes from Stanford d.school and 
 
 The British Design Council's Double Diamond visualizes divergent and convergent thinking:
 
-```
-        DISCOVER          DEFINE          DEVELOP          DELIVER
-            
-           ╱╲              ╱╲              ╱╲              ╱╲
-          ╱  ╲            ╱  ╲            ╱  ╲            ╱  ╲
-         ╱    ╲          ╱    ╲          ╱    ╲          ╱    ╲
-        ╱      ╲        ╱      ╲        ╱      ╲        ╱      ╲
-       ╱        ╲      ╱        ╲      ╱        ╲      ╱        ╲
-      ╱──────────╲    ╱──────────╲    ╱──────────╲    ╱──────────╲
-      
-      PROBLEM SPACE                    SOLUTION SPACE
-      ◄───────────────►                ◄───────────────►
-      
-   Diverge    Converge             Diverge    Converge
-   (explore)  (focus)              (explore)  (focus)
+```mermaid
+flowchart LR
+    subgraph Problem["PROBLEM SPACE"]
+        direction LR
+        DIS["Discover<br/><small>Diverge</small>"] --> DEF["Define<br/><small>Converge</small>"]
+    end
+    
+    subgraph Solution["SOLUTION SPACE"]
+        direction LR
+        DEV["Develop<br/><small>Diverge</small>"] --> DEL["Deliver<br/><small>Converge</small>"]
+    end
+    
+    DEF --> DEV
+    
+    style Problem fill:#dbeafe,stroke:#3b82f6
+    style Solution fill:#d1fae5,stroke:#10b981
 ```
 
 | Phase | Mode | Activity |
@@ -77,21 +79,12 @@ Empathy is the foundation. Without deep user understanding, you're guessing.
 
 ### Empathy Map
 
-```
-┌─────────────────────────────────────────────┐
-│                   SAYS                       │
-│  "I wish I could..."                        │
-│  "The hardest part is..."                   │
-├──────────────────────┬──────────────────────┤
-│        THINKS        │        DOES          │
-│  Worries about...    │  Checks phone often  │
-│  Hopes for...        │  Works around...     │
-├──────────────────────┼──────────────────────┤
-│        FEELS         │                      │
-│  Frustrated when...  │                      │
-│  Delighted by...     │                      │
-└──────────────────────┴──────────────────────┘
-```
+| Quadrant | Questions |
+|----------|-----------|
+| **SAYS** | "I wish I could...", "The hardest part is..." |
+| **THINKS** | Worries about..., Hopes for... |
+| **DOES** | Checks phone often, Works around... |
+| **FEELS** | Frustrated when..., Delighted by... |
 
 ## Define Phase
 

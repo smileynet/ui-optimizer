@@ -8,29 +8,30 @@ The Orchestrator manages the end-to-end workflow, delegating to specialized agen
 
 ## Architecture
 
-```
-                    ┌─────────────────────────────┐
-                    │       ORCHESTRATOR          │
-                    │   (Coordinator / Supervisor) │
-                    └──────────────┬──────────────┘
-                                   │
-         ┌─────────────────────────┼─────────────────────────┐
-         │                         │                         │
-         ▼                         ▼                         ▼
-   ┌───────────┐            ┌───────────┐            ┌───────────┐
-   │  Phase 1  │            │  Phase 2  │            │  Phase 3  │
-   │ Research  │───────────▶│ Strategy  │───────────▶│ Solution  │
-   │  Agent    │            │  Agent    │            │  Agent    │
-   └───────────┘            └───────────┘            └───────────┘
-                                                           │
-         ┌─────────────────────────┼─────────────────────────┐
-         │                         │                         │
-         ▼                         ▼                         ▼
-   ┌───────────┐            ┌───────────┐            ┌───────────┐
-   │  Phase 6  │            │  Phase 5  │            │  Phase 4  │
-   │  Polish   │◀───────────│ Critique  │◀───────────│    UI     │
-   │  Agent    │            │  Agent    │            │  Agent    │
-   └───────────┘            └───────────┘            └───────────┘
+```mermaid
+flowchart TB
+    subgraph Orchestrator["ORCHESTRATOR (Coordinator/Supervisor)"]
+        direction LR
+    end
+    
+    Orchestrator --> P1 & P2 & P3
+    
+    P1["Phase 1<br/>Research Agent"]
+    P2["Phase 2<br/>Strategy Agent"]
+    P3["Phase 3<br/>Solution Agent"]
+    P4["Phase 4<br/>UI Agent"]
+    P5["Phase 5<br/>Critique Agent"]
+    P6["Phase 6<br/>Polish Agent"]
+    
+    P1 --> P2 --> P3 --> P4 --> P5 --> P6
+    
+    style Orchestrator fill:#e0e7ff,stroke:#4f46e5
+    style P1 fill:#dbeafe,stroke:#3b82f6
+    style P2 fill:#dbeafe,stroke:#3b82f6
+    style P3 fill:#dbeafe,stroke:#3b82f6
+    style P4 fill:#fef3c7,stroke:#f59e0b
+    style P5 fill:#fee2e2,stroke:#ef4444
+    style P6 fill:#d1fae5,stroke:#10b981
 ```
 
 ## State Schema
