@@ -5,8 +5,43 @@ import { Card } from '../../components/ui/Card';
 import { Button } from '../../components/ui/Button';
 import { Badge } from '../../components/ui/Badge';
 import { Input } from '../../components/ui/Input';
-import { CalloutProvider, CalloutToggle, DesignCallout } from '../../components/ui';
+import { CalloutProvider, CalloutToggle, DesignCallout, PersonaSwitcher, PersonaSwitcherProvider, usePersona } from '../../components/ui';
+import { ThemeToggle } from '../../components/ThemeToggle';
 import { cn } from '../../lib/utils';
+
+const ecommercePersonas = [
+  { id: 'jessica', name: 'Jessica', avatar: 'J', description: 'Quick Buyer - Knows what she wants' },
+  { id: 'tom', name: 'Tom', avatar: 'T', description: 'Researcher - Compares before buying' }
+];
+
+function PersonaElement({ 
+  persona, 
+  children, 
+  className 
+}: { 
+  persona: 'jessica' | 'tom' | 'both'; 
+  children: React.ReactNode;
+  className?: string;
+}) {
+  const { activePersonaId } = usePersona();
+  
+  if (!activePersonaId) return <>{children}</>;
+  
+  const isRelevant = persona === 'both' || activePersonaId === persona;
+  
+  return (
+    <div 
+      className={cn(
+        "transition-all duration-500 ease-in-out", 
+        !isRelevant && "opacity-25 grayscale blur-[1px] pointer-events-none",
+        className
+      )}
+      data-persona={persona}
+    >
+      {children}
+    </div>
+  );
+}
 
 // Types for our fake data
 interface Product {
@@ -131,7 +166,7 @@ const FilterIcon = () => (
   </svg>
 );
 
-export function Ecommerce() {
+function EcommerceContent() {
   const [selectedCategory, setSelectedCategory] = useState('All Products');
   const [cartCount, _setCartCount] = useState(2);
   void _setCartCount;
@@ -139,20 +174,18 @@ export function Ecommerce() {
   return (
     <CalloutProvider>
     <div className="min-h-screen bg-[var(--color-bg-page)] pb-20 font-sans">
-      {/* Navigation Header */}
       <div className="sticky top-0 z-[var(--z-sticky)] bg-[var(--color-bg-surface)]/80 backdrop-blur-md border-b border-[var(--color-border)]">
         <Container size="xl">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-8">
-              <div className="text-xl font-bold tracking-tight text-[var(--color-text-primary)]">
-                Acme Store
-              </div>
-              <div className="hidden md:flex gap-6 text-sm font-medium text-[var(--color-text-secondary)]">
-                <a href="#" className="hover:text-[var(--color-text-primary)] transition-colors">New Arrivals</a>
-                <a href="#" className="text-[var(--color-text-primary)]">Shop</a>
-                <a href="#" className="hover:text-[var(--color-text-primary)] transition-colors">Collections</a>
-                <a href="#" className="hover:text-[var(--color-text-primary)] transition-colors">About</a>
-              </div>
+              <a href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                <div className="w-8 h-8 rounded-[var(--radius-lg)] bg-[var(--color-primary)] flex items-center justify-center text-white font-bold text-sm shadow-sm">
+                  Ui
+                </div>
+                <span className="font-bold text-lg">Optimizer</span>
+              </a>
+              <span className="text-[var(--color-text-tertiary)] hidden md:inline">/</span>
+              <span className="text-[var(--color-text-secondary)] hidden md:inline">E-commerce Example</span>
             </div>
 
             <div className="flex items-center gap-4">
@@ -171,7 +204,12 @@ export function Ecommerce() {
                   </span>
                 )}
               </Button>
+              <Button variant="ghost" size="sm" onClick={() => window.location.href = '/story/ecommerce'}>
+                View Story
+              </Button>
+              <PersonaSwitcher />
               <CalloutToggle />
+              <ThemeToggle />
             </div>
           </div>
         </Container>
@@ -180,36 +218,37 @@ export function Ecommerce() {
       <Container size="xl" className="mt-8">
         <DesignCallout 
           variant="pattern" 
-          title="Product Grid: Responsive Card Layout"
+          title="Parallel Paths Pattern"
           className="mb-6"
         >
-          Product cards use a responsive grid (4 → 3 → 2 → 1 columns) with consistent card dimensions.
-          Each card follows the same structure: image, title, price, rating, action. Agents should 
-          use <code className="bg-[var(--color-bg-muted)] px-1 rounded">grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4</code> for 
-          commerce grids with gap-6 spacing.
+          <strong>Personas:</strong> <Badge variant="info" size="sm" className="ml-1 mr-1">Jessica</Badge> wants fast checkout, <Badge variant="info" size="sm" className="ml-1 mr-1">Tom</Badge> wants research tools.<br/>
+          <strong>Pattern:</strong> Both paths coexist - quick "Add" buttons for Jessica, filters/ratings/reviews for Tom.
+          Neither path blocks the other.
         </DesignCallout>
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* Sidebar Filters */}
+          {/* Sidebar Filters - Tom's Research Tools */}
           <aside className="w-full lg:w-64 flex-shrink-0 space-y-8">
-            <div className="hidden lg:block">
-              <h3 className="font-semibold text-[var(--color-text-primary)] mb-4">Categories</h3>
-              <Stack gap={2}>
-                {CATEGORIES.map((category) => (
-                  <button
-                    key={category}
-                    onClick={() => setSelectedCategory(category)}
-                    className={cn(
-                      "text-left text-sm py-1.5 px-3 rounded-[var(--radius-md)] transition-colors w-full",
-                      selectedCategory === category
-                        ? "bg-[var(--color-primary-subtle)] text-[var(--color-primary)] font-medium"
-                        : "text-[var(--color-text-secondary)] hover:bg-[var(--color-bg-subtle)] hover:text-[var(--color-text-primary)]"
-                    )}
-                  >
-                    {category}
-                  </button>
-                ))}
-              </Stack>
-            </div>
+            <PersonaElement persona="tom">
+              <div className="hidden lg:block">
+                <h3 className="font-semibold text-[var(--color-text-primary)] mb-4">Categories</h3>
+                <Stack gap={2}>
+                  {CATEGORIES.map((category) => (
+                    <button
+                      key={category}
+                      onClick={() => setSelectedCategory(category)}
+                      className={cn(
+                        "text-left text-sm py-1.5 px-3 rounded-[var(--radius-md)] transition-colors w-full",
+                        selectedCategory === category
+                          ? "bg-[var(--color-primary-subtle)] text-[var(--color-primary)] font-medium"
+                          : "text-[var(--color-text-secondary)] hover:bg-[var(--color-bg-subtle)] hover:text-[var(--color-text-primary)]"
+                      )}
+                    >
+                      {category}
+                    </button>
+                  ))}
+                </Stack>
+              </div>
+            </PersonaElement>
 
             {/* Mobile Category Scroll */}
             <div className="lg:hidden overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide">
@@ -228,38 +267,40 @@ export function Ecommerce() {
               </div>
             </div>
             
-            <div className="hidden lg:block space-y-6">
-              <div>
-                <h3 className="font-semibold text-[var(--color-text-primary)] mb-4">Price Range</h3>
-                <div className="px-1">
-                  <div className="h-1 bg-[var(--color-bg-muted)] rounded-full mb-4 relative">
-                    <div className="absolute left-0 w-2/3 h-full bg-[var(--color-primary)] rounded-full"></div>
-                    <div className="absolute left-2/3 w-3 h-3 bg-[var(--color-bg-surface)] border-2 border-[var(--color-primary)] rounded-full top-1/2 -translate-y-1/2 shadow-sm"></div>
-                  </div>
-                  <div className="flex justify-between text-xs text-[var(--color-text-secondary)] font-medium">
-                    <span>$0</span>
-                    <span>$500+</span>
+            <PersonaElement persona="tom">
+              <div className="hidden lg:block space-y-6">
+                <div>
+                  <h3 className="font-semibold text-[var(--color-text-primary)] mb-4">Price Range</h3>
+                  <div className="px-1">
+                    <div className="h-1 bg-[var(--color-bg-muted)] rounded-full mb-4 relative">
+                      <div className="absolute left-0 w-2/3 h-full bg-[var(--color-primary)] rounded-full"></div>
+                      <div className="absolute left-2/3 w-3 h-3 bg-[var(--color-bg-surface)] border-2 border-[var(--color-primary)] rounded-full top-1/2 -translate-y-1/2 shadow-sm"></div>
+                    </div>
+                    <div className="flex justify-between text-xs text-[var(--color-text-secondary)] font-medium">
+                      <span>$0</span>
+                      <span>$500+</span>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div>
-                <h3 className="font-semibold text-[var(--color-text-primary)] mb-4">Rating</h3>
+                <div>
+                  <h3 className="font-semibold text-[var(--color-text-primary)] mb-4">Rating</h3>
                 <Stack gap={2}>
-                  {[4, 3, 2, 1].map((rating) => (
-                    <label key={rating} className="flex items-center gap-2 cursor-pointer group">
-                      <input type="checkbox" className="rounded border-[var(--color-border)] text-[var(--color-primary)] focus:ring-[var(--ring-color)]" />
-                      <div className="flex text-[var(--color-warning)]">
-                        {[...Array(5)].map((_, i) => (
-                          <StarIcon key={i} filled={i < rating} />
-                        ))}
-                      </div>
-                      <span className="text-xs text-[var(--color-text-tertiary)] group-hover:text-[var(--color-text-secondary)]">& Up</span>
-                    </label>
-                  ))}
-                </Stack>
+                    {[4, 3, 2, 1].map((rating) => (
+                      <label key={rating} className="flex items-center gap-2 cursor-pointer group">
+                        <input type="checkbox" className="rounded border-[var(--color-border)] text-[var(--color-primary)] focus:ring-[var(--ring-color)]" />
+                        <div className="flex text-[var(--color-warning)]">
+                          {[...Array(5)].map((_, i) => (
+                            <StarIcon key={i} filled={i < rating} />
+                          ))}
+                        </div>
+                        <span className="text-xs text-[var(--color-text-tertiary)] group-hover:text-[var(--color-text-secondary)]">& Up</span>
+                      </label>
+                    ))}
+                  </Stack>
+                </div>
               </div>
-            </div>
+            </PersonaElement>
           </aside>
 
           {/* Product Grid */}
@@ -270,16 +311,20 @@ export function Ecommerce() {
                 <span className="ml-2 text-sm font-normal text-[var(--color-text-tertiary)]">({PRODUCTS.length} items)</span>
               </h2>
               <div className="flex items-center gap-3">
-                <span className="text-sm text-[var(--color-text-secondary)] hidden sm:inline">Sort by:</span>
-                <select className="text-sm border-none bg-transparent font-medium text-[var(--color-text-primary)] focus:ring-0 cursor-pointer">
-                  <option>Featured</option>
-                  <option>Newest</option>
-                  <option>Price: Low to High</option>
-                  <option>Price: High to Low</option>
-                </select>
-                <Button variant="secondary" size="sm" className="lg:hidden">
-                  <FilterIcon /> Filters
-                </Button>
+                <PersonaElement persona="tom">
+                  <div className="flex items-center gap-3">
+                    <span className="text-sm text-[var(--color-text-secondary)] hidden sm:inline">Sort by:</span>
+                    <select className="text-sm border-none bg-transparent font-medium text-[var(--color-text-primary)] focus:ring-0 cursor-pointer">
+                      <option>Featured</option>
+                      <option>Newest</option>
+                      <option>Price: Low to High</option>
+                      <option>Price: High to Low</option>
+                    </select>
+                    <Button variant="secondary" size="sm" className="lg:hidden">
+                      <FilterIcon /> Filters
+                    </Button>
+                  </div>
+                </PersonaElement>
               </div>
             </div>
 
@@ -354,5 +399,13 @@ export function Ecommerce() {
       </Container>
     </div>
     </CalloutProvider>
+  );
+}
+
+export function Ecommerce() {
+  return (
+    <PersonaSwitcherProvider personas={ecommercePersonas}>
+      <EcommerceContent />
+    </PersonaSwitcherProvider>
   );
 }

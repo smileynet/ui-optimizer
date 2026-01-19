@@ -5,8 +5,44 @@ import { Card } from '../../components/ui/Card';
 import { Button } from '../../components/ui/Button';
 import { Input } from '../../components/ui/Input';
 import { Badge } from '../../components/ui/Badge';
-import { CalloutProvider, CalloutToggle, DesignCallout } from '../../components/ui';
+import { CalloutProvider, CalloutToggle, DesignCallout, PersonaSwitcher, PersonaSwitcherProvider, usePersona } from '../../components/ui';
+import { ThemeToggle } from '../../components/ThemeToggle';
 import { cn } from '../../lib/utils';
+
+// --- Persona Configuration ---
+const settingsPersonas = [
+  { id: 'elena', name: 'Elena', avatar: 'E', description: 'Casual User - Just wants basics' },
+  { id: 'marcus', name: 'Marcus', avatar: 'M', description: 'Power User - Needs full control' }
+];
+
+function PersonaElement({ 
+  persona, 
+  children, 
+  className 
+}: { 
+  persona: 'elena' | 'marcus' | 'both'; 
+  children: React.ReactNode;
+  className?: string;
+}) {
+  const { activePersonaId } = usePersona();
+  
+  if (!activePersonaId) return <>{children}</>;
+  
+  const isRelevant = persona === 'both' || activePersonaId === persona;
+  
+  return (
+    <div 
+      className={cn(
+        "transition-all duration-500 ease-in-out", 
+        !isRelevant && "opacity-25 grayscale blur-[1px] pointer-events-none",
+        className
+      )}
+      data-persona={persona}
+    >
+      {children}
+    </div>
+  );
+}
 
 // --- Icons ---
 function UserIcon({ className }: { className?: string }) {
@@ -82,7 +118,7 @@ function Toggle({ checked, onChange, label, description }: { checked: boolean; o
 
 type Tab = 'profile' | 'preferences' | 'notifications';
 
-export function Settings() {
+function SettingsContent() {
   const [activeTab, setActiveTab] = useState<Tab>('profile');
   const [loading, setLoading] = useState(false);
   
@@ -111,8 +147,33 @@ export function Settings() {
 
   return (
     <CalloutProvider>
-    <div className="min-h-screen bg-[var(--color-bg-page)] py-8">
-      <Container size="lg">
+    <div className="min-h-screen bg-[var(--color-bg-page)]">
+      <header className="sticky top-0 z-50 bg-[var(--color-bg-surface)]/95 backdrop-blur-md border-b border-[var(--color-border)]">
+        <Container size="lg">
+          <div className="flex h-16 items-center justify-between">
+            <div className="flex items-center gap-4">
+              <a href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                <div className="w-8 h-8 rounded-[var(--radius-lg)] bg-[var(--color-primary)] flex items-center justify-center text-white font-bold text-sm shadow-sm">
+                  Ui
+                </div>
+                <span className="font-bold text-lg">Optimizer</span>
+              </a>
+              <span className="text-[var(--color-text-tertiary)]">/</span>
+              <span className="text-[var(--color-text-secondary)]">Settings Example</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <Button variant="ghost" size="sm" onClick={() => window.location.href = '/story/settings'}>
+                View Story
+              </Button>
+              <PersonaSwitcher />
+              <CalloutToggle />
+              <ThemeToggle />
+            </div>
+          </div>
+        </Container>
+      </header>
+
+      <Container size="lg" className="py-8">
         <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h1 className="text-[var(--text-3xl)] font-bold text-[var(--color-text-primary)] tracking-tight">Settings</h1>
@@ -120,17 +181,16 @@ export function Settings() {
               Manage your account settings and preferences.
             </p>
           </div>
-          <CalloutToggle />
         </div>
         
         <DesignCallout 
           variant="principle" 
-          title="Progressive Disclosure"
+          title="Layered Complexity Pattern"
           className="mb-6"
         >
-          Settings are organized into logical sections (Profile, Preferences, Notifications) using tab navigation.
-          This prevents overwhelming users with all options at once. Agents should group related settings
-          and use clear section headers.
+          <strong>Personas:</strong> <Badge variant="info" size="sm" className="ml-1 mr-1">Elena</Badge> sees basic settings, <Badge variant="info" size="sm" className="ml-1 mr-1">Marcus</Badge> sees advanced options.<br/>
+          Settings are organized by complexity level. Basic users see common options (profile photo, dark mode),
+          while power users get granular controls (public profile, language, danger zone).
         </DesignCallout>
 
         <div className="flex flex-col lg:flex-row gap-8">
@@ -171,61 +231,68 @@ export function Settings() {
                     <p className="text-[var(--text-sm)] text-[var(--color-text-secondary)]">This information will be displayed publicly.</p>
                   </Card.Header>
                   <Card.Body className="space-y-6">
-                    {/* Avatar Upload */}
-                    <div className="flex items-center gap-6">
-                      <div className="relative group">
-                        <div className="w-20 h-20 rounded-full bg-[var(--blue-100)] flex items-center justify-center text-[var(--blue-600)] text-[var(--text-2xl)] font-semibold border-4 border-[var(--color-bg-surface)] shadow-[var(--shadow-sm)]">
-                          {firstName[0]}{lastName[0]}
+                    <PersonaElement persona="elena">
+                      <div className="flex items-center gap-6">
+                        <div className="relative group">
+                          <div className="w-20 h-20 rounded-full bg-[var(--blue-100)] flex items-center justify-center text-[var(--blue-600)] text-[var(--text-2xl)] font-semibold border-4 border-[var(--color-bg-surface)] shadow-[var(--shadow-sm)]">
+                            {firstName[0]}{lastName[0]}
+                          </div>
+                          <button className="absolute inset-0 flex items-center justify-center bg-black/50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity text-white">
+                            <UploadIcon className="w-6 h-6" />
+                          </button>
                         </div>
-                        <button className="absolute inset-0 flex items-center justify-center bg-black/50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity text-white">
-                          <UploadIcon className="w-6 h-6" />
-                        </button>
+                        <div className="flex-1">
+                          <h3 className="text-[var(--text-sm)] font-medium text-[var(--color-text-primary)]">Profile Picture</h3>
+                          <p className="text-[var(--text-xs)] text-[var(--color-text-secondary)] mt-1">
+                            JPG, GIF or PNG. 1MB max.
+                          </p>
+                          <div className="mt-3 flex gap-3">
+                            <Button size="sm" variant="secondary">Change</Button>
+                            <Button size="sm" variant="ghost" className="text-[var(--color-error)] hover:text-[var(--red-600)] hover:bg-[var(--color-error-subtle)]">Remove</Button>
+                          </div>
+                        </div>
                       </div>
-                      <div className="flex-1">
-                        <h3 className="text-[var(--text-sm)] font-medium text-[var(--color-text-primary)]">Profile Picture</h3>
-                        <p className="text-[var(--text-xs)] text-[var(--color-text-secondary)] mt-1">
-                          JPG, GIF or PNG. 1MB max.
+                    </PersonaElement>
+
+                    <PersonaElement persona="elena">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <Input 
+                          label="First Name" 
+                          value={firstName} 
+                          onChange={(e) => setFirstName(e.target.value)}
+                        />
+                        <Input 
+                          label="Last Name" 
+                          value={lastName} 
+                          onChange={(e) => setLastName(e.target.value)} 
+                        />
+                      </div>
+                    </PersonaElement>
+
+                    <PersonaElement persona="both">
+                      <Input 
+                        label="Email Address" 
+                        type="email"
+                        value={email} 
+                        onChange={(e) => setEmail(e.target.value)}
+                        leftIcon={<svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>}
+                      />
+                    </PersonaElement>
+
+                    <PersonaElement persona="marcus">
+                      <div>
+                        <label className="block text-[var(--text-sm)] font-medium text-[var(--color-text-primary)] mb-2">Bio</label>
+                        <textarea 
+                          className="block w-full rounded-[var(--radius-md)] border border-[var(--color-border)] px-4 py-2.5 bg-[var(--color-bg-surface)] text-[var(--color-text-primary)] placeholder:text-[var(--color-text-tertiary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 focus:border-[var(--color-border-focus)] transition-colors min-h-[120px] resize-y"
+                          value={bio}
+                          onChange={(e) => setBio(e.target.value)}
+                          placeholder="Tell us a little about yourself..."
+                        />
+                        <p className="mt-1.5 text-[var(--text-xs)] text-[var(--color-text-secondary)] text-right">
+                          {bio.length}/240 characters
                         </p>
-                        <div className="mt-3 flex gap-3">
-                          <Button size="sm" variant="secondary">Change</Button>
-                          <Button size="sm" variant="ghost" className="text-[var(--color-error)] hover:text-[var(--red-600)] hover:bg-[var(--color-error-subtle)]">Remove</Button>
-                        </div>
                       </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <Input 
-                        label="First Name" 
-                        value={firstName} 
-                        onChange={(e) => setFirstName(e.target.value)}
-                      />
-                      <Input 
-                        label="Last Name" 
-                        value={lastName} 
-                        onChange={(e) => setLastName(e.target.value)} 
-                      />
-                    </div>
-
-                    <Input 
-                      label="Email Address" 
-                      type="email"
-                      value={email} 
-                      onChange={(e) => setEmail(e.target.value)}
-                      leftIcon={<svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>}
-                    />
-
-                    <div>
-                      <label className="block text-[var(--text-sm)] font-medium text-[var(--color-text-primary)] mb-2">Bio</label>
-                      <textarea 
-                        className="block w-full rounded-[var(--radius-md)] border border-[var(--color-border)] px-4 py-2.5 bg-[var(--color-bg-surface)] text-[var(--color-text-primary)] placeholder:text-[var(--color-text-tertiary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 focus:border-[var(--color-border-focus)] transition-colors min-h-[120px] resize-y"
-                        value={bio}
-                        onChange={(e) => setBio(e.target.value)}
-                        placeholder="Tell us a little about yourself..."
-                      />
-                      <p className="mt-1.5 text-[var(--text-xs)] text-[var(--color-text-secondary)] text-right">
-                        {bio.length}/240 characters
-                      </p>
-                    </div>
+                    </PersonaElement>
                   </Card.Body>
                   <Card.Footer className="flex justify-end gap-3">
                     <Button variant="ghost">Cancel</Button>
@@ -233,25 +300,26 @@ export function Settings() {
                   </Card.Footer>
                 </Card>
 
-                {/* Danger Zone */}
-                <Card variant="outlined" className="border-[var(--color-error)]/30 overflow-hidden">
-                  <div className="bg-[var(--rose-50)] dark:bg-[var(--rose-900)]/10 px-6 py-4 border-b border-[var(--color-error)]/20">
-                    <h3 className="text-[var(--text-lg)] font-semibold text-[var(--color-error)] flex items-center gap-2">
-                      <ShieldIcon className="w-5 h-5" /> Danger Zone
-                    </h3>
-                  </div>
-                  <Card.Body>
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-                      <div>
-                        <h4 className="font-medium text-[var(--color-text-primary)]">Delete Account</h4>
-                        <p className="text-[var(--text-sm)] text-[var(--color-text-secondary)] mt-1">
-                          Permanently delete your account and all of your content.
-                        </p>
-                      </div>
-                      <Button variant="danger">Delete Account</Button>
+                <PersonaElement persona="marcus">
+                  <Card variant="outlined" className="border-[var(--color-error)]/30 overflow-hidden">
+                    <div className="bg-[var(--rose-50)] dark:bg-[var(--rose-900)]/10 px-6 py-4 border-b border-[var(--color-error)]/20">
+                      <h3 className="text-[var(--text-lg)] font-semibold text-[var(--color-error)] flex items-center gap-2">
+                        <ShieldIcon className="w-5 h-5" /> Danger Zone
+                      </h3>
                     </div>
-                  </Card.Body>
-                </Card>
+                    <Card.Body>
+                      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                        <div>
+                          <h4 className="font-medium text-[var(--color-text-primary)]">Delete Account</h4>
+                          <p className="text-[var(--text-sm)] text-[var(--color-text-secondary)] mt-1">
+                            Permanently delete your account and all of your content.
+                          </p>
+                        </div>
+                        <Button variant="danger">Delete Account</Button>
+                      </div>
+                    </Card.Body>
+                  </Card>
+                </PersonaElement>
               </Stack>
             )}
 
@@ -264,29 +332,35 @@ export function Settings() {
                     <p className="text-[var(--text-sm)] text-[var(--color-text-secondary)]">Customize your experience.</p>
                   </Card.Header>
                   <Card.Body className="divide-y divide-[var(--color-border)]">
-                    <Toggle 
-                      label="Dark Mode" 
-                      description="Use a dark theme for the interface."
-                      checked={darkMode} 
-                      onChange={setDarkMode} 
-                    />
-                    <Toggle 
-                      label="Public Profile" 
-                      description="Allow others to see your profile information."
-                      checked={publicProfile} 
-                      onChange={setPublicProfile} 
-                    />
+                    <PersonaElement persona="elena">
+                      <Toggle 
+                        label="Dark Mode" 
+                        description="Use a dark theme for the interface."
+                        checked={darkMode} 
+                        onChange={setDarkMode} 
+                      />
+                    </PersonaElement>
+                    <PersonaElement persona="marcus">
+                      <Toggle 
+                        label="Public Profile" 
+                        description="Allow others to see your profile information."
+                        checked={publicProfile} 
+                        onChange={setPublicProfile} 
+                      />
+                    </PersonaElement>
                     
-                    <div className="py-4 flex flex-col gap-2">
-                      <label className="text-[var(--text-sm)] font-medium text-[var(--color-text-primary)]">Language</label>
-                      <select className="block w-full md:w-64 rounded-[var(--radius-md)] border border-[var(--color-border)] px-4 py-2.5 bg-[var(--color-bg-surface)] text-[var(--color-text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 focus:border-[var(--color-border-focus)]">
-                        <option>English (US)</option>
-                        <option>English (UK)</option>
-                        <option>Español</option>
-                        <option>Français</option>
-                        <option>Deutsch</option>
-                      </select>
-                    </div>
+                    <PersonaElement persona="marcus">
+                      <div className="py-4 flex flex-col gap-2">
+                        <label className="text-[var(--text-sm)] font-medium text-[var(--color-text-primary)]">Language</label>
+                        <select className="block w-full md:w-64 rounded-[var(--radius-md)] border border-[var(--color-border)] px-4 py-2.5 bg-[var(--color-bg-surface)] text-[var(--color-text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20 focus:border-[var(--color-border-focus)]">
+                          <option>English (US)</option>
+                          <option>English (UK)</option>
+                          <option>Español</option>
+                          <option>Français</option>
+                          <option>Deutsch</option>
+                        </select>
+                      </div>
+                    </PersonaElement>
                   </Card.Body>
                   <Card.Footer className="flex justify-end gap-3">
                     <Button onClick={handleSave}>Save Preferences</Button>
@@ -311,35 +385,41 @@ export function Settings() {
                   <Card.Body className="divide-y divide-[var(--color-border)]">
                     <div className="py-2">
                       <h3 className="text-[var(--text-sm)] font-semibold text-[var(--color-text-primary)] mb-2 uppercase tracking-wider text-[11px] text-[var(--color-text-tertiary)]">Email Notifications</h3>
-                      <Toggle 
-                        label="Marketing Emails" 
-                        description="Receive emails about new products, features, and more."
-                        checked={marketingEmails} 
-                        onChange={setMarketingEmails} 
-                      />
-                      <Toggle 
-                        label="Security Alerts" 
-                        description="Receive emails about your account security."
-                        checked={securityAlerts} 
-                        onChange={setSecurityAlerts} 
-                      />
+                      <PersonaElement persona="marcus">
+                        <Toggle 
+                          label="Marketing Emails" 
+                          description="Receive emails about new products, features, and more."
+                          checked={marketingEmails} 
+                          onChange={setMarketingEmails} 
+                        />
+                      </PersonaElement>
+                      <PersonaElement persona="elena">
+                        <Toggle 
+                          label="Security Alerts" 
+                          description="Receive emails about your account security."
+                          checked={securityAlerts} 
+                          onChange={setSecurityAlerts} 
+                        />
+                      </PersonaElement>
                     </div>
                     
-                    <div className="py-2">
-                      <h3 className="text-[var(--text-sm)] font-semibold text-[var(--color-text-primary)] mb-2 uppercase tracking-wider text-[11px] text-[var(--color-text-tertiary)]">Push Notifications</h3>
-                      <Toggle 
-                        label="New Comments" 
-                        description="Get notified when someone comments on your posts."
-                        checked={true} 
-                        onChange={() => {}} 
-                      />
-                       <Toggle 
-                        label="Mentions" 
-                        description="Get notified when someone mentions you."
-                        checked={true} 
-                        onChange={() => {}} 
-                      />
-                    </div>
+                    <PersonaElement persona="marcus">
+                      <div className="py-2">
+                        <h3 className="text-[var(--text-sm)] font-semibold text-[var(--color-text-primary)] mb-2 uppercase tracking-wider text-[11px] text-[var(--color-text-tertiary)]">Push Notifications</h3>
+                        <Toggle 
+                          label="New Comments" 
+                          description="Get notified when someone comments on your posts."
+                          checked={true} 
+                          onChange={() => {}} 
+                        />
+                         <Toggle 
+                          label="Mentions" 
+                          description="Get notified when someone mentions you."
+                          checked={true} 
+                          onChange={() => {}} 
+                        />
+                      </div>
+                    </PersonaElement>
                   </Card.Body>
                 </Card>
               </Stack>
@@ -350,5 +430,13 @@ export function Settings() {
       </Container>
     </div>
     </CalloutProvider>
+  );
+}
+
+export function Settings() {
+  return (
+    <PersonaSwitcherProvider personas={settingsPersonas}>
+      <SettingsContent />
+    </PersonaSwitcherProvider>
   );
 }
