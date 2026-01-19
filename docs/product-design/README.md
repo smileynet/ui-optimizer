@@ -31,8 +31,10 @@ Product design methodologies help teams understand user needs, define problems, 
 
 ```mermaid
 flowchart TB
-    classDef discovery fill:#DBEAFE,stroke:#3B82F6,color:#1E40AF
-    classDef delivery fill:#D1FAE5,stroke:#10B981,color:#065F46
+    classDef research fill:#DBEAFE,stroke:#3B82F6,color:#1E40AF
+    classDef design fill:#FEF3C7,stroke:#F59E0B,color:#92400E
+    classDef validate fill:#FEE2E2,stroke:#EF4444,color:#991B1B
+    classDef complete fill:#D1FAE5,stroke:#10B981,color:#065F46
     
     subgraph Discovery["PRODUCT DISCOVERY"]
         direction LR
@@ -52,8 +54,10 @@ flowchart TB
     
     DT --> Lean
     
-    class JTBD,Personas,DT discovery
-    class Lean,Stories,Kano delivery
+    class JTBD,Personas research
+    class DT design
+    class Lean validate
+    class Stories,Kano complete
 ```
 
 ## Quick Reference

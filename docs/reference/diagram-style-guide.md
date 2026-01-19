@@ -60,14 +60,14 @@ flowchart LR
     classDef secondary fill:#F5F5F5,stroke:#9E9E9E,color:#212121
     classDef success fill:#E8F5E9,stroke:#4CAF50,color:#1B5E20
     classDef warning fill:#FFF3E0,stroke:#FF9800,color:#9A3412
-    classDef error fill:#FFEBEE,stroke:#F44336,color:#B71C1C
+    classDef errorStyle fill:#FFEBEE,stroke:#F44336,color:#B71C1C
     classDef info fill:#E1F5FE,stroke:#03A9F4,color:#01579B
     
     P[Primary]:::primary --> SEC[Secondary]:::secondary
     SEC --> SUC[Success]:::success
     SUC --> W[Warning]:::warning
-    W --> E[Error]:::error
-    E --> I[Info]:::info
+    W --> ERR[Error]:::errorStyle
+    ERR --> INF[Info]:::info
 ```
 
 ### Theme Configuration
@@ -137,38 +137,34 @@ frontend.mobile -> backend.api
 backend.api -> backend.db
 ```
 
-### Styling with Classes (Recommended)
+### Styling with Inline Styles
 
-D2 supports reusable style classes, similar to Mermaid's `classDef`. Define classes at the top of your diagram:
+Use inline `style.*` properties to apply semantic colors to D2 nodes:
+
+!!! warning "D2 Classes Not Supported"
+    D2's `classes:` feature does not work reliably with mkdocs-d2-plugin. Use inline styles instead.
 
 ```d2
-classes: {
-  research: {
-    style.fill: "#DBEAFE"
-    style.stroke: "#3B82F6"
-    style.font-color: "#1E40AF"
-  }
-  design: {
-    style.fill: "#FEF3C7"
-    style.stroke: "#F59E0B"
-    style.font-color: "#92400E"
-  }
-  validate: {
-    style.fill: "#FEE2E2"
-    style.stroke: "#EF4444"
-    style.font-color: "#991B1B"
-  }
-  complete: {
-    style.fill: "#D1FAE5"
-    style.stroke: "#10B981"
-    style.font-color: "#065F46"
-  }
+phase1: Research {
+  style.fill: "#DBEAFE"
+  style.stroke: "#3B82F6"
+  style.font-color: "#1E40AF"
 }
-
-phase1: Research { class: research }
-phase2: Design { class: design }
-phase3: Validate { class: validate }
-phase4: Complete { class: complete }
+phase2: Design {
+  style.fill: "#FEF3C7"
+  style.stroke: "#F59E0B"
+  style.font-color: "#92400E"
+}
+phase3: Validate {
+  style.fill: "#FEE2E2"
+  style.stroke: "#EF4444"
+  style.font-color: "#991B1B"
+}
+phase4: Complete {
+  style.fill: "#D1FAE5"
+  style.stroke: "#10B981"
+  style.font-color: "#065F46"
+}
 
 phase1 -> phase2 -> phase3 -> phase4
 ```
