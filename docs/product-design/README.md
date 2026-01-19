@@ -16,16 +16,16 @@ Product design methodologies help teams understand user needs, define problems, 
 ## Start Here
 
 **New to product design?**
-→ Start with [Tutorial: Your First User Journey](./tutorials/first-user-journey.md)
+→ Start with [Jobs to Be Done](./explanation/jobs-to-be-done.md) - the foundation of user-centered design
 
 **Need to apply a methodology?**
-→ Jump to [How-to Guides](./how-to/)
+→ Jump to [How-to: Conduct a JTBD Interview](./how-to/conduct-jtbd-interview.md)
 
 **Want to understand the theory?**
-→ Read [Explanation](./explanation/)
+→ Read [User Stories](./explanation/user-stories.md) or [Personas](./explanation/personas.md)
 
 **Looking for templates or specs?**
-→ Check [Reference](./reference/)
+→ Check [Templates](./reference/templates.md)
 
 ## The Big Picture
 
