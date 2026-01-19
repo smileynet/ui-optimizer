@@ -36,16 +36,14 @@ flowchart TB
     
     subgraph Discovery["PRODUCT DISCOVERY"]
         direction LR
-        JTBD[JTBD Research] --> Personas[Personas & Journey Maps] --> DT[Design Thinking]
+        JTBD[JTBD Research]:::discovery --> Personas[Personas & Journey Maps]:::discovery --> DT[Design Thinking]:::discovery
     end
     
     subgraph Delivery["PRODUCT DELIVERY"]
         direction LR
-        Lean[Lean UX & MVPs] --> Stories[User Stories] --> Kano[Kano Model]
+        Lean[Lean UX & MVPs]:::delivery --> Stories[User Stories]:::delivery --> Kano[Kano Model]:::delivery
     end
     
-    Discovery:::discovery
-    Delivery:::delivery
     DT --> Lean
 ```
 

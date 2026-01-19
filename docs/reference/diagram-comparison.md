@@ -18,17 +18,23 @@ This page demonstrates different diagram rendering options available in this doc
 
 ```mermaid
 flowchart LR
+    classDef orchestrator fill:#E0E7FF,stroke:#4F46E5,color:#3730A3
+    classDef research fill:#DBEAFE,stroke:#3B82F6,color:#1E40AF
+    classDef design fill:#FEF3C7,stroke:#F59E0B,color:#92400E
+    classDef validate fill:#FEE2E2,stroke:#EF4444,color:#991B1B
+    classDef complete fill:#D1FAE5,stroke:#10B981,color:#065F46
+    
     subgraph Orchestrator["ORCHESTRATOR"]
         direction LR
     end
     
-    P1[Phase 1: Research] --> P2[Phase 2: Strategy]
-    P2 --> P3[Phase 3: Solution]
-    P3 --> P4[Phase 4: UI Design]
-    P4 --> P5[Phase 5: Critique]
-    P5 --> P6[Phase 6: Polish]
+    P1[Phase 1: Research]:::research --> P2[Phase 2: Strategy]:::research
+    P2 --> P3[Phase 3: Solution]:::research
+    P3 --> P4[Phase 4: UI Design]:::design
+    P4 --> P5[Phase 5: Critique]:::validate
+    P5 --> P6[Phase 6: Polish]:::complete
     
-    Orchestrator --> P1
+    Orchestrator:::orchestrator --> P1
 ```
 
 ### D2 Version
@@ -75,10 +81,14 @@ p1 -> p2 -> p3 -> p4 -> p5 -> p6
 
 ```mermaid
 flowchart TB
-    IDEAS[Ideas] --> BUILD[Build]
-    BUILD --> PRODUCT[Product / Prototype]
-    PRODUCT --> MEASURE[Measure]
-    MEASURE --> DATA[Data]
+    classDef ideate fill:#FEF3C7,stroke:#F59E0B,color:#92400E
+    classDef build fill:#DBEAFE,stroke:#3B82F6,color:#1E40AF
+    classDef measure fill:#D1FAE5,stroke:#10B981,color:#065F46
+    
+    IDEAS[Ideas]:::ideate --> BUILD[Build]:::build
+    BUILD --> PRODUCT[Product / Prototype]:::build
+    PRODUCT --> MEASURE[Measure]:::measure
+    MEASURE --> DATA[Data]:::measure
     DATA -.->|Learn| IDEAS
 ```
 
@@ -222,11 +232,12 @@ Define reusable style classes for semantic meaning:
 ```mermaid
 flowchart LR
     classDef primary fill:#E3F2FD,stroke:#1E88E5,color:#0D47A1
+    classDef secondary fill:#F5F5F5,stroke:#9E9E9E,color:#212121
     classDef success fill:#E8F5E9,stroke:#4CAF50,color:#1B5E20
     classDef warning fill:#FFF3E0,stroke:#FF9800,color:#9A3412
     classDef error fill:#FFEBEE,stroke:#F44336,color:#B71C1C
     
-    A[Start]:::primary --> B{Check}
+    A[Start]:::primary --> B{Check}:::secondary
     B -->|Pass| C[Success]:::success
     B -->|Warn| D[Review]:::warning
     B -->|Fail| E[Error]:::error
