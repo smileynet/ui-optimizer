@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { Container } from '../components/ui/Container';
 import { Stack } from '../components/ui/Stack';
 import { Card } from '../components/ui/Card';
@@ -20,11 +21,12 @@ export function DesignStory() {
 }
 
 function StoryHeader() {
+  const navigate = useNavigate();
   return (
     <div className="border-b border-[var(--color-border)] bg-[var(--color-bg-surface)]/80 backdrop-blur-md sticky top-0 z-50">
       <Container size="xl">
         <div className="flex h-16 items-center justify-between">
-          <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.location.href = '/'}>
+          <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
             <div className="w-8 h-8 rounded-[var(--radius-lg)] bg-[var(--color-primary)] flex items-center justify-center text-white font-bold text-lg shadow-[var(--shadow-lg)]">
               Ui
             </div>
@@ -33,7 +35,7 @@ function StoryHeader() {
             </span>
           </div>
           <div className="flex items-center gap-4">
-            <Button variant="ghost" size="sm" onClick={() => window.location.href = '/'}>
+            <Button variant="ghost" size="sm" onClick={() => navigate('/')}>
               Home
             </Button>
             <ThemeToggle />
@@ -341,6 +343,7 @@ function InteractiveDemo() {
 }
 
 function StoryFooter() {
+  const navigate = useNavigate();
   return (
     <div className="py-24 bg-[var(--color-bg-subtle)] border-t border-[var(--color-border)] text-center">
       <Container size="md">
@@ -350,10 +353,10 @@ function StoryFooter() {
              Explore the components that make this possible, or dive into the code.
           </p>
           <div className="flex gap-4">
-             <Button variant="primary" size="lg" onClick={() => window.location.href = '/examples'}>
+             <Button variant="primary" size="lg" onClick={() => navigate('/examples')}>
                View Examples
              </Button>
-             <Button variant="secondary" size="lg" onClick={() => window.location.href = '/sandbox'}>
+             <Button variant="secondary" size="lg" onClick={() => navigate('/sandbox')}>
                Open Sandbox
              </Button>
           </div>

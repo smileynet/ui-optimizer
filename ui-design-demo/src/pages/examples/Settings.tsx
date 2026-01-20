@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Container } from '../../components/ui/Container';
 import { Stack } from '../../components/ui/Stack';
 import { Card } from '../../components/ui/Card';
@@ -119,6 +120,7 @@ function Toggle({ checked, onChange, label, description }: { checked: boolean; o
 type Tab = 'profile' | 'preferences' | 'notifications';
 
 function SettingsContent() {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<Tab>('profile');
   const [loading, setLoading] = useState(false);
   
@@ -162,7 +164,7 @@ function SettingsContent() {
               <span className="text-[var(--color-text-secondary)]">Settings Example</span>
             </div>
             <div className="flex items-center gap-3">
-              <Button variant="ghost" size="sm" onClick={() => window.location.href = '/story/settings'}>
+              <Button variant="ghost" size="sm" onClick={() => navigate('/story/settings')}>
                 View Story
               </Button>
               <PersonaSwitcher />

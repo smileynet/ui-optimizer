@@ -1,3 +1,4 @@
+import { Link, useNavigate } from 'react-router-dom';
 import { Container } from '../components/ui/Container';
 import { Stack } from '../components/ui/Stack';
 import { Card } from '../components/ui/Card';
@@ -73,9 +74,9 @@ function Header() {
               </span>
             </div>
             <nav className="hidden md:flex items-center gap-4">
-              <a href="/story" className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors">Design Journey</a>
-              <a href="/examples" className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors">Examples</a>
-              <a href="/sandbox" className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors">Sandbox</a>
+              <Link to="/story" className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors">Design Journey</Link>
+              <Link to="/examples" className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors">Examples</Link>
+              <Link to="/sandbox" className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors">Sandbox</Link>
             </nav>
           </div>
           <ThemeToggle />
@@ -86,11 +87,12 @@ function Header() {
 }
 
 function HeroSection() {
+  const navigate = useNavigate();
   return (
     <div className="relative overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] bg-gradient-to-b from-[var(--color-primary-subtle)]/50 to-transparent -z-10" />
       <div className="absolute top-40 right-0 w-96 h-96 bg-[var(--color-accent-subtle)] rounded-full blur-3xl opacity-30 -z-10" />
-      
+
       <Container size="lg" className="pt-20 pb-16 md:pt-32 md:pb-24">
         <Stack align="center" gap={8} className="text-center">
           <div className="max-w-4xl space-y-6">
@@ -98,31 +100,31 @@ function HeroSection() {
               <span className="flex h-2 w-2 rounded-full bg-[var(--color-primary)] mr-2 animate-pulse"></span>
               User-Centered Design for AI Agents
             </div>
-            
+
             <h1 className="text-[2.5rem] md:text-[4rem] font-extrabold leading-[1.1] tracking-tight text-[var(--color-text-primary)]">
               Interfaces that <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-accent)]">understand</span> your users
             </h1>
-            
+
             <p className="text-[var(--text-xl)] text-[var(--color-text-secondary)] leading-relaxed max-w-2xl mx-auto">
-              Great design starts with understanding people. We translate user needs into 
+              Great design starts with understanding people. We translate user needs into
               intuitive experiences—then into precise UI that AI agents can reliably generate.
             </p>
           </div>
 
           <Stack direction="horizontal" gap={4} justify="center" className="w-full pt-4">
-            <Button 
-              size="lg" 
-              variant="primary" 
+            <Button
+              size="lg"
+              variant="primary"
               className="min-w-[180px] h-14 text-[var(--text-lg)] shadow-[var(--shadow-lg)] hover:translate-y-[-2px] transition-transform"
-              onClick={() => window.location.href = '/story'}
+              onClick={() => navigate('/story')}
             >
               See the Journey
             </Button>
-            <Button 
-              size="lg" 
-              variant="secondary" 
+            <Button
+              size="lg"
+              variant="secondary"
               className="min-w-[180px] h-14 text-[var(--text-lg)] bg-[var(--color-bg-surface)] hover:bg-[var(--color-bg-subtle)]"
-              onClick={() => window.location.href = '/examples'}
+              onClick={() => navigate('/examples')}
             >
               View Examples
             </Button>
@@ -205,6 +207,7 @@ function UserNeedsSection() {
 }
 
 function JourneySection() {
+  const navigate = useNavigate();
   const phases = [
     { number: "01", title: "Understand", description: "Research users, define personas, capture jobs-to-be-done" },
     { number: "02", title: "Define", description: "Frame the problem, set success metrics, identify constraints" },
@@ -224,15 +227,15 @@ function JourneySection() {
                 From user needs to pixel-perfect UI
               </h2>
               <p className="text-[var(--text-lg)] text-[var(--color-text-secondary)]">
-                Our workflow ensures every design decision traces back to real user needs. 
+                Our workflow ensures every design decision traces back to real user needs.
                 Six specialized phases, each with validation gates, transform understanding into interfaces.
               </p>
             </div>
 
-            <Button 
-              variant="primary" 
+            <Button
+              variant="primary"
               size="lg"
-              onClick={() => window.location.href = '/story'}
+              onClick={() => navigate('/story')}
               className="group"
             >
               Explore the full journey
@@ -248,10 +251,10 @@ function JourneySection() {
               <Card.Body className="p-6">
                 <div className="space-y-4">
                   {phases.map((phase, i) => (
-                    <div 
-                      key={i} 
+                    <div
+                      key={i}
                       className="flex items-center gap-4 p-3 rounded-[var(--radius-lg)] hover:bg-[var(--color-bg-subtle)] transition-colors cursor-pointer group"
-                      onClick={() => window.location.href = '/story'}
+                      onClick={() => navigate('/story')}
                     >
                       <div className="w-10 h-10 rounded-full bg-[var(--color-primary)] text-white flex items-center justify-center font-bold text-sm">
                         {phase.number}
@@ -333,6 +336,7 @@ function PrinciplesSection() {
 }
 
 function CTASection() {
+  const navigate = useNavigate();
   return (
     <div className="py-24">
       <Container size="md">
@@ -341,34 +345,34 @@ function CTASection() {
           <Card.Body className="p-12 text-center">
             <h2 className="text-[var(--text-3xl)] font-bold mb-4">Ready to design with intention?</h2>
             <p className="text-[var(--text-lg)] text-[var(--color-text-secondary)] mb-8 max-w-lg mx-auto">
-              Walk through our complete design journey, explore real examples, 
+              Walk through our complete design journey, explore real examples,
               or jump into the sandbox to experiment with components.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-xl mx-auto">
-              <Button 
-                variant="primary" 
-                size="lg" 
+              <Button
+                variant="primary"
+                size="lg"
                 fullWidth
-                onClick={() => window.location.href = '/story'}
+                onClick={() => navigate('/story')}
                 className="h-12"
               >
                 Design Journey
               </Button>
-              <Button 
-                variant="secondary" 
-                size="lg" 
+              <Button
+                variant="secondary"
+                size="lg"
                 fullWidth
                 className="h-12"
-                onClick={() => window.location.href = '/examples'}
+                onClick={() => navigate('/examples')}
               >
                 Examples
               </Button>
-              <Button 
-                variant="secondary" 
-                size="lg" 
+              <Button
+                variant="secondary"
+                size="lg"
                 fullWidth
                 className="h-12"
-                onClick={() => window.location.href = '/sandbox'}
+                onClick={() => navigate('/sandbox')}
               >
                 Sandbox
               </Button>
@@ -387,9 +391,9 @@ function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-[var(--color-text-tertiary)] text-sm">
           <p>© 2026 UI Optimizer. Designed for humans, built for AI.</p>
           <div className="flex gap-6">
-            <a href="/story" className="hover:text-[var(--color-text-primary)] transition-colors">Design Journey</a>
-            <a href="/examples" className="hover:text-[var(--color-text-primary)] transition-colors">Examples</a>
-            <a href="/sandbox" className="hover:text-[var(--color-text-primary)] transition-colors">Sandbox</a>
+            <Link to="/story" className="hover:text-[var(--color-text-primary)] transition-colors">Design Journey</Link>
+            <Link to="/examples" className="hover:text-[var(--color-text-primary)] transition-colors">Examples</Link>
+            <Link to="/sandbox" className="hover:text-[var(--color-text-primary)] transition-colors">Sandbox</Link>
           </div>
         </div>
       </Container>
