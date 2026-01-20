@@ -8,6 +8,7 @@ on:
       - 'mkdocs.yml'
       - '.github/workflows/docs.yml'
       - 'requirements.txt'
+      - 'ui-design-demo/**'
   workflow_dispatch:
 
 permissions:
@@ -39,8 +40,27 @@ jobs:
           python-version: '3.12'
           cache: 'pip'
 
-      - name: Install dependencies
+      - name: Install Python dependencies
         run: pip install -r requirements.txt
 
-      - name: Build and deploy
-        run: mkdocs gh-deploy --force
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Build demo app
+        working-directory: ui-design-demo
+        run: |
+          bun install
+          bun run build
+
+      - name: Build docs
+        run: mkdocs build
+
+      - name: Copy demo to site
+        run: cp -r ui-design-demo/dist site/demo
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+          force_orphan: true
