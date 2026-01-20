@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Container } from '../../components/ui/Container';
 import { Stack } from '../../components/ui/Stack';
 import { Card } from '../../components/ui/Card';
@@ -180,12 +180,12 @@ function EcommerceContent() {
         <Container size="xl">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-8">
-              <a href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+              <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
                 <div className="w-8 h-8 rounded-[var(--radius-lg)] bg-[var(--color-primary)] flex items-center justify-center text-white font-bold text-sm shadow-sm">
                   Ui
                 </div>
                 <span className="font-bold text-lg">Optimizer</span>
-              </a>
+              </Link>
               <span className="text-[var(--color-text-tertiary)] hidden md:inline">/</span>
               <span className="text-[var(--color-text-secondary)] hidden md:inline">E-commerce Example</span>
             </div>

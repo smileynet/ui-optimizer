@@ -1,3 +1,4 @@
+import { Link, useNavigate } from 'react-router-dom';
 import { Stack } from '../../components/ui/Stack';
 import { Card } from '../../components/ui/Card';
 import { Button } from '../../components/ui/Button';
@@ -217,6 +218,7 @@ function SidebarItem({ icon, label, active = false }: { icon: React.ReactNode, l
 // --- Main Page ---
 
 function DashboardContent() {
+  const navigate = useNavigate();
   return (
     <CalloutProvider>
     <div className="min-h-screen bg-[var(--color-bg-page)] text-[var(--color-text-primary)] font-[family-name:var(--font-sans)] flex">
@@ -232,12 +234,12 @@ function DashboardContent() {
           <strong>Tokens:</strong> <code className="bg-[var(--color-bg-muted)] px-1 rounded">w-64</code>, <code className="bg-[var(--color-bg-muted)] px-1 rounded">sticky top-0</code>, <code className="bg-[var(--color-bg-muted)] px-1 rounded">--color-primary-subtle</code> for active state.
         </DesignCallout>
         <div className="p-6 border-b border-[var(--color-border)]">
-          <a href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+          <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-accent)] flex items-center justify-center text-white font-bold">
               Ui
             </div>
             <span className="font-bold text-[var(--text-lg)] tracking-tight">Optimizer</span>
-          </a>
+          </Link>
         </div>
         
         <div className="p-4 flex-1 overflow-y-auto">
@@ -287,7 +289,7 @@ function DashboardContent() {
             </div>
 
             <div className="flex items-center gap-3">
-              <Button variant="ghost" size="sm" onClick={() => window.location.href = '/story/dashboard'}>
+              <Button variant="ghost" size="sm" onClick={() => navigate('/story/dashboard')}>
                 View Story
               </Button>
               <PersonaSwitcher />

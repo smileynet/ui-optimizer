@@ -1,3 +1,4 @@
+import { Link, useNavigate } from 'react-router-dom';
 import { Container, Stack, Card, Button } from '../../components/ui';
 import { ThemeToggle } from '../../components/ThemeToggle';
 
@@ -10,11 +11,12 @@ interface ExampleCardProps {
 }
 
 function ExampleCard({ title, description, href, icon, tags }: ExampleCardProps) {
+  const navigate = useNavigate();
   return (
-    <Card 
-      variant="outlined" 
+    <Card
+      variant="outlined"
       className="h-full hover:border-[var(--color-primary)] hover:shadow-[var(--shadow-lg)] transition-all duration-300 group cursor-pointer"
-      onClick={() => window.location.href = href}
+      onClick={() => navigate(href)}
     >
       <Card.Body className="h-full flex flex-col">
         <div className="flex items-start justify-between mb-4">
@@ -85,6 +87,7 @@ function TrendingIcon() {
 }
 
 export function Examples() {
+  const navigate = useNavigate();
   const examples = [
     {
       title: 'Trading Platform',
@@ -129,19 +132,19 @@ export function Examples() {
         <Container size="xl">
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center gap-6">
-              <a href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+              <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
                 <div className="w-8 h-8 rounded-[var(--radius-lg)] bg-[var(--color-primary)] flex items-center justify-center text-white font-bold text-sm shadow-sm">
                   Ui
                 </div>
                 <span className="font-bold text-lg">Optimizer</span>
-              </a>
+              </Link>
               <nav className="hidden md:flex items-center gap-4">
-                <a href="/examples" className="text-sm font-medium text-[var(--color-primary)]">
+                <Link to="/examples" className="text-sm font-medium text-[var(--color-primary)]">
                   Examples
-                </a>
-                <a href="/sandbox" className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors">
+                </Link>
+                <Link to="/sandbox" className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors">
                   Sandbox
-                </a>
+                </Link>
               </nav>
             </div>
             <ThemeToggle />
@@ -162,10 +165,10 @@ export function Examples() {
                 AI agents to create professional interfaces.
               </p>
               <Stack direction="horizontal" gap={3}>
-                <Button variant="primary" onClick={() => window.location.href = '/sandbox'}>
+                <Button variant="primary" onClick={() => navigate('/sandbox')}>
                   View Design System
                 </Button>
-                <Button variant="secondary" onClick={() => window.location.href = '/'}>
+                <Button variant="secondary" onClick={() => navigate('/')}>
                   Back to Home
                 </Button>
               </Stack>
@@ -192,7 +195,7 @@ export function Examples() {
                   These examples are just the beginning. The design system supports countless 
                   other patterns—from authentication flows to complex wizards.
                 </p>
-                <Button variant="primary" size="lg" onClick={() => window.location.href = '/sandbox'}>
+                <Button variant="primary" size="lg" onClick={() => navigate('/sandbox')}>
                   Explore the Sandbox
                 </Button>
               </Card.Body>
