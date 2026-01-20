@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Container } from '../../components/ui/Container';
 import { Stack } from '../../components/ui/Stack';
 import { Card } from '../../components/ui/Card';
@@ -68,12 +69,13 @@ export function TradingPlatformStory() {
 }
 
 function StoryHeader() {
+  const navigate = useNavigate();
   return (
     <div className="border-b border-[var(--color-border)] bg-[var(--color-bg-surface)]/80 backdrop-blur-md sticky top-0 z-50">
       <Container size="xl">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.location.href = '/'}>
+            <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
               <div className="w-8 h-8 rounded-[var(--radius-lg)] bg-[var(--color-primary)] flex items-center justify-center text-white font-bold text-lg">
                 Ui
               </div>
@@ -82,7 +84,7 @@ function StoryHeader() {
               </span>
             </div>
             <span className="text-[var(--color-text-tertiary)]">/</span>
-            <span className="text-[var(--color-text-secondary)] cursor-pointer hover:text-[var(--color-text-primary)]" onClick={() => window.location.href = '/story'}>
+            <span className="text-[var(--color-text-secondary)] cursor-pointer hover:text-[var(--color-text-primary)]" onClick={() => navigate('/story')}>
               Stories
             </span>
             <span className="text-[var(--color-text-tertiary)]">/</span>
@@ -98,6 +100,7 @@ function StoryHeader() {
 }
 
 function PhaseNavigation({ activePhase, setActivePhase }: { activePhase: Phase; setActivePhase: (p: Phase) => void }) {
+  const navigate = useNavigate();
   const currentIndex = phases.findIndex(p => p.id === activePhase);
   const prevPhase = currentIndex > 0 ? phases[currentIndex - 1] : null;
   const nextPhase = currentIndex < phases.length - 1 ? phases[currentIndex + 1] : null;
@@ -109,13 +112,13 @@ function PhaseNavigation({ activePhase, setActivePhase }: { activePhase: Phase; 
           ← {prevPhase.number} {prevPhase.title}
         </Button>
       ) : <div />}
-      
+
       {nextPhase ? (
         <Button variant="primary" onClick={() => setActivePhase(nextPhase.id)}>
           {nextPhase.number} {nextPhase.title} →
         </Button>
       ) : (
-        <Button variant="primary" onClick={() => window.location.href = '/examples/trading'}>
+        <Button variant="primary" onClick={() => navigate('/examples/trading')}>
           View Live Example →
         </Button>
       )}

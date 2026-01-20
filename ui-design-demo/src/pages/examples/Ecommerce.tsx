@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Container } from '../../components/ui/Container';
 import { Stack } from '../../components/ui/Stack';
 import { Card } from '../../components/ui/Card';
@@ -167,6 +168,7 @@ const FilterIcon = () => (
 );
 
 function EcommerceContent() {
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('All Products');
   const [cartCount, _setCartCount] = useState(2);
   void _setCartCount;
@@ -204,7 +206,7 @@ function EcommerceContent() {
                   </span>
                 )}
               </Button>
-              <Button variant="ghost" size="sm" onClick={() => window.location.href = '/story/ecommerce'}>
+              <Button variant="ghost" size="sm" onClick={() => navigate('/story/ecommerce')}>
                 View Story
               </Button>
               <PersonaSwitcher />

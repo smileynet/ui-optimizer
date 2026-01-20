@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { Container } from '../../components/ui/Container';
 import { Stack } from '../../components/ui/Stack';
 import { Card } from '../../components/ui/Card';
@@ -18,11 +19,12 @@ export function StoryIndex() {
 }
 
 function StoryHeader() {
+  const navigate = useNavigate();
   return (
     <div className="border-b border-[var(--color-border)] bg-[var(--color-bg-surface)]/80 backdrop-blur-md sticky top-0 z-50">
       <Container size="xl">
         <div className="flex h-16 items-center justify-between">
-          <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.location.href = '/'}>
+          <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
             <div className="w-8 h-8 rounded-[var(--radius-lg)] bg-[var(--color-primary)] flex items-center justify-center text-white font-bold text-lg shadow-[var(--shadow-lg)]">
               Ui
             </div>
@@ -31,7 +33,7 @@ function StoryHeader() {
             </span>
           </div>
           <div className="flex items-center gap-4">
-            <Button variant="ghost" size="sm" onClick={() => window.location.href = '/'}>
+            <Button variant="ghost" size="sm" onClick={() => navigate('/')}>
               Home
             </Button>
             <ThemeToggle />
@@ -211,6 +213,7 @@ function WorkflowOverview() {
 }
 
 function ExampleJourneys() {
+  const navigate = useNavigate();
   const examples = [
     {
       title: 'Dashboard',
@@ -261,17 +264,17 @@ function ExampleJourneys() {
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="text-[var(--text-3xl)] font-bold mb-4">Design Journeys</h2>
             <p className="text-[var(--color-text-secondary)] text-[var(--text-lg)]">
-              Walk through complete examples showing the workflow applied. Each journey documents 
+              Walk through complete examples showing the workflow applied. Each journey documents
               every decision, from initial user research to final implementation.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {examples.map((example) => (
-              <Card 
-                key={example.title} 
+              <Card
+                key={example.title}
                 className="overflow-hidden group cursor-pointer hover:shadow-xl transition-all duration-300"
-                onClick={() => window.location.href = example.href}
+                onClick={() => navigate(example.href)}
               >
                 <div className={`h-48 ${example.image} flex items-center justify-center relative overflow-hidden`}>
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
@@ -307,6 +310,7 @@ function ExampleJourneys() {
 }
 
 function StoryFooter() {
+  const navigate = useNavigate();
   return (
     <div className="py-24 bg-[var(--color-bg-subtle)] border-t border-[var(--color-border)] text-center">
       <Container size="md">
@@ -316,10 +320,10 @@ function StoryFooter() {
             Explore the design system components, or dive into the complete workflow documentation.
           </p>
           <div className="flex gap-4">
-            <Button variant="primary" size="lg" onClick={() => window.location.href = '/sandbox'}>
+            <Button variant="primary" size="lg" onClick={() => navigate('/sandbox')}>
               Open Sandbox
             </Button>
-            <Button variant="secondary" size="lg" onClick={() => window.location.href = '/examples'}>
+            <Button variant="secondary" size="lg" onClick={() => navigate('/examples')}>
               View Examples
             </Button>
           </div>
