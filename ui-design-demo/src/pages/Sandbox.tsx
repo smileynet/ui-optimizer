@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ThemeToggle } from '../components/ThemeToggle';
 import { ColorShowcase } from './ColorShowcase';
 import { TypographyShowcase } from './TypographyShowcase';
@@ -60,14 +61,14 @@ export function Sandbox() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-8">
-              <a href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+              <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
                 <div className="w-8 h-8 rounded-[var(--radius-lg)] bg-[var(--color-primary)] flex items-center justify-center text-white font-bold text-sm shadow-sm">
                   Ui
                 </div>
                 <h1 className="text-xl font-bold text-[var(--color-text-primary)]">
                   Design Sandbox
                 </h1>
-              </a>
+              </Link>
               <nav className="hidden md:flex items-center gap-1">
                 {tabs.map((tab) => (
                   <NavItem
@@ -81,12 +82,12 @@ export function Sandbox() {
               </nav>
             </div>
             <div className="flex items-center gap-4">
-              <a 
-                href="/examples" 
+              <Link
+                to="/examples"
                 className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-primary)] transition-colors"
               >
                 Examples
-              </a>
+              </Link>
               <ThemeToggle />
             </div>
           </div>

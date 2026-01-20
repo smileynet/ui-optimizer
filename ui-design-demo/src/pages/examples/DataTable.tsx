@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Container } from '../../components/ui/Container';
 import { Stack } from '../../components/ui/Stack';
 import { Card } from '../../components/ui/Card';
@@ -148,6 +149,7 @@ const MOCK_DATA: User[] = [
 ];
 
 function DataTableContent() {
+  const navigate = useNavigate();
   const [selectedItems, setSelectedItems] = useState<Set<string>>(new Set());
   const [data, _setData] = useState<User[]>(MOCK_DATA);
   void _setData;
@@ -182,17 +184,17 @@ function DataTableContent() {
         <Container size="xl">
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center gap-4">
-              <a href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+              <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
                 <div className="w-8 h-8 rounded-[var(--radius-lg)] bg-[var(--color-primary)] flex items-center justify-center text-white font-bold text-sm shadow-sm">
                   Ui
                 </div>
                 <span className="font-bold text-lg">Optimizer</span>
-              </a>
+              </Link>
               <span className="text-[var(--color-text-tertiary)]">/</span>
               <span className="text-[var(--color-text-secondary)]">Data Table Example</span>
             </div>
             <div className="flex items-center gap-3">
-              <Button variant="ghost" size="sm" onClick={() => window.location.href = '/story/datatable'}>
+              <Button variant="ghost" size="sm" onClick={() => navigate('/story/datatable')}>
                 View Story
               </Button>
               <PersonaSwitcher />
