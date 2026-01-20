@@ -70,7 +70,7 @@ plugins:
       lang: en
       separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])'
   - d2:
-      executable: /home/sam/.local/bin/d2
+      executable: d2
       layout: elk
       theme: 0
       dark_theme: 200
