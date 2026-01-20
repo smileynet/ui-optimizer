@@ -24,3 +24,4 @@ dist/
 results/
 .cache/
 site/
+playwright-report
