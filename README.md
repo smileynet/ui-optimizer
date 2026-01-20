@@ -1,37 +1,55 @@
 # UI Optimizer
 
-**Teach AI agents to design like product designers, not just generate UI.**
+**You design. AI ships.**
 
-AI agents can generate interfaces quickly—but speed without direction produces generic, disconnected experiences. UI Optimizer provides the methodology and documentation to create user-centered designs.
-
-## What You Get
-
-- **Product Design Docs** — JTBD, personas, user stories, design thinking
-- **UI Design Docs** — Design systems, tokens, accessibility, atomic design
-- **Agent Workflow** — 6-phase process with prompts, quality gates, and handoff schemas
-- **Interactive Demo** — See persona-driven UI patterns in action
+Turn AI agents into product designers—not just UI generators.
 
 ## Quick Start
 
-**View the documentation:**
-
 ```bash
-# Clone and serve docs locally
+# View the docs
 git clone https://github.com/smileynet/ui-optimizer.git
 cd ui-optimizer
-pip install -r requirements.txt  # or: pip install mkdocs-material
+pip install -r requirements.txt
 mkdocs serve
-# Open http://localhost:8000
+# → http://localhost:8000
 ```
-
-**Run the interactive demo:**
 
 ```bash
+# Run the interactive demo
 cd ui-design-demo
-bun install
-bun run dev
-# Open http://localhost:5173
+bun install && bun run dev
+# → http://localhost:5173
 ```
+
+## What You Get
+
+| Component | Description |
+|-----------|-------------|
+| **Product Design Docs** | JTBD, personas, user stories, journey maps |
+| **UI Design Docs** | Design systems, tokens, accessibility, atomic design |
+| **Agent Workflow** | 6-phase process with prompts and quality gates |
+| **Interactive Demo** | Persona-driven UI patterns in action |
+
+## How It Works
+
+```mermaid
+flowchart LR
+    U[Understand<br/>Users] --> D[Define<br/>Problems]
+    D --> E[Explore<br/>Solutions]
+    E --> De[Design<br/>UI]
+    De --> V[Validate<br/>Testing]
+    V --> R[Refine<br/>Polish]
+
+    style U fill:#e8f5e9,stroke:#4caf50
+    style D fill:#e3f2fd,stroke:#2196f3
+    style E fill:#fff3e0,stroke:#ff9800
+    style De fill:#fce4ec,stroke:#e91e63
+    style V fill:#f3e5f5,stroke:#9c27b0
+    style R fill:#e0f2f1,stroke:#009688
+```
+
+Each phase has a specialized agent, structured outputs, and quality gates.
 
 ## Documentation
 
@@ -40,20 +58,11 @@ bun run dev
 | [Product Design](docs/product-design/README.md) | Jobs-to-be-Done, personas, user stories, journey maps |
 | [UI Design](docs/ui-design/README.md) | Design systems, tokens, accessibility, atomic design |
 | [Agent Workflow](docs/workflow/README.md) | 6-phase process for AI-driven UI creation |
-
-### The Agent Workflow
-
-```
-UNDERSTAND → DEFINE → EXPLORE → DESIGN → VALIDATE → REFINE
-    │           │         │         │         │         │
-  Users      Problems   Solutions   UI      Testing   Polish
-```
-
-Each phase has a specialized agent, structured outputs, and quality gates. See [Agent Prompts](docs/workflow/agent-prompts.md) for detailed prompts.
+| [Agent Prompts](docs/workflow/agent-prompts.md) | Copy-paste prompts for each workflow phase |
 
 ## Interactive Demo
 
-The demo shows how the same interface can serve multiple user personas:
+See how the same interface adapts to different users:
 
 | Example | Personas | Pattern |
 |---------|----------|---------|
@@ -62,29 +71,16 @@ The demo shows how the same interface can serve multiple user personas:
 | E-commerce | Quick Buyer, Researcher | Parallel Paths |
 | Data Table | Data Analyst, Team Lead | Context-Aware Revelation |
 
-Features:
-- **Persona Switcher** — Toggle between users to see relevant UI elements
-- **Design Callouts** — Annotations explaining rationale
-- **Story Pages** — Full design process walkthroughs
-
-## Project Structure
-
-```
-ui-optimizer/
-├── docs/
-│   ├── product-design/    # JTBD, personas, user stories
-│   ├── ui-design/         # Design systems, tokens, accessibility
-│   └── workflow/          # Agent workflow, prompts, quality gates
-├── ui-design-demo/        # Interactive React demo
-└── mkdocs.yml             # Documentation site config
-```
+Toggle between personas to see UI elements appear/hide based on user needs.
 
 ## Contributing
 
 1. Use design tokens (no hardcoded values)
 2. Follow existing component patterns
-3. Documentation follows [Diataxis](https://diataxis.fr/) (tutorials, how-to, reference, explanation)
+3. Docs follow [Diataxis](https://diataxis.fr/) structure
+
+See [Contributing docs](docs/contributing/) for diagram guidelines.
 
 ## License
 
-MIT
+[MIT](LICENSE)
