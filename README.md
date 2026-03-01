@@ -2,6 +2,8 @@
 
 **You design. AI ships.**
 
+[Live Docs](https://smileynet.github.io/ui-optimizer/) | [Interactive Demo](https://smileynet.github.io/ui-optimizer/demo/)
+
 Turn AI agents into product designers—not just UI generators.
 
 ## Quick Start
